@@ -1,0 +1,28 @@
+.btn { 
+    position: absolute; 
+	top: 80px; 
+	left: 45px;
+	opacity: .7;
+    border-radius: 2px; 
+    height: 36px; 
+    width:36px;  
+	/*border: 1px solid purple;*/
+}
+.btn2 { 
+    position: absolute; 
+	top: 8px; 
+	right: 45px;
+    border-radius: 2px; 
+    height: 36px; 
+    width:36px;  
+}
+#lines:before { 
+    border-bottom: 17px double black;
+    border-top: 6px solid black;    
+    content:"";
+    height: 5px; 
+    position: absolute; 
+    right:3px;  
+    top: 4px; 
+    width:30px; 
+}
