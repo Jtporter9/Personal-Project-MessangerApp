@@ -1,0 +1,5 @@
+Use Web (Socket.io) for instant messaging.   src="http://socket.io/"
+
+Use Amazon S3 for file/ picture uploading, for the messanger, and to create avatar. src="https://aws.amazon.com/s3/?sc_channel=PS&sc_campaign=acquisition_US&sc_publisher=google&sc_medium=s3_b&sc_content=s3_e&sc_detail=amazon%20s3&sc_category=s3&sc_segment=73823435922&sc_matchtype=e&sc_country=US&s_kwcid=AL!4422!3!73823435922!e!!g!!amazon%20s3&ef_id=VNBumwAABNL30gEC:20151120214357:s"
+
+Web RTC??? Facetime?  src="https://developer.mozilla.org/en-US/docs/Web/Guide/API/WebRTC" or src="http://www.webrtc.org/"
