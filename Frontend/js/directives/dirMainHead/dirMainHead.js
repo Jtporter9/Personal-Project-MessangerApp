@@ -1,8 +1,8 @@
-angular.module('portfolioApp')
+angular.module('messangerApp')
 
 .directive('dirMainHead', function () {
 		return {
-			templateUrl: 'js/Directives/dirMainHead/dirMainHead.html',
+			templateUrl: 'js/directives/dirMainHead/dirMainHead.html',
 			controller: function($scope){
 				
 				$scope.navToggle = function(){

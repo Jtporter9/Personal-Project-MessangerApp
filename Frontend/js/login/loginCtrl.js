@@ -1,3 +1,21 @@
-angular.module('messangerApp').controller('loginCtrl', function($scope){
-	
+angular.module('messangerApp').controller('loginCtrl', function ($scope) {
+
+	$scope.showLoginForm = function () {
+		if ($scope.showRegister === true) {
+			$scope.showRegister = !$scope.showRegister;
+			$scope.showLogin = !$scope.showLogin;
+		} else {
+			$scope.showLogin = !$scope.showLogin;
+		}
+	}
+
+	$scope.showRegisterForm = function () {
+		if ($scope.showLogin === true) {
+			$scope.showLogin = !$scope.showLogin;
+			$scope.showRegister = !$scope.showRegister;
+		} else {
+			$scope.showRegister = !$scope.showRegister;
+		}
+	}
+
 });

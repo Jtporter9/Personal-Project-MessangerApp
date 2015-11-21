@@ -1,3 +1,32 @@
-	<div ng-click="navToggle()" class="btn2" id="lines">
-		<br><br>
-<a href="/#/chatroom">Login</a>
+<dir-main-head></dir-main-head>
+<div ng-show="showLogin" class="loginForm">
+	<h2 style="margin;0">Login</h2>
+	<div>Email:</div>
+	<input type="email">
+	<br>
+	<br>
+	<div>Password:</div>
+	<input type="password">
+	<br>
+	<br>
+	<a href="/#/chatroom">Login</a>
+	<br>
+</div>
+<div ng-show="showRegister" class="loginForm">
+	<h2 style="margin;0">Register</h2>
+	<div>Email:</div>
+	<input type="email">
+	<br>
+	<br>
+	<div>Password:</div>
+	<input type="password">
+	<br>
+	<br>
+	<div>Re-type-password:</div>
+	<input type="password">
+	<br>
+	<br>
+	<a href="/#/chatroom">Login</a>
+	<br>
+</div>
+<dir-social-media></dir-social-media>

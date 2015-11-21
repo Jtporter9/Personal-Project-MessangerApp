@@ -1,7 +1,43 @@
-.btn { 
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/*Login page Css*/
+
+.header {
+    background-color: #D5322B;
+    margin: 0;
+    border-bottom: 1px solid black;
+    position: fixed;
+    top:0;
+    width: 100%;
+    text-align: center;
+}
+.navDropDown {
+	background: rgba(255,255,255,0.5);
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    position: fixed;   
+    right: 2%;
+    top: 12%;
+    padding: 3em 1em;
+}
+.loginForm {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 35%;
+    padding: 1%;
+    text-align: center;
+    z-index: 999;
     position: absolute; 
-	top: 80px; 
-	left: 45px;
+    left: 30%;
+    top: 150px;
+}
+.btn { 
 	opacity: .7;
     border-radius: 2px; 
     height: 36px; 
@@ -10,8 +46,8 @@
 }
 .btn2 { 
     position: absolute; 
-	top: 8px; 
-	right: 45px;
+	top:10%; 
+	right: 2.5%;
     border-radius: 2px; 
     height: 36px; 
     width:36px;  
@@ -23,6 +59,26 @@
     height: 5px; 
     position: absolute; 
     right:3px;  
-    top: 4px; 
+    top: 10px; 
     width:30px; 
 }
+footer {
+	position: fixed;
+    bottom:0;
+    background-color: #D5322B;    
+	padding: 0.3%;
+    border-top: 2px solid black;
+    width: 100%;
+    text-align: center;
+}
+.contactSocialMedia {
+     border: 2px solid lightgrey;
+     background-color: black;
+    border-radius: 5px;
+    width: 11%;
+    padding: .4%;
+    margin-left: 44%;
+}
+/** {
+    border: 1px solid purple;
+}*/
