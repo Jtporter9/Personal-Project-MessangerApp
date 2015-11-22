@@ -2,6 +2,12 @@ body,html {
     position: relative;
     margin: 0;
     padding: 0;
+    font-family: 'Product Sans', arial, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+}
+html {
     background-color: #D5322B;
 }
 
@@ -130,14 +136,38 @@ div#slider figure {
 }
 
 /*Chatroom page*/
+#chatroom-body {
+    background-color: whitesmoke;
+}
 .conversation-bar {
+    /*background-color: whitesmoke;
+    z-index: 999;*/
     position: absolute;
     left: 0;
     top: 80px;
-    height: 100%;
-    width: 20%;
-    border: 1px solid black;
-    
+    min-height: 540px;
+    max-height: 100%;
+    width: 23%;
+    border-right: 2px solid black;
+    overflow: scroll;
+}
+.convsersation-title {
+    position: fixed;
+}
+.conversation-footer {
+    position: fixed;
+    bottom:0;
+    height: 100px;
+    width: 100%;
+    background-color: #CB1A1B;
+}
+.conversations {
+    width:90%;
+    background-color: white;
+    border:2px solid black;
+    border-radius: 10px;
+    padding:5px;
+    margin:1%;
 }
 /** {
     border: 1px solid purple;

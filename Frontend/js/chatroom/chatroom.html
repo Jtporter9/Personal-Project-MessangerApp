@@ -1,7 +1,25 @@
-<dir-main-head></dir-main-head>
-<a href="/#/profile">My Profile</a>
-<div class="conversation-bar">
-	<span>Conversations:</span>
-	<hr>
+<div id="chatroom-body">
+	<dir-main-head>
+		<a href="/#/profile">My Profile</a>
+	</dir-main-head>
+	<div class="conversation-bar">
+		<div class="conversation-title" style="text-align:center;padding:3%;border-bottom:1px solid black;">
+			<big style="border-bottom:1px solid black;">Conversations:</big>
+		</div>
+		<div class="conversations" ng-repeat="convos in conversations">
+			{{convos.from}}
+			<br> {{convos.date | date: medium}}
+			<br>
+			<br> Message Count: ({{convos.messageCount}})
+		</div>
+		<div class="coversation-footer">
+<br><br>
+		</div>
+	</div>
+	<div ng-repeat="convos in conversations">
+		{{convos.messages.from}} 
+		{{convos.messages.content}} 
+		{{convos.messages.time}}
+	</div>
+	<dir-social-media></dir-social-media>
 </div>
-<dir-social-media></dir-social-media>
