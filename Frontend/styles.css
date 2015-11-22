@@ -1,7 +1,8 @@
-body {
+body,html {
     position: relative;
     margin: 0;
     padding: 0;
+    background-color: #D5322B;
 }
 
 /*Login page Css*/
@@ -10,10 +11,18 @@ body {
     background-color: #D5322B;
     margin: 0;
     border-bottom: 1px solid black;
-    position: fixed;
+    position: absolute;
     top:0;
     width: 100%;
-    text-align: center;
+    z-index: 999;
+}
+h1 {
+    font-family: 'Product Sans', arial, sans-serif;
+font-size: 32px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+margin-left: 10px;
 }
 .navDropDown {
 	background: rgba(255,255,255,0.5);
@@ -25,6 +34,7 @@ body {
     right: 2%;
     top: 12%;
     padding: 3em 1em;
+    z-index: 999;
 }
 .loginForm {
     border: 2px solid black;
@@ -71,6 +81,7 @@ footer {
     border-top: 2px solid black;
     width: 100%;
     text-align: center;
+    z-index: 999;
 }
 .contactSocialMedia {
      border: 2px solid lightgrey;
@@ -90,12 +101,32 @@ a:hover {
     border-radius: 5px;
     padding:1%;
 }
-.login-image {
-    background-image: url('http://images4.fanpop.com/image/photos/24400000/The-fuentes-boys-hanging-out-perfect-chemistry-24494756-720-480.jpg');
-    height: 700px;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+/*Slider*/
+@keyframes slidy {
+0% { left: 0%; }
+15% { left: 0%; }
+25% { left: -100%; }
+35% { left: -100%; }
+45% { left: -200%; }
+65% { left: -200%; }
+75% { left: -300%; }
+85% { left: -300%; }
+95% { left: -400%; }
+95% { left: -400%; }
+}
+
+body { margin: 0; } 
+div#slider { overflow: hidden; }
+div#slider figure img { width: 20%; float: left;}
+div#slider figure { 
+  position: fixed;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 30s slidy infinite; 
 }
 
 /*Chatroom page*/
