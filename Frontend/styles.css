@@ -28,6 +28,7 @@ body {
 }
 .loginForm {
     border: 2px solid black;
+    background: rgba(255,255,255,0.8);
     border-radius: 5px;
     width: 35%;
     padding: 1%;
@@ -79,6 +80,34 @@ footer {
     padding: .4%;
     margin-left: 44%;
 }
+a {
+    color: black;
+    font-family:monospac ;
+}
+a:hover {
+	background: rgba(255,255,255,0.5);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:1%;
+}
+.login-image {
+    background-image: url('http://images4.fanpop.com/image/photos/24400000/The-fuentes-boys-hanging-out-perfect-chemistry-24494756-720-480.jpg');
+    height: 700px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Chatroom page*/
+.conversation-bar {
+    position: absolute;
+    left: 0;
+    top: 80px;
+    height: 100%;
+    width: 20%;
+    border: 1px solid black;
+    
+}
 /** {
     border: 1px solid purple;
-}*/
+}*
