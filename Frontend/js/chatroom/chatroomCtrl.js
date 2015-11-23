@@ -1,29 +1,40 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService) {
 	// $scope.conversations = chatroomService.conversations;
-	
+
+	$scope.style2 = 'message-right';
+
+	$scope.showInnerNav = true;
+
+
 	$scope.messages = [
-				{
-					from:'Freddie Davis',
-					content: 'Dude, Tanner are you coming tonight?',
-					time: new Date
-				},
-				{
-					from:'Zac',
-					content: 'I am, yeah',
-					time: new Date
-				},
-				{
-					from:'Taylor Rowley',
-					content: 'I can\'t',
-					time: new Date
-				},
-				{
-					from:'You',
-					content: 'Yeah I can be there',
-					time: new Date
-				},
-				]
-	
+		{
+			from: 'Freddie Davis',
+			content: 'Dude, Tanner are you coming tonight?',
+			time: new Date
+		},
+		{
+			from: 'Zac',
+			content: 'I am, yeah',
+			time: new Date
+		},
+		{
+			from: 'You',
+			content: 'Yeah I can be there',
+			time: new Date,
+			id: 1
+		},
+		{
+			from: 'Zac',
+			content: 'Actually my wife wont let me',
+			time: new Date
+		},
+		{
+			from: 'Taylor Rowley',
+			content: 'I can\'t',
+			time: new Date
+		}
+				];
+
 	$scope.conversations = [
 		{
 			from: ['Freddie Davis', 'Zac Christianson', 'Taylor Rowley'],
@@ -56,5 +67,5 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 			messageCount: 81
 		},
 
-	]
+	];
 });

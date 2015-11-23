@@ -1,8 +1,11 @@
 <div class="header">
-	<img style="position:absolute;left:20%; top:20%;width:50px;"
-	 src="http://charliefish.co.uk/Patreon/icon_hangouts.png" alt="">
+	<img style="position:absolute;left:20%; top:20%;width:50px;" src="http://charliefish.co.uk/Patreon/icon_hangouts.png" alt="">
 	<h1>Goojle Hangouts</h1>
 	<div ng-click="navToggle()" class="btn2" id="lines">
+	</div>
+	<div ng-show="showInnerNav" class="inner-nav">
+		<a href="/#/chatroom">Chatroom</a>
+		<a href="/#/profile">My Profile</a>
 	</div>
 </div>
 <div ng-show="showNav" class="navDropDown">

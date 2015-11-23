@@ -1,6 +1,5 @@
 <div id="chatroom-body">
 	<dir-main-head>
-		<a href="/#/profile">My Profile</a>
 	</dir-main-head>
 	<div class="conversation-bar">
 		<div class="conversation-title" style="text-align:center;padding:3%;border-bottom:1px solid black;">
@@ -18,7 +17,7 @@
 		</div>
 	</div>
 	<div class="message-container">
-		<div class="message-box" ng-repeat="message in messages">
+		<div ng-class="{'style2':message.from==='You'}" class="message-box" ng-repeat="message in messages">
 			{{message.from}}:
 			<br> -{{message.content}}
 			<br>

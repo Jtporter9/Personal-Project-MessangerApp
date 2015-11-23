@@ -139,6 +139,14 @@ div#slider figure {
 #chatroom-body {
     background-color: whitesmoke;
 }
+.inner-nav {
+      position: absolute;
+    right: 45px;
+    top: 22px;
+    width: 20%;
+    z-index: 9999;
+    font-size: 24px;
+}
 .conversation-bar {
     /*background-color: whitesmoke;
     z-index: 999;*/
@@ -179,7 +187,7 @@ div#slider figure {
     margin: .8%;
     background: rgba(59, 59, 63, 1);
     width: 75%;
-    height: 500px ;
+    height: 530px ;
     border-radius: 5px;
     border:1px solid gray;
     overflow: scroll;
@@ -194,16 +202,15 @@ div#slider figure {
     margin: 3%;
 }
 .message-right {
-     background: rgba(255,255,255,0.7);
-     position: absolute;
-     right: 0;
+  background: rgba(255,255,255,0.7);
+    float: right;   
     border: 1px solid black;
     border-radius: 10px;
     padding: 1%;
     width: 25%;
     font-size: 15px;
     margin: 3%;
-}
+} 
 .Xbtn {
     position:absolute;
     top:15px;
