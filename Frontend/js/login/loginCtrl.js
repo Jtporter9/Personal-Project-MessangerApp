@@ -4,6 +4,7 @@ angular.module('messangerApp').controller('loginCtrl', function ($scope) {
 		if ($scope.showRegister === true) {
 			$scope.showRegister = !$scope.showRegister;
 			$scope.showLogin = !$scope.showLogin;
+
 		} else {
 			$scope.showLogin = !$scope.showLogin;
 		}
@@ -16,6 +17,10 @@ angular.module('messangerApp').controller('loginCtrl', function ($scope) {
 		} else {
 			$scope.showRegister = !$scope.showRegister;
 		}
+	}
+	$scope.cancelForm = function(){
+		$scope.showLogin = false;
+		$scope.showRegister = false;
 	}
 
 });

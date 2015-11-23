@@ -13,13 +13,17 @@
 			<br> Message Count: ({{convos.messageCount}})
 		</div>
 		<div class="coversation-footer">
-<br><br>
+			<br>
+			<br>
 		</div>
 	</div>
-	<div ng-repeat="convos in conversations">
-		{{convos.messages.from}} 
-		{{convos.messages.content}} 
-		{{convos.messages.time}}
+	<div class="message-container">
+		<div class="message-box" ng-repeat="message in messages">
+			{{message.from}}:
+			<br> -{{message.content}}
+			<br>
+			<br> {{message.time | date: large}}
+		</div>
 	</div>
 	<dir-social-media></dir-social-media>
 </div>

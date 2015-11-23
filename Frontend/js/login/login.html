@@ -1,6 +1,7 @@
 <dir-main-head></dir-main-head>
 <div ng-show="showLogin" class="loginForm">
 	<h2 style="margin;0">Login</h2>
+	<span class="Xbtn" ng-click="cancelForm()">X</span>
 	<hr style="width:50%;">
 	<div>Email:</div>
 	<input type="email">
@@ -27,6 +28,7 @@
 
 <div ng-show="showRegister" class="loginForm">
 	<h2 style="margin;0">Register</h2>
+	<span class="Xbtn" ng-click="cancelForm()">X</span>
 	<hr style="width:50%;">
 	<div>Email:</div>
 	<input type="email">

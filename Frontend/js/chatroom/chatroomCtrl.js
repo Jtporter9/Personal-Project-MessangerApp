@@ -1,12 +1,7 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService) {
 	// $scope.conversations = chatroomService.conversations;
 	
-	$scope.conversations = [
-		{
-			from: ['Freddie Davis', 'Zac Christianson', 'Taylor Rowley'],
-			date: new Date,
-			messageCount: 33,
-			messages: [
+	$scope.messages = [
 				{
 					from:'Freddie Davis',
 					content: 'Dude, Tanner are you coming tonight?',
@@ -28,6 +23,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 					time: new Date
 				},
 				]
+	
+	$scope.conversations = [
+		{
+			from: ['Freddie Davis', 'Zac Christianson', 'Taylor Rowley'],
+			date: new Date,
+			messageCount: 33,
 		},
 		{
 			from: ['Tobee Gunter'],
