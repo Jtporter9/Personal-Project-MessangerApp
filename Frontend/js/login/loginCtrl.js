@@ -1,5 +1,6 @@
 angular.module('messangerApp').controller('loginCtrl', function ($scope) {
 
+// angular
 	$scope.showLoginForm = function () {
 		if ($scope.showRegister === true) {
 			$scope.showRegister = !$scope.showRegister;

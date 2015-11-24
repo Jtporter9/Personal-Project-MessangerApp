@@ -19,10 +19,12 @@
 	<div class="message-container">
 		<div ng-class="{'style2':message.from==='You'}" class="message-box" ng-repeat="message in messages">
 			{{message.from}}:
-			<br> -{{message.content}}
+			<hr> -{{message.content}}
 			<br>
-			<br> {{message.time | date: large}}
+			<br>
+			<span style="font-size:12px;margin-left:60%">{{message.time | date: 'MMM d, h:mm a'}}</span>
 		</div>
+		<br><br>
 	</div>
 	<dir-social-media></dir-social-media>
 </div>

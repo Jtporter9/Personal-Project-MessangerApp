@@ -1,7 +1,7 @@
 body,html {
     position: relative;
     margin: 0;
-    padding: 0;
+    padding: 3px 0;
     font-family: 'Product Sans', arial, sans-serif;
     font-style: normal;
     font-variant: normal;
@@ -16,7 +16,7 @@ html {
 .header {
     background-color: #D5322B;
     margin: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
     position: absolute;
     top:0;
     width: 100%;
@@ -54,31 +54,24 @@ margin-left: 10px;
     left: 30%;
     top: 150px;
 }
-.btn { 
+/*.btn { 
 	opacity: .7;
     border-radius: 2px; 
     height: 36px; 
     width:36px;  
 	/*border: 1px solid purple;*/
 }
-.btn2 { 
-    position: absolute; 
-	top:10%; 
-	right: 2.5%;
-    border-radius: 2px; 
-    height: 36px; 
-    width:36px;  
-}
+
 #lines:before { 
     border-bottom: 17px double black;
     border-top: 6px solid black;    
     content:"";
     height: 5px; 
     position: absolute; 
-    right:3px;  
-    top: 10px; 
+    right:2%;  
+    top: 25%; 
     width:30px; 
-}
+}*/
 footer {
 	position: fixed;
     bottom:0;
@@ -97,7 +90,7 @@ footer {
     padding: .4%;
     margin-left: 44%;
 }
-a {
+/*a {
     color: black;
     font-family:monospac ;
 }
@@ -106,8 +99,7 @@ a:hover {
     border: 1px solid black;
     border-radius: 5px;
     padding:1%;
-}
-
+}*/
 /*Slider*/
 @keyframes slidy {
 0% { left: 0%; }
@@ -140,9 +132,11 @@ div#slider figure {
     background-color: whitesmoke;
 }
 .inner-nav {
+      font-family: 'Product Sans', arial, sans-serif;
+      font-size: 32px;
       position: absolute;
-    right: 45px;
-    top: 22px;
+    right: 50px;
+    top: 20px;
     width: 20%;
     z-index: 9999;
     font-size: 24px;
@@ -194,13 +188,15 @@ div#slider figure {
 }
 .message-box{
     background: rgba(255,255,255,0.7);
-    border: 1px solid black;
+    border: 3px solid white;
+    border-style: inset;
     border-radius: 10px;
     padding: 1%;
     width: 25%;
     font-size: 15px;
     margin: 3%;
 }
+
 .message-right {
   background: rgba(255,255,255,0.7);
     float: right;   
@@ -221,7 +217,29 @@ div#slider figure {
 }
 /*Profile section*/
 
-
+.profile-body {
+    background-color: white;
+}
+.personal-info {
+    width: 30%;
+    margin-left: 40px;
+}
+.friendsBox {
+    border: 1px solid black;
+    border-radius: 8px;
+    position: absolute;
+    right: 50px;
+    top: 100px;
+    overflow: scroll;
+    width: 50%;
+    max-height: 450px;
+}
+.friendsHeader {
+    border-bottom:2px solid black;
+    text-align: center;
+    font-family: 'Product Sans', arial, sans-serif;
+    font-size: 32px;
+}
 
 /** {
     border: 1px solid purple;
