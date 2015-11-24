@@ -8,7 +8,7 @@ body,html {
     font-weight: normal;
 }
 html {
-    background-color: #D5322B;
+        background-color: #D5322B;
 }
 
 /*Login page Css*/
@@ -71,24 +71,33 @@ margin-left: 10px;
     right:2%;  
     top: 25%; 
     width:30px; 
-}*/
-footer {
+}
+.footer {
 	position: fixed;
     bottom:0;
     background-color: #D5322B;    
-	padding: 0.3%;
+	padding: 0.1%;
     border-top: 2px solid black;
     width: 100%;
     text-align: center;
-    z-index: 999;
+}
+.footer2 {
+    position: fixed;
+    bottom:0;
+    background-color: #D5322B;    
+	padding: 0.1%;
+    border-top: 2px solid black;
+    width: 100%;
 }
 .contactSocialMedia {
+    text-align: center;
      border: 2px solid lightgrey;
      background-color: black;
     border-radius: 5px;
-    width: 11%;
+    width: 140px;
     padding: .4%;
-    margin-left: 44%;
+    margin-left: 44.5%;
+    margin-top: .4%;
 }
 /*a {
     color: black;
@@ -134,7 +143,7 @@ div#slider figure {
 #chatroom-body {
     background-color: whitesmoke;
 }
-.inner-nav {
+/*.inner-nav {
       font-family: 'Product Sans', arial, sans-serif;
       font-size: 32px;
       position: absolute;
@@ -143,14 +152,14 @@ div#slider figure {
     width: 20%;
     z-index: 9999;
     font-size: 24px;
-}
+}*/
 .conversation-bar {
     /*background-color: whitesmoke;
     z-index: 999;*/
     position: absolute;
     left: 0;
     top: 80px;
-    min-height: 540px;
+    min-height: 580px;
     max-height: 100%;
     width: 23%;
     border-right: 2px solid black;
@@ -170,7 +179,6 @@ div#slider figure {
     background-color: #CB1A1B;
 }
 .conversations {
-    width:90%;
     background-color: white;
     border:2px solid black;
     border-radius: 10px;
@@ -180,11 +188,11 @@ div#slider figure {
 .message-container {
     position: absolute;
     right:0px;
-    top: 82px;
+    top: 70px;
     margin: .8%;
     background: rgba(59, 59, 63, 1);
     width: 75%;
-    height: 530px ;
+    height: 564px ;
     border-radius: 5px;
     border:1px solid gray;
     overflow: scroll;
