@@ -1,5 +1,5 @@
 <div id="chatroom-body">
-<dir-Header-2></dir-Header-2>
+	<dir-Header-2></dir-Header-2>
 	<!--MAIN CONTENT OF CHAT ROOM-->
 	<div class="conversation-bar">
 		<div class="conversation-title" style="text-align:center;padding:1%;margin-bottom:0;">
@@ -8,20 +8,20 @@
 				<div style="margin:1%;" class="container-fluid">
 					<big style="color:white;">Converstations</big>
 					<div style="margin: 10px 0" class="form-group">
-						<input type="text" class="form-control" placeholder="Find a converstation...">
+						<input ng-model="conversationFilter" type="text" class="form-control" placeholder="Find a converstation...">
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
 		</div>
-		<div class="conversations" ng-repeat="convos in conversations">
+		<div class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
 			<big>{{convos.from}}</big>
 			<br>
 			<br>
 			<a>New messages <span class="badge">{{convos.messageCount}}</span></a>
 			<small style="margin-left:60px">{{convos.date | date: medium}}</small>
 		</div>
-	
+
 		<div class="coversation-footer">
 			<br>
 			<br>
@@ -33,6 +33,12 @@
 			<br>
 			<p style="margin:3px;">{{message.content}}:</p>
 			<span style="font-size:12px;margin-left:50%">{{message.time | date: 'MMM d, h:mm a'}}</span>
+		</div>
+		<input ng-click="showLargeInputBox()" ng-show="showlittleInput" class="input-message" type="text" placeholder="new message, type here....">
+		<div ng-show="showLargeInput">
+			<textarea class="input-message" name="" id="" cols="30" rows="5" placeholder="type here...">
+			</textarea>
+			<button ng-click="sendNewMessage()" style="z-index:999;position:fixed;bottom:58px;right:22px;" class="btn btn-primary">Send</button>
 		</div>
 	</div>
 	<dir-Footer-2></dir-Footer-2>

@@ -6,6 +6,18 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 
 	$scope.style2 = 'message-right';
 
+	$scope.showlittleInput = true;
+
+	$scope.showLargeInputBox = function () {
+		$scope.showlittleInput = false;
+		$scope.showLargeInput = true;
+	}
+	$scope.sendNewMessage = function () {
+		$scope.showlittleInput = true;
+		$scope.showLargeInput = false;
+	}
+
+
 	$scope.messages = [
 		{
 			from: 'Freddie Davis',

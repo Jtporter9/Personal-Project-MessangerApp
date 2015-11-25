@@ -18,8 +18,6 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a ng-show="showProfileLink" ng-click="showRegisterForm()" href="/#/profile">Your Profile</a></li>
-						<li><a ng-show="showChatroomLink" ng-click="showRegisterForm()" href="/#/chatroom">Chatroom</a></li>
 						<li class="dropdown">
 							<a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Something cool<span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -30,6 +28,10 @@
 								<li><a>Separated link</a></li>
 							</ul>
 						</li>
+					</ul>
+					<ul class="nav navbar-nav">
+						<li><a class="glyphicon glyphicon-user" ng-show="showProfileLink" ng-click="showRegisterForm()" href="/#/profile">Profile</a></li>
+						<li><a class="glyphicon glyphicon-comment" ng-show="showChatroomLink" ng-click="showRegisterForm()" href="/#/chatroom">Chatroom</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

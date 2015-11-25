@@ -71,14 +71,14 @@
 		<div class="panel-heading"><big>Your Friends</big>
 			<span style="margin-left:350px;">Add a friend:</span>
 			<div style="position:absolute;top:5px;left:280px;">
-				<input type="search" class="form-control" placeholder="Search...">
+				<input ng-model="friendsFinder" type="search" class="form-control" placeholder="Search...">
 			</div>
 			<button style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
 		</div>
 
 		<!-- Table -->
 		<table class="table">
-			<div ng-repeat="friend in friends">
+			<div ng-repeat="friend in friends | filter: friendsFinder">
 				<div style="margin: 6px 0;">
 					<div style="border:1px solid black" class="col-sm-4">{{friend.name}}</div>
 					<div style="border:1px solid red" class="col-sm-4"> {{friend.email}} </div>

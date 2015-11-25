@@ -265,6 +265,16 @@ div#slider figure {
     border-radius:5%;
     border:1px solid black;
 }
+.input-message {
+    z-index: 999;
+    position: fixed;
+    bottom:52px;
+    left:300px;
+    width: 75.4%;
+    border:2px solid black;
+    border-radius: 5px;
+    
+}
 
 /** {
     border: 1px solid purple;
