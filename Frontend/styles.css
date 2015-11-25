@@ -12,7 +12,14 @@ html {
 }
 
 /*Login page Css*/
-
+.mySignature {
+    position:absolute;
+    left:0;bottom:0;
+    background: rgba(255,255,255,0.7);
+    padding:.1%;
+    border-radius:5px;
+    font-family: cursive;
+}
 .header {
     background-color: #D5322B;
     margin: 0;
@@ -251,6 +258,12 @@ div#slider figure {
     text-align: center;
     font-family: 'Product Sans', arial, sans-serif;
     font-size: 32px;
+}
+.profile-picture {
+    width:250px;
+    margin:10px 0 10px 0;
+    border-radius:5%;
+    border:1px solid black;
 }
 
 /** {
