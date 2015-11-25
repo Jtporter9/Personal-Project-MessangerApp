@@ -1,59 +1,94 @@
 <div class="profile-body">
 	<dir-Header-2></dir-Header-2>
-	<div style=" height: 500px;width:35%;position:absolute;top:80px;left:25px;" class="panel panel-primary">
 
-		<div class="personal-info">
+	<div style=" height: 520px;width:35%;position:absolute;top:80px;left:25px; padding:10px;" class="panel panel-primary">
+		<!--PERSONAL INFO-->
+		<div ng-show="showPersonalInfo" class="personal-info" ng-mouseover="showEditProfile()" ng-mouseleave="leaveEditProfile()">
+			<button ng-click="editYourPersonalInfo()" ng-show="showEditBtn" style="float:right;" class="glyphicon glyphicon-pencil btn btn-primary"></button>
 			<div class="profilePicContainer">
 				<img class="profile-picture" src="images/2015-03-23 06.42.58.jpg">
 			</div>
 			<big>
-			Name: Persons name;
+			Name: {{usersInfo.name}}
 		</big>
+			<br>
+			<br>
+			<div style="height:140px">
+				About: {{usersInfo.about}}
+				<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et lacus ornare, aliquam ex non, dictum neque. Sed
+				rhoncus nisl nec diam efficitur, vitae euismod mauris commodo. Suspendisse hendrerit nulla tristique lectus fermentum,
+				sed consectetur ligula mollis. Curabitur a eleifend tortor, ullamcorper efficitur nisi.-->
+			</div>
+			<br>
+			<span>
+			Username: {{usersInfo.username}}<br>
+			<br> 
+			</span>
+			<span>Email: {{usersInfo.userEmail}}
+			<br>
+			</span>
+			<span>
+			<br> Password: {{usersInfo.userPassword}}
+			<br>
+			</span>
+			<br>
+			<br>
+		</div>
+		<!--FORM TO EDIT PERSONAL INFO-->
+		<div ng-show="editingPersonalInfo" style="margin-left:40px;">
+			<div class="profilePicContainer">
+				<img class="profile-picture" src="images/2015-03-23 06.42.58.jpg">
+			</div>
+			<big>
+			Name: <input  ng-model="usersInfo.name" type="text">
+		</big>
+			<br>
+			<br>
 			<p>
-				About: about the person.lkjd; lka; lk n; lnv;lk j afa jd flakj df; l kajd; f l kand;lv knd; lfka ndlkf nal kjfa jl an;l kjdljlkja;l
-				kjlasd lk; lkjalj fkljdlfkj a;sldf
+				About:
+				<br>
+				<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="5"></textarea>
 			</p>
 			<span>
-			Username: Jtporter9 <br>
+			Username: <input ng-model="usersInfo.username" type="text"><br>
+			<br> 
+			</span>
+			<span>
+			Email: <input ng-model="usersInfo.userEmail" type="email"><br>
+			</span>
 			<br>
-			Email: jtporter9@gmail.com <br>
-			<br>
-			Password: password123 <br>
-			<br>
-			<br>
+			<span>
+			Password: <input ng-model="usersInfo.userPassword" type="text"> <button ng-click="submitNewEdit()" style="float:right;" class="btn btn-success">Done</button>
 		</span>
 		</div>
 	</div>
+</div>
 
-	<!--<div class="friendsBox">
-		<div class="friendsHeader">
-			<big>Your Friends</big>
-		</div>
-		<div style="border:5px solid black" class="col-sm-4">Test1</div>
-		<div style="border:5px solid red" class="col-sm-4">Test2</div>
-		<div style="border:5px solid blue" class="col-sm-4">Test3</div>
-	</div>-->
-
-	<div class="friendsBox">
-		<div class="panel panel-default">
-			<!-- Default panel contents -->
-			<div class="panel-heading"><big>Your Friends</big>
-				<span style="margin-left:350px;">Add a friend:</span>
-				<!--<div style="position:absolute;top:5px;left:380px;">
-					<input type="search" class="form-control" placeholder="Find a friend...">
-				</div>-->
-				<button style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
+<!--FREIDNS BOX-->
+<div class="friendsBox">
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading"><big>Your Friends</big>
+			<span style="margin-left:350px;">Add a friend:</span>
+			<div style="position:absolute;top:5px;left:280px;">
+				<input type="search" class="form-control" placeholder="Search...">
 			</div>
-
-			<!-- Table -->
-			<table class="table">
-				<div style="border:5px solid black" class="col-sm-4">Test1</div>
-				<div style="border:5px solid red" class="col-sm-4">Test2</div>
-				<div style="border:5px solid blue" class="col-sm-4">Test3</div>
-			</table>
+			<button style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
 		</div>
+
+		<!-- Table -->
+		<table class="table">
+			<div ng-repeat="friend in friends">
+				<div style="margin: 6px 0;">
+					<div style="border:1px solid black" class="col-sm-4">{{friend.name}}</div>
+					<div style="border:1px solid red" class="col-sm-4"> {{friend.email}} </div>
+					<div style="border:1px solid #225A9A" class="col-sm-4"> {{friend.status}}</div>
+				</div>
+			</div>
+		</table>
 	</div>
+</div>
 
 
-	<dir-Footer-2></dir-Footer-2>
+<dir-Footer-2></dir-Footer-2>
 </div>
