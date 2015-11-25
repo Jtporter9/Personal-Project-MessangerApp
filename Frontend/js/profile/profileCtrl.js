@@ -1,6 +1,7 @@
 angular.module('messangerApp').controller('profileCtrl', function ($scope) {
 
-	$scope.showInnerNav = true;
+	$scope.showProfileLink = false;
+	$scope.showChatroomLink = true;
 
 
 });

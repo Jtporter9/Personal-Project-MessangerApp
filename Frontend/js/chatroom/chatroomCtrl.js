@@ -1,10 +1,10 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService) {
 	// $scope.conversations = chatroomService.conversations;
+	
+	$scope.showProfileLink = true;
+	$scope.showChatroomLink = false;
 
 	$scope.style2 = 'message-right';
-
-	$scope.showInnerNav = true;
-
 
 	$scope.messages = [
 		{

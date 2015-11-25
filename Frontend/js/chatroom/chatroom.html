@@ -1,51 +1,14 @@
 <div id="chatroom-body">
-	<div class="header">
-		<nav class="navbar navbar-inverse">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<img style="width:45px;margin-top:3px;" src="http://charliefish.co.uk/Patreon/icon_hangouts.png">
-					<a class="navbar-brand" href="#">GOOJLE HANGOUTS</a>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a ng-click="showRegisterForm()" href="/#/profile">Your Profile</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Something cool<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-			<!-- /.container-fluid -->
-		</nav>
-	</div>
-
+<dir-Header-2></dir-Header-2>
 	<!--MAIN CONTENT OF CHAT ROOM-->
 	<div class="conversation-bar">
 		<div class="conversation-title" style="text-align:center;padding:1%;margin-bottom:0;">
-			<nav class="navbar navbar-inverse">
+			<nav style="margin:0;" class="navbar navbar-inverse">
+				<button style="position:absolute;left:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
 				<div style="margin:1%;" class="container-fluid">
 					<big style="color:white;">Converstations</big>
 					<div style="margin: 10px 0" class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="Find a converstation...">
 					</div>
 				</div>
 				<!-- /.container-fluid -->
@@ -56,8 +19,9 @@
 			<br>
 			<br>
 			<a>New messages <span class="badge">{{convos.messageCount}}</span></a>
-			<small style="margin-left:25px">{{convos.date | date: medium}}</small>
+			<small style="margin-left:60px">{{convos.date | date: medium}}</small>
 		</div>
+	
 		<div class="coversation-footer">
 			<br>
 			<br>
@@ -71,27 +35,5 @@
 			<span style="font-size:12px;margin-left:50%">{{message.time | date: 'MMM d, h:mm a'}}</span>
 		</div>
 	</div>
-
-
-	<!--FOOTER FOR CHATROOM PAGE-->
-	<footer class="footer2">
-		<span style="position:absolute;left:540px;bottom:15px;font-weight:bold;">
-			Share us with your friends:</span>
-		<div style="margin-left:57%;padding:.5% 0;">
-			<a href="https://twitter.com">
-				<img style="border-radius:50%;border:1px solid #232323;" title="Twitter" alt="Twitter" src="https://socialmediawidgets.files.wordpress.com/2014/03/01_twitter.png"
-				width="35" />
-			</a>
-			<a href="https://plus.google.com">
-				<img style="border-radius:50%;border:1px solid #232323;" title="Google" alt="Google" src="Images/images.jpeg" width="35"
-				/>
-			</a>
-			<a href="https://www.facebook.com">
-				<img style="border-radius:50%;border:1px solid #232323;" title="Facebook" alt="Facebook" src="https://socialmediawidgets.files.wordpress.com/2014/03/02_facebook.png"
-				width="35" />
-			</a>
-		</div>
-
-
-	</footer>
+	<dir-Footer-2></dir-Footer-2>
 </div>

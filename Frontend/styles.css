@@ -59,8 +59,8 @@ margin-left: 10px;
     border-radius: 2px; 
     height: 36px; 
     width:36px;  
-	/*border: 1px solid purple;*/
-}
+	border: 1px solid purple;
+}*/
 
 #lines:before { 
     border-bottom: 17px double black;
@@ -158,7 +158,7 @@ div#slider figure {
     z-index: 999;*/
     position: absolute;
     left: 0;
-    top: 80px;
+    top: 63px;
     min-height: 580px;
     max-height: 100%;
     width: 23%;
@@ -179,7 +179,7 @@ div#slider figure {
     background-color: #CB1A1B;
 }
 .conversations {
-    background-color: white;
+    background-color: whitesmoke;
     border:2px solid black;
     border-radius: 10px;
     padding:5px;
@@ -188,10 +188,10 @@ div#slider figure {
 .message-container {
     position: absolute;
     right:0px;
-    top: 70px;
-    margin: .8%;
+    top: 55px;
+    margin: .6%;
     background: rgba(59, 59, 63, 1);
-    width: 75%;
+    width: 76%;
     height: 564px ;
     border-radius: 5px;
     border:1px solid gray;
@@ -199,7 +199,7 @@ div#slider figure {
 }
 .message-box{
     background: rgba(255,255,255,0.7);
-    border: 3px solid white;
+    border: 3px solid whitesmoke;
     border-style: inset;
     border-radius: 10px;
     padding: 1%;
@@ -229,7 +229,8 @@ div#slider figure {
 /*Profile section*/
 
 .profile-body {
-    background-color: white;
+    background-color: whitesmoke;
+    height: 630px;
 }
 .personal-info {
     width: 30%;
