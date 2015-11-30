@@ -1,10 +1,38 @@
 <div id="chatroom-body">
 	<dir-Header-2></dir-Header-2>
 	<!--MAIN CONTENT OF CHAT ROOM-->
+	<div ng-show="addingConversation" class="add-convo">
+		<form action="">
+			<big style="border-bottom:1px solid black;">Who would you like to converse with?</big>
+			<br>
+			<br>
+			<input ng-model="scrollFriendsFinder" style="width:70%" type="search" placeholder="search here...">
+			<br>
+			<br>
+			<div id="scrollFriends" class="panel panel-default">
+				<span class="Xbtn" ng-click="cancelForm()">X</span>
+				<!-- Table -->
+				<table class="table">
+					<div ng-repeat="friend in friends | filter: scrollFriendsFinder">
+						<div style="margin: 6px 0;">
+							<div style="border:1px solid black" class="col-sm-4">{{friend.name}}</div>
+							<div style="border:1px solid red" class="col-sm-4"> {{friend.email}} </div>
+							<div style="border:1px solid #225A9A" class="col-sm-4"> {{friend.status}}</div>
+							<!--<div style="border:1px solid #225A9A" class="col-sm-3">
+								<button class="glyphicon glyphicon-ok btn btn-primary"></button>
+							</div>-->
+						</div>
+					</div>
+				</table>
+			</div>
+			<button ng-click="submitNewConvo()" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
+		</form>
+	</div>
+
 	<div class="conversation-bar">
 		<div class="conversation-title" style="text-align:center;padding:1%;margin-bottom:0;">
 			<nav style="margin:0;" class="navbar navbar-inverse">
-				<button style="position:absolute;left:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
+				<button ng-click="addConversation()" style="position:absolute;left:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
 				<div style="margin:1%;" class="container-fluid">
 					<big style="color:white;">Converstations</big>
 					<div style="margin: 10px 0" class="form-group">
@@ -36,7 +64,7 @@
 		</div>
 		<input ng-click="showLargeInputBox()" ng-show="showlittleInput" class="input-message" type="text" placeholder="new message, type here....">
 		<div ng-show="showLargeInput">
-			<textarea class="input-message" name="" id="" cols="30" rows="5" placeholder="type here...">
+			<textarea ng-keydown="searchKeyPress(event);" class="input-message" name="" id="" cols="30" rows="5" placeholder="type here...">
 			</textarea>
 			<button ng-click="sendNewMessage()" style="z-index:999;position:fixed;bottom:58px;right:22px;" class="btn btn-primary">Send</button>
 		</div>

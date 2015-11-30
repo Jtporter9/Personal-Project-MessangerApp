@@ -1,6 +1,6 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService) {
 	// $scope.conversations = chatroomService.conversations;
-	
+
 	$scope.showProfileLink = true;
 	$scope.showChatroomLink = false;
 
@@ -12,9 +12,36 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 		$scope.showlittleInput = false;
 		$scope.showLargeInput = true;
 	}
+	
+	//adding conversation
+	$scope.addConversation = function () {
+		$scope.addingConversation = true;
+	};
+
+	$scope.submitNewConvo = function () {
+		$scope.addingConversation = false;
+		$scope.scrollFriendsFinder = "";
+	}
+
+	$scope.cancelForm = function () {
+		$scope.addingConversation = false;
+		$scope.scrollFriendsFinder = "";
+	}
+	
+	
+	//sending new message area
 	$scope.sendNewMessage = function () {
 		$scope.showlittleInput = true;
 		$scope.showLargeInput = false;
+	}
+	$scope.searchKeyPress = function (e) {
+		// look for window.event in case event isn't passed in
+		e = e || window.event;
+		if (e.keyCode == 13) {
+			$scope.sendNewMessage();
+			return false;
+		}
+		return true;
 	}
 
 
@@ -79,5 +106,113 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 			messageCount: 81
 		},
 
+	];
+	$scope.friends = [
+		{
+			name: 'Freddie Davis',
+			email: 'fpdavis4@gmail.com',
+			status: 'Offline'
+		},
+		{
+			name: 'Zac Christianson',
+			email: 'zaclax29@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Tobee Gunter',
+			email: 'sobee4@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Pete Bradford',
+			email: 'peter26@gmail.com',
+			status: 'Offline'
+		}, {
+			name: 'Cody Porter',
+			email: 'codyWadePorter@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Freddie Davis',
+			email: 'fpdavis4@gmail.com',
+			status: 'Offline'
+		},
+		{
+			name: 'Zac Christianson',
+			email: 'zaclax29@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Tobee Gunter',
+			email: 'sobee4@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Pete Bradford',
+			email: 'peter26@gmail.com',
+			status: 'Offline'
+		}, {
+			name: 'Cody Porter',
+			email: 'codyWadePorter@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Freddie Davis',
+			email: 'fpdavis4@gmail.com',
+			status: 'Offline'
+		},
+		{
+			name: 'Zac Christianson',
+			email: 'zaclax29@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Tobee Gunter',
+			email: 'sobee4@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Pete Bradford',
+			email: 'peter26@gmail.com',
+			status: 'Offline'
+		}, {
+			name: 'Cody Porter',
+			email: 'codyWadePorter@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Freddie Davis',
+			email: 'fpdavis4@gmail.com',
+			status: 'Offline'
+		},
+		{
+			name: 'Zac Christianson',
+			email: 'zaclax29@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Tobee Gunter',
+			email: 'sobee4@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Pete Bradford',
+			email: 'peter26@gmail.com',
+			status: 'Offline'
+		}, {
+			name: 'Cody Porter',
+			email: 'codyWadePorter@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Freddie Davis',
+			email: 'fpdavis4@gmail.com',
+			status: 'Offline'
+		},
+		{
+			name: 'Zac Christianson',
+			email: 'zaclax29@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Tobee Gunter',
+			email: 'sobee4@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Pete Bradford',
+			email: 'peter26@gmail.com',
+			status: 'Offline'
+		}, {
+			name: 'Cody Porter',
+			email: 'codyWadePorter@gmail.com',
+			status: 'Online'
+		}
 	];
 });

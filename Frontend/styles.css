@@ -273,9 +273,23 @@ div#slider figure {
     width: 75.4%;
     border:2px solid black;
     border-radius: 5px;
-    
 }
-
+.add-convo {
+      border: 2px solid black;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    width: 35%;
+    padding: 1%;
+    text-align: center;
+    z-index: 999;
+    position: absolute; 
+    left: 32.5%;
+    top: 110px;
+}
+#scrollFriends {
+    height: 300px;
+    overflow: scroll;
+}
 /** {
     border: 1px solid purple;
 }*
