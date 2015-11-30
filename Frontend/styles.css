@@ -155,10 +155,27 @@ div#slider figure {
 
 
 #submit-message-btn {
-    z-index:999;position:fixed;bottom:58px;right:22px;
+    z-index:999;
+    position:fixed;
+    bottom:58px;
+    right:22px;
+}
+#attach-file {
+        z-index:999;
+    position:fixed;
+    bottom:58px;
+    right:92px;
+}
+#emoji {
+        z-index:999;
+    position:fixed;
+    bottom:108px;
+    right:23px;
+    width: 4%;
 }
 .message-content{
-    font-size:12px;margin-left:50%
+    font-size:12px;
+    float: right;
 }
 .small-text {
     margin-left:60px;
@@ -241,12 +258,25 @@ div#slider figure {
     border:1px solid gray;
     overflow: scroll;
 }
+.newMessage-container {
+    position: absolute;
+    right:0px;
+    top: 55px;
+    margin: .6%;
+    background: rgba(59, 59, 63, 1);
+    width: 76%;
+    height: 475px ;
+    border-radius: 5px;
+    border:1px solid gray;
+    overflow: scroll;
+}
 .message-box{
     background: rgba(255,255,255,0.7);
     border: 1px solid black;
     border-radius: 10px;
     padding: 1%;
-    width: 25%;
+    width:52%;
+    float: left;
     clear: both;
     font-size: 15px;
     margin: 2.3%;
@@ -259,7 +289,7 @@ div#slider figure {
     border: 1px solid black;
     border-radius: 10px;
     padding: 1%;
-    width: 25%;
+    width:52%;
     font-size: 15px;
     margin: 2.3%;
 } 
@@ -285,19 +315,20 @@ div#slider figure {
 }
 .add-convo {
       border: 2px solid black;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
     border-radius: 5px;
     width: 35%;
     padding: 1%;
     text-align: center;
     z-index: 999;
     position: absolute; 
-    left: 32.5%;
+    left: 34%;
     top: 110px;
 }
 #scrollFriends {
     height: 300px;
     overflow: scroll;
+    border: 1px solid black;
 }
 
 

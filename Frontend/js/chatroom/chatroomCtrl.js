@@ -11,6 +11,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 	$scope.showLargeInputBox = function () {
 		$scope.showlittleInput = false;
 		$scope.showLargeInput = true;
+		$scope.newMessageContainer = 'newMessage-container';
 	}
 	
 	//adding conversation
@@ -34,6 +35,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 		$scope.showlittleInput = true;
 		$scope.showLargeInput = false;
 		$scope.newMessageText ="";
+		$scope.newMessageContainer = 'message-container';
+		$scope.showFileUpload = false;
+	}
+	
+	$scope.attachFile = function(){
+		$scope.showFileUpload = true;
 	}
 	$scope.searchKeyPress = function (e) {
 		// look for window.event in case event isn't passed in
@@ -45,8 +52,21 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 		return true;
 	}
 	
-// 	var objDiv = document.getElementById("message-container");
-// objDiv.scrollTop = objDiv.scrollHeight;
+// 	var scrolled = false;
+// function updateScroll(){
+//     if(!scrolled){
+//         var element = document.getElementById("message-container");
+//         element.scrollTop = element.scrollHeight;
+//     }
+// }
+
+// $("message-container").on('scroll', function(){
+//     scrolled=true;
+// });
+	
+// 	$("#message-container").on('scroll', function(){
+//     scrolled=true;
+// });
 
 
 	$scope.messages = [

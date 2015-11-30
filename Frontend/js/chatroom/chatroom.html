@@ -1,6 +1,8 @@
 <div id="chatroom-body">
 	<dir-Header-2></dir-Header-2>
 	<!--MAIN CONTENT OF CHAT ROOM-->
+	
+	<!--New Conversation-->
 	<div ng-show="addingConversation" class="add-convo">
 		<form action="">
 			<big class="big-underline">Who would you like to converse with?</big>
@@ -29,6 +31,7 @@
 		</form>
 	</div>
 
+
 	<div class="conversation-bar">
 		<div class="conversation-title" id="convo-title">
 			<nav style="margin:0;" class="navbar navbar-inverse">
@@ -43,32 +46,34 @@
 			</nav>
 		</div>
 		<div class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
-					<div ng-repeat="person in convos.from">
+			<div ng-repeat="person in convos.from">
 				<big>
 					{{person}}
 				</big>
-				</div>
+			</div>
 			<br>
 			<a>New messages <span class="badge">{{convos.messageCount}}</span></a>
 			<small class="small-text">{{convos.date | date: medium}}</small>
 		</div>
 
 		<div class="coversation-footer">
-			<br>
-			<br>
 		</div>
 	</div>
-	<div class="message-container">
+	<div ng-class="newMessageContainer" id="message-container" class="message-container">
 		<div ng-class="{'message-right':message.from==='You'}" class="message-box" ng-repeat="message in messages">
 			<span style="border-bottom:1px solid black">{{message.from}}:</span>
-			<br>
-			<p style="margin:3px;">{{message.content}}:</p>
+			<p style="margin:3px;">{{message.content}}</p>
 			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
 		</div>
 		<input ng-click="showLargeInputBox()" ng-show="showlittleInput" class="input-message" type="text" placeholder="new message, type here....">
 		<div ng-show="showLargeInput">
-			<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event);" class="input-message" name="" id="" cols="30" rows="5" placeholder="type here...">
+			<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event);" class="input-message" name="" id="" rows="5"
+			placeholder="type here...">
 			</textarea>
+			<input id="attach-file" ng-show="showFileUpload" type="file">
+			<button ng-click="attachFile()" id="attach-file" class=" btn btn-success">
+				<a style="color:white;" class="glyphicon glyphicon-paperclip"></a> Attach</button>
+				<button id="emoji" class="btn btn-warning"><img src="http://media.idownloadblog.com/wp-content/uploads/2014/06/Emoji-Tongue.png" style="width:100%"></button>
 			<button ng-click="sendNewMessage()" id="submit-message-btn" class="btn btn-primary">Send</button>
 		</div>
 	</div>
