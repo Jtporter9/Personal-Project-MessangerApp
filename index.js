@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var app = express();
 
 //Mongoose
-var mongoUri = "mongodb://localhost:27017/Ecommerce";
+var mongoUri = "mongodb://localhost:27017/Chatroom";
 
 // Controllers
 
@@ -14,9 +14,8 @@ var mongoUri = "mongodb://localhost:27017/Ecommerce";
 // Express Middleware
 app.use(bodyParser.json());
 app.use(cors());
-var mongoUri = 'mongodb://localhost:27017/mini-birds-mongoose';
 
-mongoose.set('debug', true);
+// Connetions
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function () {
 	console.log("Successsfully connected to mongodb");
@@ -26,8 +25,7 @@ app.use(express.static(__dirname + '/Frontend'));
 
 // Endpoints
 
-// Connetions
-
+//listening
 app.listen(3000, function() {
   console.log('listening on port: 3000');
 });

@@ -10,6 +10,11 @@ body,html {
 html {
         background-color: #D5322B;
 }
+#page-title {
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}
 
 /*Login page Css*/
 .mySignature {
@@ -147,6 +152,38 @@ div#slider figure {
 }
 
 /*Chatroom page*/
+
+
+#submit-message-btn {
+    z-index:999;position:fixed;bottom:58px;right:22px;
+}
+.message-content{
+    font-size:12px;margin-left:50%
+}
+.small-text {
+    margin-left:60px;
+}
+#convo-title {
+    text-align:center;
+    padding:1%;
+    margin-bottom:0;
+}
+#add-convo-btn {
+    position:absolute;
+    left:3px;
+    top:3px;
+    padding:1%;
+    width:12%;
+}
+.friend-div {
+    margin: 6px 0;
+}
+.big-underline {
+    border-bottom:1px solid black;
+}
+.convo-search {
+    width:70%
+}
 #chatroom-body {
     background-color: whitesmoke;
 }
@@ -206,25 +243,29 @@ div#slider figure {
 }
 .message-box{
     background: rgba(255,255,255,0.7);
-    border: 3px solid whitesmoke;
-    border-style: inset;
+    border: 1px solid black;
     border-radius: 10px;
     padding: 1%;
     width: 25%;
+    clear: both;
     font-size: 15px;
-    margin: 3%;
+    margin: 2.3%;
 }
 
 .message-right {
   background: rgba(255,255,255,0.7);
-    float: right;   
+    float: right;
+    clear: both;
     border: 1px solid black;
     border-radius: 10px;
     padding: 1%;
     width: 25%;
     font-size: 15px;
-    margin: 3%;
+    margin: 2.3%;
 } 
+.message-right::after {
+    clear: both;
+}
 .Xbtn {
     position:absolute;
     top:15px;
@@ -233,7 +274,34 @@ div#slider figure {
 .Xbtn:hover {
     cursor: pointer;
 }
-/*Profile section*/
+.input-message {
+    z-index: 999;
+    position: fixed;
+    bottom:52px;
+    left:297px;
+    width: 76%;
+    border:2px solid black;
+    border-radius: 5px;
+}
+.add-convo {
+      border: 2px solid black;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    width: 35%;
+    padding: 1%;
+    text-align: center;
+    z-index: 999;
+    position: absolute; 
+    left: 32.5%;
+    top: 110px;
+}
+#scrollFriends {
+    height: 300px;
+    overflow: scroll;
+}
+
+
+/*////////////////Profile section///////////////////*/
 
 .profile-body {
     background-color: whitesmoke;
@@ -264,31 +332,6 @@ div#slider figure {
     margin:10px 0 10px 0;
     border-radius:5%;
     border:1px solid black;
-}
-.input-message {
-    z-index: 999;
-    position: fixed;
-    bottom:52px;
-    left:300px;
-    width: 75.4%;
-    border:2px solid black;
-    border-radius: 5px;
-}
-.add-convo {
-      border: 2px solid black;
-    background: rgba(255,255,255,0.8);
-    border-radius: 5px;
-    width: 35%;
-    padding: 1%;
-    text-align: center;
-    z-index: 999;
-    position: absolute; 
-    left: 32.5%;
-    top: 110px;
-}
-#scrollFriends {
-    height: 300px;
-    overflow: scroll;
 }
 /** {
     border: 1px solid purple;

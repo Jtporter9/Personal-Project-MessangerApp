@@ -3,10 +3,10 @@
 	<!--MAIN CONTENT OF CHAT ROOM-->
 	<div ng-show="addingConversation" class="add-convo">
 		<form action="">
-			<big style="border-bottom:1px solid black;">Who would you like to converse with?</big>
+			<big class="big-underline">Who would you like to converse with?</big>
 			<br>
 			<br>
-			<input ng-model="scrollFriendsFinder" style="width:70%" type="search" placeholder="search here...">
+			<input ng-model="scrollFriendsFinder" class="convo-search" type="search" placeholder="search here...">
 			<br>
 			<br>
 			<div id="scrollFriends" class="panel panel-default">
@@ -14,7 +14,7 @@
 				<!-- Table -->
 				<table class="table">
 					<div ng-repeat="friend in friends | filter: scrollFriendsFinder">
-						<div style="margin: 6px 0;">
+						<div class="friend-div">
 							<div style="border:1px solid black" class="col-sm-4">{{friend.name}}</div>
 							<div style="border:1px solid red" class="col-sm-4"> {{friend.email}} </div>
 							<div style="border:1px solid #225A9A" class="col-sm-4"> {{friend.status}}</div>
@@ -30,9 +30,9 @@
 	</div>
 
 	<div class="conversation-bar">
-		<div class="conversation-title" style="text-align:center;padding:1%;margin-bottom:0;">
+		<div class="conversation-title" id="convo-title">
 			<nav style="margin:0;" class="navbar navbar-inverse">
-				<button ng-click="addConversation()" style="position:absolute;left:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
+				<button ng-click="addConversation()" id="add-convo-btn" class="glyphicon glyphicon-plus btn btn-primary"></button>
 				<div style="margin:1%;" class="container-fluid">
 					<big style="color:white;">Converstations</big>
 					<div style="margin: 10px 0" class="form-group">
@@ -43,11 +43,14 @@
 			</nav>
 		</div>
 		<div class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
-			<big>{{convos.from}}</big>
-			<br>
+					<div ng-repeat="person in convos.from">
+				<big>
+					{{person}}
+				</big>
+				</div>
 			<br>
 			<a>New messages <span class="badge">{{convos.messageCount}}</span></a>
-			<small style="margin-left:60px">{{convos.date | date: medium}}</small>
+			<small class="small-text">{{convos.date | date: medium}}</small>
 		</div>
 
 		<div class="coversation-footer">
@@ -56,17 +59,17 @@
 		</div>
 	</div>
 	<div class="message-container">
-		<div ng-class="{'style2':message.from==='You'}" class="message-box" ng-repeat="message in messages">
+		<div ng-class="{'message-right':message.from==='You'}" class="message-box" ng-repeat="message in messages">
 			<span style="border-bottom:1px solid black">{{message.from}}:</span>
 			<br>
 			<p style="margin:3px;">{{message.content}}:</p>
-			<span style="font-size:12px;margin-left:50%">{{message.time | date: 'MMM d, h:mm a'}}</span>
+			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
 		</div>
 		<input ng-click="showLargeInputBox()" ng-show="showlittleInput" class="input-message" type="text" placeholder="new message, type here....">
 		<div ng-show="showLargeInput">
-			<textarea ng-keydown="searchKeyPress(event);" class="input-message" name="" id="" cols="30" rows="5" placeholder="type here...">
+			<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event);" class="input-message" name="" id="" cols="30" rows="5" placeholder="type here...">
 			</textarea>
-			<button ng-click="sendNewMessage()" style="z-index:999;position:fixed;bottom:58px;right:22px;" class="btn btn-primary">Send</button>
+			<button ng-click="sendNewMessage()" id="submit-message-btn" class="btn btn-primary">Send</button>
 		</div>
 	</div>
 	<dir-Footer-2></dir-Footer-2>

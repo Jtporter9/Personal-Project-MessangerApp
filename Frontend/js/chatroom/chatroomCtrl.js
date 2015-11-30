@@ -3,8 +3,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 
 	$scope.showProfileLink = true;
 	$scope.showChatroomLink = false;
-
-	$scope.style2 = 'message-right';
+	$scope.chatroomTitle = true;
+	$scope.profileTitle = false;
 
 	$scope.showlittleInput = true;
 
@@ -33,6 +33,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 	$scope.sendNewMessage = function () {
 		$scope.showlittleInput = true;
 		$scope.showLargeInput = false;
+		$scope.newMessageText ="";
 	}
 	$scope.searchKeyPress = function (e) {
 		// look for window.event in case event isn't passed in
@@ -43,6 +44,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 		}
 		return true;
 	}
+	
+// 	var objDiv = document.getElementById("message-container");
+// objDiv.scrollTop = objDiv.scrollHeight;
 
 
 	$scope.messages = [
@@ -71,7 +75,24 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 			from: 'Taylor Rowley',
 			content: 'I can\'t',
 			time: new Date
-		}
+		},
+		{
+			from: 'You',
+			content: 'Dude what!?',
+			time: new Date,
+			id: 1
+		},
+		{
+			from: 'You',
+			content: 'It\'s okay I\'m just kidding',
+			time: new Date,
+			id: 1
+		},
+		{
+			from: 'Taylor Rowley',
+			content: 'Haha okay.',
+			time: new Date
+		},
 				];
 
 	$scope.conversations = [

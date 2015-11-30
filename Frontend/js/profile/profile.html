@@ -38,11 +38,11 @@
 		<div ng-show="editingPersonalInfo" style="margin-left:40px;">
 			<div class="profilePicContainer">
 				<img class="profile-picture" src="images/2015-03-23 06.42.58.jpg">
+				<input type="file">
 			</div>
 			<big>
 			Name: <input  ng-model="usersInfo.name" type="text">
 		</big>
-			<br>
 			<br>
 			<p>
 				About:
@@ -64,6 +64,21 @@
 	</div>
 </div>
 
+<!--ADDING FRIENDS-->
+<div ng-show="addNewFriend" class="add-convo">
+	<span class="Xbtn" ng-click="cancelForm()">X</span>
+	<form action="">
+		<big style="border-bottom:1px solid black;">Find your friends below</big>
+		<br>
+		<br>
+		<input style="width:70%" type="search" placeholder="search here...">
+		<br>
+		<br>
+		<button class="glyphicon glyphicon-thumbs-up btn btn-primary"> Facebook-friends</button>
+		<button ng-click="submitNewFriend()" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
+	</form>
+</div>
+
 <!--FREIDNS BOX-->
 <div class="friendsBox">
 	<div class="panel panel-default">
@@ -73,7 +88,7 @@
 			<div style="position:absolute;top:5px;left:280px;">
 				<input ng-model="friendsFinder" type="search" class="form-control" placeholder="Search...">
 			</div>
-			<button style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
+			<button ng-click="addingNewFriends()" style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
 		</div>
 
 		<!-- Table -->
