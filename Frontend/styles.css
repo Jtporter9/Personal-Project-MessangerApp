@@ -176,6 +176,7 @@ div#slider figure {
 .message-content{
     font-size:12px;
     float: right;
+    margin:.5px;
 }
 .small-text {
     margin-left:60px;
@@ -274,7 +275,7 @@ div#slider figure {
     background: rgba(255,255,255,0.7);
     border: 1px solid black;
     border-radius: 10px;
-    padding: 1%;
+    padding: .5%;
     width:52%;
     float: left;
     clear: both;
@@ -288,7 +289,7 @@ div#slider figure {
     clear: both;
     border: 1px solid black;
     border-radius: 10px;
-    padding: 1%;
+    padding: .5%;
     width:52%;
     font-size: 15px;
     margin: 2.3%;

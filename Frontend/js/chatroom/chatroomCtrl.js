@@ -1,4 +1,4 @@
-angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService) {
+angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService, $location, $anchorScroll) {
 	// $scope.conversations = chatroomService.conversations;
 
 	$scope.showProfileLink = true;
@@ -31,15 +31,15 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 	
 	
 	//sending new message area
-	$scope.sendNewMessage = function () {
+	$scope.sendNewMessage = function (id) {
 		$scope.showlittleInput = true;
 		$scope.showLargeInput = false;
-		$scope.newMessageText ="";
+		$scope.newMessageText = "";
 		$scope.newMessageContainer = 'message-container';
 		$scope.showFileUpload = false;
 	}
-	
-	$scope.attachFile = function(){
+
+	$scope.attachFile = function () {
 		$scope.showFileUpload = true;
 	}
 	$scope.searchKeyPress = function (e) {
@@ -52,23 +52,17 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 		return true;
 	}
 	
-// 	var scrolled = false;
-// function updateScroll(){
-//     if(!scrolled){
-//         var element = document.getElementById("message-container");
-//         element.scrollTop = element.scrollHeight;
-//     }
-// }
-
-// $("message-container").on('scroll', function(){
-//     scrolled=true;
-// });
 	
-// 	$("#message-container").on('scroll', function(){
-//     scrolled=true;
-// });
+	// $('#message-container').on("scroll", function() {
+	// var scrollHeight = $(document).height();
+	// var scrollPosition = $('#message-container').height() + $('#message-container').scrollTop();
+	// if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+	//     // when scroll to bottom of the page
+	// }
+	
+	// });
 
-
+				
 	$scope.messages = [
 		{
 			from: 'Freddie Davis',
