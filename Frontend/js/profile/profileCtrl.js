@@ -1,5 +1,6 @@
 angular.module('messangerApp').controller('profileCtrl', function ($scope) {
 
+	$scope.showSignuature = false;
 	$scope.showPersonalInfo = true;
 	$scope.showProfileLink = false;
 	$scope.showChatroomLink = true;

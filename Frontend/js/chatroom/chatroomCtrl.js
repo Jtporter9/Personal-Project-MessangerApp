@@ -2,6 +2,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 	// $scope.conversations = chatroomService.conversations;
 	
 /////////////////REAL STUFF//////////////////////
+	$scope.showSignuature = false;
 	$scope.showProfileLink = true;
 	$scope.showChatroomLink = false;
 	$scope.chatroomTitle = true;
