@@ -1,0 +1,18 @@
+
+
+        <div id="chatBox" dirMessageBox="messages">
+          <div ng-repeat="message in messages">
+            <div class="chatMessage">
+              <div class="messageTextInMessage">{{message.msg}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="chatControls">
+          <form ng-submit="sendIM(im)">
+            <input style="width:50%;margin-left:25%;" type="text" ng-model="im.msg" placeholder="Send a message" class="chatTextField" />
+          </form>
+          blah blah
+      </div>
+
+ 
+    

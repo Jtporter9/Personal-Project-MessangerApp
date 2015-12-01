@@ -259,6 +259,28 @@ div#slider figure {
     border:1px solid gray;
     overflow: scroll;
 }
+#chatBox {
+    overflow : auto;
+    width : 50%;
+    margin: 20% 0 0 25%;
+    height : 300px;
+    border: 1px solid;
+    padding: 10px 10px 10px 10px;
+}
+.chatMessage {
+    padding: 2px 40px;
+    background: #ffffff;
+    border-radius: 25px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+.chatTextField {
+    z-index: 1000;
+}
+
+
+
+
 .newMessage-container {
     position: absolute;
     right:0px;
@@ -365,6 +387,6 @@ div#slider figure {
     border-radius:5%;
     border:1px solid black;
 }
-/** {
+/**{
     border: 1px solid purple;
-}*
+}*/
