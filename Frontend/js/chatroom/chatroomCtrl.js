@@ -1,6 +1,7 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService, $location, $anchorScroll) {
 	// $scope.conversations = chatroomService.conversations;
-
+	
+/////////////////REAL STUFF//////////////////////
 	$scope.showProfileLink = true;
 	$scope.showChatroomLink = false;
 	$scope.chatroomTitle = true;
@@ -31,22 +32,28 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 	
 	
 	//sending new message area
-	$scope.sendNewMessage = function (id) {
+	$scope.sendNewMessage = function (i) {
 		$scope.showlittleInput = true;
 		$scope.showLargeInput = false;
 		$scope.newMessageText = "";
 		$scope.newMessageContainer = 'message-container';
 		$scope.showFileUpload = false;
+		var newMessage = {
+			from: 'You',
+			content: i,
+			time: new Date
+		}
+		$scope.messages.push(newMessage);
 	}
 
 	$scope.attachFile = function () {
-		$scope.showFileUpload = true;
+		$scope.showFileUpload = !$scope.showFileUpload;
 	}
-	$scope.searchKeyPress = function (e) {
+	$scope.searchKeyPress = function (e, i) {
 		// look for window.event in case event isn't passed in
 		e = e || window.event;
 		if (e.keyCode == 13) {
-			$scope.sendNewMessage();
+			$scope.sendNewMessage(i);
 			return false;
 		}
 		return true;

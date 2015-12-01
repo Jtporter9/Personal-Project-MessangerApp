@@ -8,10 +8,9 @@ body,html {
     font-weight: normal;
 }
 html {
-        background-color: #D5322B;
+    background-color: #D5322B;
 }
 #page-title {
-    font-size: 28px;
     color: white;
     text-align: center;
 }
@@ -254,7 +253,7 @@ div#slider figure {
     margin: .6%;
     background: rgba(59, 59, 63, 1);
     width: 76%;
-    height: 564px ;
+    height: 564px;
     border-radius: 5px;
     border:1px solid gray;
     overflow: scroll;
