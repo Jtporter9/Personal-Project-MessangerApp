@@ -1,4 +1,3 @@
-<div id="chatroom-body">
 	<dir-Header-2></dir-Header-2>
 	<!--MAIN CONTENT OF CHAT ROOM-->
 
@@ -14,18 +13,18 @@
 			<div id="scrollFriends" class="panel panel-default">
 				<span class="Xbtn" ng-click="cancelForm()">X</span>
 				<!-- Table -->
-				<<table class="table">
+				<table class="table">
 					<div ng-repeat="friend in friends | filter: scrollFriendsFinder">
 						<div class="friend-div">
 							<div style="border:1px solid black" class="col-sm-4">{{friend.name}}</div>
-							<div style="border:1px solid red" class="col-sm-4"> {{friend.email}} </div>
-							<div style="border:1px solid #225A9A" class="col-sm-4"> {{friend.status}}</div>
+							<div style="border:1px solid red" class="col-sm-6"> {{friend.email}} </div>
+							<div style="border:1px solid #225A9A" class="col-sm-2"> {{friend.status}}</div>
 							<!--<div style="border:1px solid #225A9A" class="col-sm-3">
 								<button class="glyphicon glyphicon-ok btn btn-primary"></button>
 							</div>-->
 						</div>
 					</div>
-					</table>
+				</table>
 			</div>
 			<button ng-click="submitNewConvo()" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
 		</form>
@@ -59,8 +58,9 @@
 		<div class="coversation-footer">
 		</div>
 	</div>
-	<div schrollBottom="messages" id="message-container" class="message-container">
+	<div id="message-container" class="message-container">
 		<div ng-class="{'message-right':message.from==='You'}" class="message-box" ng-repeat="message in messages">
+				<img class="little-avatar" src="{{usersInfo.userPicture}}"> </img>
 			<span style="border-bottom:1px solid black; margin-left:10px;">{{message.from}}:</span>
 			<p style="margin:5px 10px;">{{message.content}}</p>
 			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
@@ -82,4 +82,3 @@
 		</div>
 	</div>
 	<dir-Footer-2></dir-Footer-2>
-</div>

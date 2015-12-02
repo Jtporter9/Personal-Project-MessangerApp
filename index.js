@@ -3,7 +3,8 @@
 var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+var GoogleStrategy = require('passport-google').Strategy;
+
 // Dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -26,11 +27,22 @@ passport.use(new FacebookStrategy({
 	return done(null, profile);
 }));
 
-///////Facebook Oauth endpoints//////////
+passport.use(new GoogleStrategy({
+    returnURL: 'http://localhost:3000/auth/google/return',
+    realm: 'http://localhost:3000/'
+},
+	function (identifier, profile, done) {
+		User.findOrCreate({ openId: identifier }, function (err, user) {
+			done(err, user);
+		});
+	}
+	));
+
+///////Facebook auth endpoints//////////
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-	successRedirect: '/',
-	failureRedirect: '/login'
+	successRedirect: '/#/profile',
+	failureRedirect: '/#/login'
 }), function (req, res) {
 	console.log(req.session);
 });
@@ -54,6 +66,17 @@ app.get('/me', requireAuth, function (req, res, next) {
 	var currentLoggedInUserOnSession = req.user;
 	res.send(currentLoggedInUserOnSession);
 })
+
+///////Google login endpoints///////////////
+
+app.get('/auth/google', passport.authenticate('google'));
+
+app.get('/auth/google/return',
+  passport.authenticate('google', { successRedirect: '/#/profile',
+                                    failureRedirect: '/#/login' }));
+
+
+
 
 //Mongoose
 var mongoUri = "mongodb://localhost:27017/Chatroom";

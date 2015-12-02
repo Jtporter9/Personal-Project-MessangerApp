@@ -1,4 +1,5 @@
-angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chatroomService, $location, $anchorScroll) {
+angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
+	$timeout, chatroomService, $location, $anchorScroll) {
 	/////scrolly stuff///////
 	
 	// $scope.im = {};
@@ -52,7 +53,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 			time: new Date
 		}
 		$scope.messages.push(newMessage);
-		$('#message-container').scrollTop($('#message-container')[0].scrollHeight + 200);
+		$timeout(function () {
+			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
+		}, 100)
 		
 		
 		// var chatBox = document.getElementById('#message-container');
@@ -72,6 +75,17 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope, chat
 	}
 
 
+
+	///////fake data/////////
+
+	$scope.usersInfo = {
+		name: 'J. Tanner Porter',
+		about: "Blah Blah blah blah blah. Blah Blah blah blah blah,Blah Blah blah blah blah.",
+		username: 'Jtporter9',
+		userEmail: 'jtporter9@gmail.com',
+		userPassword: 'password123',
+		userPicture: 'images/2015-03-23 06.42.58.jpg'
+	}
 
 
 	$scope.messages = [

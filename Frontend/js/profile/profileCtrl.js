@@ -1,3 +1,4 @@
+/* global url */
 angular.module('messangerApp').controller('profileCtrl', function ($scope) {
 
 	$scope.showSignuature = false;
@@ -43,7 +44,8 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope) {
 		about: "Blah Blah blah blah blah. Blah Blah blah blah blah,Blah Blah blah blah blah.",
 		username: 'Jtporter9',
 		userEmail: 'jtporter9@gmail.com',
-		userPassword: 'password123'
+		userPassword: 'password123',
+		userPicture: 'images/2015-03-23 06.42.58.jpg'
 	}
 
 	$scope.friends = [

@@ -7,8 +7,8 @@ body,html {
     font-variant: normal;
     font-weight: normal;
 }
-html {
-    background-color: #D5322B;
+.main-color {
+        background-color: #D5322B;
 }
 #page-title {
     color: white;
@@ -84,15 +84,6 @@ margin-left: 10px;
     width:30px; 
 }
 .footer {
-	position: fixed;
-    bottom:0;
-    background-color: #D5322B;    
-	padding: 0.1%;
-    border-top: 2px solid black;
-    width: 100%;
-    text-align: center;
-}
-.footer2 {
     position: fixed;
     bottom:0;
     background-color: #D5322B;    
@@ -100,14 +91,14 @@ margin-left: 10px;
     border-top: 2px solid black;
     width: 100%;
 }
+.footer-text {
+  margin: 50% 0;
+    font-weight:bold;
+}
 .contactSocialMedia {
     text-align: center;
-     border: 2px solid lightgrey;
-     background-color: black;
-    border-radius: 5px;
     width: 140px;
     padding: .4%;
-    margin-left: 44.5%;
     margin-top: .4%;
 }
 /*a {
@@ -203,7 +194,9 @@ div#slider figure {
     width:70%
 }
 #chatroom-body {
-    background-color: whitesmoke;
+    background-color: #CB1A1B;
+   z-index: 0;
+   height: 500px
 }
 /*.inner-nav {
       font-family: 'Product Sans', arial, sans-serif;
@@ -220,7 +213,7 @@ div#slider figure {
     z-index: 999;*/
     position: absolute;
     left: 0;
-    top: 63px;
+    top: 58px;
     min-height: 580px;
     max-height: 100%;
     width: 23%;
@@ -250,11 +243,11 @@ div#slider figure {
 .message-container {
     position: absolute;
     right:0px;
-    top: 57px;
+    top: 53px;
     margin: .6%;
     background: rgba(59, 59, 63, 1);
     width: 76%;
-    height: 510px;
+    height: 515px;
     border-radius: 5px;
     border:1px solid gray;
     overflow: auto;
@@ -269,6 +262,10 @@ background-color: #EAEAEA;
     clear: both;
     font-size: 15px;
     margin: 2.3%;
+}
+.little-avatar {
+    width:50px;
+    border-radius: 5%;
 }
 
 .message-right {
@@ -323,9 +320,17 @@ background-color: #EAEAEA;
 
 /*////////////////Profile section///////////////////*/
 
+.profile-info{
+     height: 520px;
+     width:35%;
+     position:absolute;
+     top:80px;
+     left:25px;
+     padding:10px;
+}
 .profile-body {
     background-color: whitesmoke;
-    height: 650px;
+    min-height: 1000px;
 }
 .personal-info {
     width: 90%;
@@ -352,6 +357,14 @@ background-color: #EAEAEA;
     margin:10px 0 10px 0;
     border-radius:5%;
     border:1px solid black;
+}
+/*.label-success {
+    background-color: #46A741;
+    border-radius: 5px;
+    padding:1px 10px;
+}*/
+.friends-seperater {
+    border-bottom:1px solid black;
 }
 /**{
     border: 1px solid purple;
