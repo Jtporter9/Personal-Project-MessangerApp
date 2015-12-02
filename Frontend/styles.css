@@ -164,14 +164,14 @@ div#slider figure {
         z-index:999;
     position:fixed;
     bottom:58px;
-    right:92px;
+    right:152px;
 }
 #emoji {
         z-index:999;
     position:fixed;
-    bottom:108px;
-    right:23px;
-    width: 4%;
+    bottom:58px;
+    right:92px;
+    width: 3.5%;
 }
 .message-content{
     font-size:12px;
@@ -250,51 +250,17 @@ div#slider figure {
 .message-container {
     position: absolute;
     right:0px;
-    top: 55px;
+    top: 57px;
     margin: .6%;
     background: rgba(59, 59, 63, 1);
     width: 76%;
-    height: 564px;
+    height: 510px;
     border-radius: 5px;
     border:1px solid gray;
-    overflow: scroll;
-}
-#chatBox {
-    overflow : auto;
-    width : 50%;
-    margin: 20% 0 0 25%;
-    height : 300px;
-    border: 1px solid;
-    padding: 10px 10px 10px 10px;
-}
-.chatMessage {
-    padding: 2px 40px;
-    background: #ffffff;
-    border-radius: 25px;
-    text-align: left;
-    margin-bottom: 8px;
-}
-.chatTextField {
-    z-index: 1000;
-}
-
-
-
-
-.newMessage-container {
-    position: absolute;
-    right:0px;
-    top: 55px;
-    margin: .6%;
-    background: rgba(59, 59, 63, 1);
-    width: 76%;
-    height: 475px ;
-    border-radius: 5px;
-    border:1px solid gray;
-    overflow: scroll;
+    overflow: auto;
 }
 .message-box{
-    background: rgba(255,255,255,0.7);
+background-color: #EAEAEA;
     border: 1px solid black;
     border-radius: 10px;
     padding: .5%;
@@ -306,7 +272,7 @@ div#slider figure {
 }
 
 .message-right {
-  background: rgba(255,255,255,0.7);
+background-color: #EAEAEA;
     float: right;
     clear: both;
     border: 1px solid black;

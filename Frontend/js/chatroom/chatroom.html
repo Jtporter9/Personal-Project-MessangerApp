@@ -59,18 +59,21 @@
 		<div class="coversation-footer">
 		</div>
 	</div>
-	<div schrollBottom="messages" ng-class="newMessageContainer" id="message-container" class="message-container">
+	<div schrollBottom="messages" id="message-container" class="message-container">
 		<div ng-class="{'message-right':message.from==='You'}" class="message-box" ng-repeat="message in messages">
 			<span style="border-bottom:1px solid black; margin-left:10px;">{{message.from}}:</span>
 			<p style="margin:5px 10px;">{{message.content}}</p>
 			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
 	<div>
-		<input ng-click="showLargeInputBox()" ng-show="showlittleInput" class="input-message" type="text" placeholder="new message, type here....">
-		<div ng-show="showLargeInput">
-			<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event, newMessageText);" class="input-message" rows="5" placeholder="type here...">
-			</textarea>
+		<!--<textarea  ng-show="showlittleInput" class="input-message" type="text" placeholder="new message, type here...."></textarea>-->
+		<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event, newMessageText);" class="input-message" rows="3" placeholder="click here to type...">
+		</textarea>
+		<div>
 			<input id="attach-file" ng-show="showFileUpload" type="file">
 			<button ng-click="attachFile()" id="attach-file" class=" btn btn-success">
 				<a style="color:white;" class="glyphicon glyphicon-paperclip"></a> Attach</button>
@@ -78,26 +81,5 @@
 			<button ng-click="sendNewMessage(newMessageText);" id="submit-message-btn" class="btn btn-primary">Send</button>
 		</div>
 	</div>
-
-
-
-	<!--<div id="chatBox" schrollBottom="messages">
-          <div ng-repeat="message in messages">
-            <div class="chatMessage">
-              <div class="messageTextInMessage">{{message.content}}</div>
-            </div>
-          </div>
-        </div>
-        <div class="chatControls">
-          <form ng-submit="sendIM(im)">
-            <input style="width:50%;margin-left:25%;" type="text" ng-model="im.content" placeholder="Send a message" class="chatTextField" />
-          </form>
-      </div>-->
-
-
-
-
-
-
 	<dir-Footer-2></dir-Footer-2>
 </div>

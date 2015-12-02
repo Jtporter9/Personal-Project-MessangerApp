@@ -21,6 +21,10 @@
     "body-parser": "^1.14.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
-    "mongoose": "^4.2.8"
+    "express-session": "^1.12.1",
+    "mongoose": "^4.2.8",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.0.0",
+    "passport-google-oauth": "^0.2.0"
   }
 }
