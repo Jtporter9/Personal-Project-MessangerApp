@@ -7,14 +7,17 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 // Dependencies
 var express = require('express');
 var cookieParser = require('cookie-parser');
-var morgan  = require('morgan');
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 var app = express();
-var flash    = require('connect-flash');
+var flash = require('connect-flash');
 
 var UserCtrl = require('./Backend/Controllers/UserCtrl.js')
+var MessagesCtrl = require('./Backend/Controllers/MessagesCtrl.js')
+var ConversationsCtrl = require('./Backend/Controllers/ConversationsCtrl.js')
+
 var keys = require('./keys');
 
 app.use(session({ secret: 'IgotapickleIgotapickleheyheyhey' }));
@@ -76,12 +79,23 @@ mongoose.connection.once('open', function () {
 
 app.use(express.static(__dirname + '/Frontend'));
 
-// Endpoints
+// Endpoints Users
 
 app.post('/api/users', UserCtrl.addUser);
 app.get('/api/users', UserCtrl.findUser);
 app.delete('/api/users/:id', UserCtrl.deleteUser);
 app.put('/api/users/:id', UserCtrl.updateUser);
+
+// Endpoints Messages
+
+app.post('/api/messages', MessagesCtrl.addMessage);
+app.get('/api/messages', MessagesCtrl.findMessage);
+
+// Endpoints Conversations
+
+app.post('/api/conversations', ConversationsCtrl.addConversation);
+app.get('/api/conversations', ConversationsCtrl.findConversation);
+app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 
 
 
