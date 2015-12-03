@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" ng-view>
+
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+
+    <script src="/factories/httpInterceptor.js"></script>
+    <script src="/directives/common.js"></script>
+    <script src="/controllers/profile.js"></script>
+    <script src="/controllers/login.js"></script>
+    <script src="/modules/growl.js"></script>
+    <script src="/modules/core.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var Messages = Schema([{
 	fromName: { type: String, required: true },
-	fromAvatar: { type: Image },
+	fromAvatar: { type: String },
 	content: { type: String, required: true },
 	Time: { type: Date, default: Date.now }
 }]);

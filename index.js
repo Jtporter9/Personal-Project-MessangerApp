@@ -3,15 +3,18 @@
 var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google').Strategy;
 
 // Dependencies
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var morgan  = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 var app = express();
+var flash    = require('connect-flash');
 
+var UserCtrl = require('./Backend/Controllers/UserCtrl.js')
 var keys = require('./keys');
 
 app.use(session({ secret: 'IgotapickleIgotapickleheyheyhey' }));
@@ -26,17 +29,6 @@ passport.use(new FacebookStrategy({
 }, function (token, refreshToken, profile, done) {
 	return done(null, profile);
 }));
-
-passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
-    realm: 'http://localhost:3000/'
-},
-	function (identifier, profile, done) {
-		User.findOrCreate({ openId: identifier }, function (err, user) {
-			done(err, user);
-		});
-	}
-	));
 
 ///////Facebook auth endpoints//////////
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -67,17 +59,6 @@ app.get('/me', requireAuth, function (req, res, next) {
 	res.send(currentLoggedInUserOnSession);
 })
 
-///////Google login endpoints///////////////
-
-app.get('/auth/google', passport.authenticate('google'));
-
-app.get('/auth/google/return',
-  passport.authenticate('google', { successRedirect: '/#/profile',
-                                    failureRedirect: '/#/login' }));
-
-
-
-
 //Mongoose
 var mongoUri = "mongodb://localhost:27017/Chatroom";
 
@@ -96,6 +77,13 @@ mongoose.connection.once('open', function () {
 app.use(express.static(__dirname + '/Frontend'));
 
 // Endpoints
+
+app.post('/api/users', UserCtrl.addUser);
+app.get('/api/users', UserCtrl.findUser);
+app.delete('/api/users/:id', UserCtrl.deleteUser);
+app.put('/api/users/:id', UserCtrl.updateUser);
+
+
 
 //listening
 app.listen(3000, function () {
