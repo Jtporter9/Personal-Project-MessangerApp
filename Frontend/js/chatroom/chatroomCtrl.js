@@ -30,10 +30,17 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.addingConversation = true;
 	};
 
-	$scope.submitNewConvo = function () {
+	$scope.submitNewConvo = function (i) {
 		$scope.addingConversation = false;
 		$scope.scrollFriendsFinder = "";
+		var newConvo = {
+			from: [i],
+			date: new Date,
+			messageCount: 0,
+		}
+		$scope.conversations.unshift(newConvo);
 	}
+	
 
 	$scope.cancelForm = function () {
 		$scope.addingConversation = false;

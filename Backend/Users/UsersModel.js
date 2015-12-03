@@ -1,4 +1,0 @@
-var Users = [{
-	name: String,
-	
-}]

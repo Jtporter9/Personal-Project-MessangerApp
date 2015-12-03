@@ -1,95 +1,95 @@
-
-	<div class="profile-body">
-		<dir-Header-2></dir-Header-2>
-		<div class="profile-info panel panel-primary">
-			<!--PERSONAL INFO-->
-			<div ng-show="showPersonalInfo" class="personal-info" ng-mouseover="showEditProfile()" ng-mouseleave="leaveEditProfile()">
-				<button ng-click="editYourPersonalInfo()" ng-show="showEditBtn" style="float:right;" class="glyphicon glyphicon-pencil btn btn-primary"></button>
-				<div class="profilePicContainer">
-					<img class="profile-picture" src="{{usersInfo.userPicture}}"> </img>
-				</div>
-				<big>
+<div class="profile-body">
+	<dir-Header-2></dir-Header-2>
+	<div class="profile-info panel panel-primary">
+		<!--PERSONAL INFO-->
+		<div ng-show="showPersonalInfo" class="personal-info" ng-mouseover="showEditProfile()" ng-mouseleave="leaveEditProfile()">
+			<button ng-click="editYourPersonalInfo()" ng-show="showEditBtn" style="float:right;" class="glyphicon glyphicon-pencil btn btn-primary"></button>
+			<div class="profilePicContainer">
+				<img class="profile-picture" src="{{usersInfo.userPicture}}"> </img>
+			</div>
+			<big>
 			Name: {{usersInfo.name}}
 		</big>
-				<br>
-				<br>
-				<div style="height:140px">
-					About: {{usersInfo.about}}
-					<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et lacus ornare, aliquam ex non, dictum neque. Sed
+			<br>
+			<br>
+			<div style="height:140px">
+				About: {{usersInfo.about}}
+				<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et lacus ornare, aliquam ex non, dictum neque. Sed
 				rhoncus nisl nec diam efficitur, vitae euismod mauris commodo. Suspendisse hendrerit nulla tristique lectus fermentum,
 				sed consectetur ligula mollis. Curabitur a eleifend tortor, ullamcorper efficitur nisi.-->
-				</div>
-				<br>
-				<span>
+			</div>
+			<br>
+			<span>
 			Username: {{usersInfo.username}}<br>
 			<br> 
 			</span>
-				<span>Email: {{usersInfo.userEmail}}
+			<span>Email: {{usersInfo.userEmail}}
 			<br>
 			</span>
-				<span>
+			<span>
 			<br> Password: {{usersInfo.userPassword}}
 			<br>
-			</span>
-				<br>
-				<br>
+			</span> 
+			<br>
+			<br>
+		</div>
+		<!--FORM TO EDIT PERSONAL INFO-->
+		<div ng-show="editingPersonalInfo" style="margin-left:40px;">
+			<div class="profilePicContainer">
+				<img class="profile-picture" src="{{usersInfo.userPicture}}"> </img>
+				<input type="file">
 			</div>
-			<!--FORM TO EDIT PERSONAL INFO-->
-			<div ng-show="editingPersonalInfo" style="margin-left:40px;">
-				<div class="profilePicContainer">
-					<img class="profile-picture" src="{{usersInfo.userPicture}}"> </img>
-					<input type="file">
-				</div>
-				<big>
+			<big>
 			Name: <input  ng-model="usersInfo.name" type="text">
 		</big>
+			<br>
+			<p>
+				About:
 				<br>
-				<p>
-					About:
-					<br>
-					<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="5"></textarea>
-				</p>
-				<span>
+				<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="5"></textarea>
+			</p>
+			<span>
 			Username: <input ng-model="usersInfo.username" type="text"><br>
 			<br> 
 			</span>
-				<span>
+			<span>
 			Email: <input ng-model="usersInfo.userEmail" type="email"><br>
 			</span>
-				<br>
-				<span>
+			<br>
+			<span>
 			Password: <input ng-model="usersInfo.userPassword" type="text"> <button ng-click="submitNewEdit()" style="float:right;" class="btn btn-success">Done</button>
 		</span>
-			</div>
 		</div>
 	</div>
+</div>
 
-	<!--ADDING FRIENDS-->
-	<div ng-show="addNewFriend" class="add-convo">
-		<span class="Xbtn" ng-click="cancelForm()">X</span>
-		<form action="">
-			<big style="border-bottom:1px solid black;">Find your friends below</big>
-			<br>
-			<br>
-			<input style="width:70%" type="search" placeholder="search here...">
-			<br>
-			<br>
-			<button class="glyphicon glyphicon-thumbs-up btn btn-primary"> Facebook-friends</button>
-			<button ng-click="submitNewFriend()" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
-		</form>
+<!--ADDING FRIENDS-->
+<div ng-show="addNewFriend" class="add-convo">
+	<span class="Xbtn" ng-click="cancelForm()">X</span>
+	<form action="">
+		<big style="border-bottom:1px solid black;">Find your friends below</big>
+		<br>
+		<br>
+		<input style="width:70%" type="search" placeholder="search here...">
+		<br>
+		<br>
+		<button class="glyphicon glyphicon-thumbs-up btn btn-primary"> Facebook-friends</button>
+		<button ng-click="submitNewFriend()" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
+	</form>
+</div>
+
+<!--FREIDNS BOX-->
+<div class="friendsBox">
+	<div class="panel-heading"><big>Your Friends</big>
+		<span style="margin-left:350px;">Add a friend:</span>
+		<div style="position:absolute;top:5px;left:280px;">
+			<input ng-model="friendsFinder" type="search" class="form-control" placeholder="Search...">
+		</div>
+		<button ng-click="addingNewFriends()" style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
 	</div>
-
-	<!--FREIDNS BOX-->
-	<div class="friendsBox">
+	<div class="scrollBox">
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
-			<div class="panel-heading"><big>Your Friends</big>
-				<span style="margin-left:350px;">Add a friend:</span>
-				<div style="position:absolute;top:5px;left:280px;">
-					<input ng-model="friendsFinder" type="search" class="form-control" placeholder="Search...">
-				</div>
-				<button ng-click="addingNewFriends()" style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
-			</div>
 
 			<!-- Table -->
 			<table class="table">
@@ -99,14 +99,15 @@
 						<div class="friends-seperater col-sm-6"> {{friend.email}} </div>
 						<div class="friends-seperater col-sm-2 ">
 							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
-							{{friend.status}}</div>
+								{{friend.status}}</div>
 						</div>
 					</div>
 				</div>
 			</table>
 		</div>
 	</div>
+</div>
 
 
-	<dir-Footer-2></dir-Footer-2>
-	</div>
+<dir-Footer-2></dir-Footer-2>
+</div>
