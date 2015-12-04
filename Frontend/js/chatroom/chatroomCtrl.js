@@ -1,21 +1,5 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$timeout, chatroomService, $location, $anchorScroll) {
-	/////scrolly stuff///////
-	
-	// $scope.im = {};
-
-	// $scope.sendIM = function (msg) {
-
-	// 	$scope.messages.push(msg);
-	// 	$scope.im = {};
-
-	// 	$('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
-
-	// 	var chatBox = document.getElementById('chatBox');
-	// 	chatBox.scrollTop = 300 + 8 + ($scope.messages.length * 240);
-	// }
-	
-	/////////////////REAL STUFF//////////////////////
 
 	$scope.showSignuature = false;
 	$scope.showProfileLink = true;
@@ -26,6 +10,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.showlittleInput = true;
 	
 	//adding conversation
+	$scope.friendsToAddToConvo = [];
+	
+	$scope.addingFriendsToConvo = function (i) {
+	$scope.friendsToAddToConvo.push(i);
+	}
+
 	$scope.addConversation = function () {
 		$scope.addingConversation = true;
 	};
@@ -34,12 +24,19 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.addingConversation = false;
 		$scope.scrollFriendsFinder = "";
 		var newConvo = {
-			from: [i],
+			from: i,
 			date: new Date,
 			messageCount: 0,
 		}
 		$scope.conversations.unshift(newConvo);
+		$scope.friendsToAddToConvo = [];
 	}
+	// $scope.submitNewConvo = function () {
+	// 	chatroomService.addConvo($scope.conversations).then(function (response) {
+	// 		$scope.getConvos();
+	// 	});
+	// 	$scope.conversations = {};
+	// };
 	
 
 	$scope.cancelForm = function () {
@@ -81,10 +78,10 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		return true;
 	}
 
-$scope.usersInfo = chatroomService.usersInfo;
-$scope.messages = chatroomService.messages;
-$scope.conversations = chatroomService.conversations;
-$scope.friends = chatroomService.friends;
+	$scope.usersInfo = chatroomService.usersInfo;
+	$scope.messages = chatroomService.messages;
+	$scope.conversations = chatroomService.conversations;
+	$scope.friends = chatroomService.friends;
 
 
 

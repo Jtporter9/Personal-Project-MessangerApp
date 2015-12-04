@@ -6,12 +6,17 @@ module.exports = {
 	addUser: function (req, res) {
 		var newUser = new User(req.body);
 		newUser.save(function (err, result) {
-			if (err) return res.status(500).send(err);
+			if (err) res.status(500).send(err);
 			else res.send(result);
 		});
 	},
 	findUser: function (req, res, next) {
 		User.find().then(function (user) {
+			res.send(user);
+		})
+	},
+	findUserById: function (req, res, next) {
+		User.findById(req.params.id).then(function (user) {
 			res.send(user);
 		})
 	},

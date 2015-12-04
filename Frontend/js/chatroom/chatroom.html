@@ -16,9 +16,12 @@
 			<table class="table">
 				<div ng-repeat="friend in friends | filter: scrollFriendsFinder">
 					<div style="margin: 6px 0;">
-						<div class="friends-seperater col-sm-4">{{friend.name}}</div>
-						<div class="friends-seperater col-sm-6"> {{friend.email}} </div>
-						<div class="friends-seperater col-sm-2 ">
+						<!--<div class="friends-seperater col-sm-2"></div>-->
+						<div class="friends-seperater col-sm-1">
+							<div ng-click="addingFriendsToConvo(friend.name)" class="add-to-convo label label-primary">+</div>
+						</div>
+						<div class="friends-seperater col-sm-7">{{friend.name}}</div>
+						<div class="friends-seperater col-sm-4 ">
 							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
 								{{friend.status}}</div>
 						</div>
@@ -26,8 +29,11 @@
 				</div>
 			</table>
 		</div>
-		<button ng-click="submitNewConvo(scrollFriendsFinder)" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
+		<button ng-click="submitNewConvo(friendsToAddToConvo)" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
 	</form>
+	<div class="friends-added">
+		Added: <span ng-repeat="friends in friendsToAddToConvo" style="margin:1px;" class="label label-primary">{{friends}}</span>
+	</div>
 </div>
 
 <div>

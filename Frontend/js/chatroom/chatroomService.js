@@ -1,5 +1,6 @@
 angular.module('messangerApp').service('chatroomService', function ($http) {
 
+///USER CALLS/////
 	this.findUser = function () {
 		return $http.get('/api/users').then(function (response) {
 			// console.log(response.data);
@@ -8,8 +9,16 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 		});
     }
 
-    this.addUser = function (newProductObj) {
-		return $http.post('/api/users', newProductObj).then(function (response) {
+	this.findCurrentUser = function (id) {
+		return $http.get('/api/users' + id).then(function (response) {
+			// console.log(response.data);
+			return response.data;
+
+		});
+    }
+
+    this.addUser = function (newUserObj) {
+		return $http.post('/api/users', newUserObj).then(function (response) {
 			return response;
 		})
     }
@@ -23,6 +32,17 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	this.updateUser = function (product) {
 		return $http.put('/api/users/' + product._id, product)
     }
+	
+	
+	///////////Convo calls////////
+	
+	  this.addConvo = function (newConvoObj) {
+		return $http.post('/api/users', newConvoObj).then(function (response) {
+			return response;
+		})
+    }
+	
+	
 	
 	//fake data
 	

@@ -1,4 +1,4 @@
-angular.module('messangerApp').controller('loginCtrl', function ($scope, chatroomService) {
+angular.module('messangerApp').controller('loginCtrl', function ($scope, chatroomService, $window) {
 
 	// angular
 
@@ -31,11 +31,9 @@ angular.module('messangerApp').controller('loginCtrl', function ($scope, chatroo
 	//making a new user/registering
 
 	$scope.submitNewUser = function () {
-		console.log($scope.user);
 		chatroomService.addUser($scope.user).then(function (response) {
-			// $scope.getProducts();
+			$window.username = response.data.username;
 		});
-		// $scope.addUser = false;
 		$scope.user = {};
 	};
 		
