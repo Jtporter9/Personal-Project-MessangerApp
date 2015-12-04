@@ -32,7 +32,7 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 		username: 'Jtporter9',
 		userEmail: 'jtporter9@gmail.com',
 		userPassword: 'password123',
-		userPicture: 'images/2015-03-23 06.42.58.jpg'
+		// userPicture: 'images/2015-03-23 06.42.58.jpg'
 	}
 
 

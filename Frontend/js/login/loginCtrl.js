@@ -31,11 +31,11 @@ angular.module('messangerApp').controller('loginCtrl', function ($scope, chatroo
 	//making a new user/registering
 
 	$scope.submitNewUser = function () {
+		console.log($scope.user);
 		chatroomService.addUser($scope.user).then(function (response) {
 			// $scope.getProducts();
-			console.log(response);
 		});
-		$scope.addUser = false;
+		// $scope.addUser = false;
 		$scope.user = {};
 	};
 		
