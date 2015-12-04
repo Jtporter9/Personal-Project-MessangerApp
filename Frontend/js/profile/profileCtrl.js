@@ -1,5 +1,5 @@
 /* global url */
-angular.module('messangerApp').controller('profileCtrl', function ($scope) {
+angular.module('messangerApp').controller('profileCtrl', function ($scope, chatroomService) {
 
 	$scope.showSignuature = false;
 	$scope.showPersonalInfo = true;
@@ -37,123 +37,21 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope) {
 		$scope.addNewFriend = false;
 	}
 	
+	
+	//getting users info
+	$scope.findUser = function () {
+		chatroomService.findUser().then(function (response) {
+			// console.log(response);
+			$scope.users = response;
+		});
+	}
+	$scope.findUser();
+	
 	//Fake data
 	
-	$scope.usersInfo = {
-		name: 'J. Tanner Porter',
-		about: "Blah Blah blah blah blah. Blah Blah blah blah blah,Blah Blah blah blah blah.",
-		username: 'Jtporter9',
-		userEmail: 'jtporter9@gmail.com',
-		userPassword: 'password123',
-		userPicture: 'images/2015-03-23 06.42.58.jpg'
-	}
+	$scope.usersInfo = chatroomService.usersInfo;
 
-	$scope.friends = [
-		{
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
-			status: 'Offline'
-		},
-		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
-			status: 'Offline'
-		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
-			status: 'Offline'
-		},
-		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
-			status: 'Offline'
-		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
-			status: 'Offline'
-		},
-		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
-			status: 'Offline'
-		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
-			status: 'Offline'
-		},
-		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
-			status: 'Offline'
-		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
-			status: 'Offline'
-		},
-		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
-			status: 'Offline'
-		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
-			status: 'Online'
-		}
-	]
+	$scope.friends = chatroomService.friends;
+
+
 });

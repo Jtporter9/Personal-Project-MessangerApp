@@ -6,6 +6,7 @@ var Users = Schema({
 	username: { type: String, unique: true, required: true },
 	password: { type: String, required: true },  //NEED TO ENCRYPT THIS!!!!!
 	userAvatar: { type: String },
+	notifications: { type: Number },
 	userSettings: {},
 	conversations: [{}],
 	Friends: [

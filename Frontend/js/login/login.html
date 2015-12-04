@@ -1,4 +1,7 @@
 <dir-main-head></dir-main-head>
+<div class='console-container'><span id='text'></span>
+	<!--<div style="z-index:9999;" class='console-underscore' id='console'>&#95;</div>-->
+</div>
 <div id="slider">
 	<figure>
 		<img src="https://static.pexels.com/photos/4831/hands-coffee-smartphone-technology-large.jpg" alt="">
@@ -13,19 +16,19 @@
 	<h2 style="margin;0">Register</h2>
 	<span class="Xbtn" ng-click="cancelForm()">X</span>
 	<hr style="width:50%;">
+	<div>Name:</div>
+	<input ng-model="user.name" type="text">
+	<br>
+	<br>
 	<div>Email:</div>
-	<input type="email">
+	<input ng-model="user.email" type="email">
 	<br>
 	<br>
 	<div>Password:</div>
-	<input type="password">
+	<input ng-model="user.password" type="text">
 	<br>
 	<br>
-	<div>Re-type-password:</div>
-	<input type="password">
-	<br>
-	<br>
-	<a href="/#/chatroom">Register and Login</a>
+	<a ng-click="submitNewUser()" href="/#/chatroom">Register and Login</a>
 	<br>
 	<div class="facebook-login">
 		<a href="/auth/facebook"> <img src="http://freecoups.net/images/login-button.png" style="width:200px"></a>
