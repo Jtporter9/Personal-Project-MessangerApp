@@ -37,9 +37,15 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	///////////Convo calls////////
 	
 	  this.addConvo = function (newConvoObj) {
-		return $http.post('/api/users', newConvoObj).then(function (response) {
+		return $http.post('/api/conversations', newConvoObj).then(function (response) {
 			return response;
 		})
+    }
+	this.findConvos = function () {
+		return $http.get('/api/conversations').then(function (response) {
+			return response.data;
+
+		});
     }
 	
 	
@@ -102,39 +108,39 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 		},
 	];
 
-	this.conversations = [
-		{
-			from: ['Freddie Davis', 'Zac Christianson', 'Taylor Rowley'],
-			date: new Date,
-			messageCount: 33,
-		},
-		{
-			from: ['Tobee Gunter'],
-			date: new Date,
-			messageCount: 54
-		}, {
-			from: ['Mom', 'Daddy'],
-			date: new Date,
-			messageCount: 21
-		}, {
-			from: ['Coach Burbidge'],
-			date: new Date,
-			messageCount: 11
-		}, {
-			from: ['Rey'],
-			date: new Date,
-			messageCount: 82
-		}, {
-			from: ['Zac'],
-			date: new Date,
-			messageCount: 12
-		}, {
-			from: ['Luke Skywalker'],
-			date: new Date,
-			messageCount: 81
-		},
+	// this.conversations = [
+	// 	{
+	// 		from: ['Freddie Davis', 'Zac Christianson', 'Taylor Rowley'],
+	// 		date: new Date,
+	// 		messageCount: 33,
+	// 	},
+	// 	{
+	// 		from: ['Tobee Gunter'],
+	// 		date: new Date,
+	// 		messageCount: 54
+	// 	}, {
+	// 		from: ['Mom', 'Daddy'],
+	// 		date: new Date,
+	// 		messageCount: 21
+	// 	}, {
+	// 		from: ['Coach Burbidge'],
+	// 		date: new Date,
+	// 		messageCount: 11
+	// 	}, {
+	// 		from: ['Rey'],
+	// 		date: new Date,
+	// 		messageCount: 82
+	// 	}, {
+	// 		from: ['Zac'],
+	// 		date: new Date,
+	// 		messageCount: 12
+	// 	}, {
+	// 		from: ['Luke Skywalker'],
+	// 		date: new Date,
+	// 		messageCount: 81
+	// 	},
 
-	];
+	// ];
 	this.friends = [
 		{
 			name: 'Freddie Davis',

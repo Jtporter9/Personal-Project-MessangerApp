@@ -52,13 +52,13 @@
 		</div>
 		<div class="scrolly-convo-bar">
 			<div class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
-				<div ng-repeat="person in convos.from">
+				<div ng-repeat="people in convos.people">
 					<big>
-					{{person}}
+					{{people}}
 				</big>
 				</div>
 				<br>
-				<a>New messages <span class="badge">{{convos.messageCount}}</span></a>
+				<a>New messages <span class="badge">{{convos.numNewMessages}}</span></a>
 				<small class="small-text">{{convos.date | date: medium}}</small>
 			</div>
 		</div>

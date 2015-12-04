@@ -9,11 +9,21 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.showlittleInput = true;
 	
+	//getting convos
+	
+	$scope.findConvos = function () {
+		chatroomService.findConvos().then(function (response) {
+			// console.log('findingCovos',response);
+			$scope.conversations = response;
+		});
+	}
+	$scope.findConvos();
+	
 	//adding conversation
 	$scope.friendsToAddToConvo = [];
-	
+
 	$scope.addingFriendsToConvo = function (i) {
-	$scope.friendsToAddToConvo.push(i);
+		$scope.friendsToAddToConvo.push(i);
 	}
 
 	$scope.addConversation = function () {
@@ -22,22 +32,19 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.submitNewConvo = function (i) {
 		$scope.addingConversation = false;
-		$scope.scrollFriendsFinder = "";
 		var newConvo = {
-			from: i,
-			date: new Date,
-			messageCount: 0,
+			people: $scope.friendsToAddToConvo,
 		}
-		$scope.conversations.unshift(newConvo);
+		$scope.scrollFriendsFinder = "";
+		chatroomService.addConvo(newConvo).then(function (response) {
+			console.log(response);
+			// $scope.conversations.unshift(newConvo);
+			$scope.findConvos();
+		});
 		$scope.friendsToAddToConvo = [];
-	}
-	// $scope.submitNewConvo = function () {
-	// 	chatroomService.addConvo($scope.conversations).then(function (response) {
-	// 		$scope.getConvos();
-	// 	});
-	// 	$scope.conversations = {};
-	// };
-	
+		$scope.newConvo = {};
+	};
+
 
 	$scope.cancelForm = function () {
 		$scope.addingConversation = false;
@@ -80,7 +87,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.usersInfo = chatroomService.usersInfo;
 	$scope.messages = chatroomService.messages;
-	$scope.conversations = chatroomService.conversations;
 	$scope.friends = chatroomService.friends;
 
 
