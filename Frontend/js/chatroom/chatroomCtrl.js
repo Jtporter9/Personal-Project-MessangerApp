@@ -26,7 +26,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.friendsToAddToConvo.push(i);
 	}
 	$scope.deletingFriendsFromConvo = function (i) {
-		$scope.friendsToAddToConvo.splice(i , 1);
+		$scope.friendsToAddToConvo.splice(i, 1);
 	};
 
 	$scope.addConversation = function () {
@@ -40,7 +40,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
-			console.log(response);
+			// console.log(response);
 			// $scope.conversations.unshift(newConvo);
 			$scope.findConvos();
 		});
@@ -64,27 +64,36 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		})
 	}
 	
+	// getting new messages /////////
+	
+		$scope.findMessage = function () {
+		chatroomService.findMessage().then(function (response) {
+			// console.log('findingMessages',response);
+			$scope.messages = response;
+		});
+	}
+	$scope.findMessage();
 	
 	//sending new message area
 	$scope.sendNewMessage = function (i) {
-		$scope.showlittleInput = true;
-		$scope.showLargeInput = false;
-		$scope.newMessageText = "";
 		$scope.showFileUpload = false;
 		var newMessage = {
-			from: 'You',
-			content: i,
-			time: new Date
+			fromName: 'You',
+			content: i
 		}
-		$scope.messages.push(newMessage);
+		chatroomService.addMessage(newMessage).then(function (response) {
+			console.log(response);
+			$scope.findMessage();
+		// $scope.messages.push(newMessage);
+		});
+		$scope.newMessageText = "";
 		$timeout(function () {
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 		}, 100)
-		
-		
-		// var chatBox = document.getElementById('#message-container');
-		// chatBox.scrollTop = 300 + 8 + ($scope.messages.length * 240);
 	}
+
+
+
 
 	$scope.attachFile = function () {
 		$scope.showFileUpload = !$scope.showFileUpload;
@@ -99,7 +108,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 	$scope.usersInfo = chatroomService.usersInfo;
-	$scope.messages = chatroomService.messages;
 	$scope.friends = chatroomService.friends;
 
 

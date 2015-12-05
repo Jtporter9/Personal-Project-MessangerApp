@@ -39,13 +39,14 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, chatr
 	
 	
 	//getting users info
-	$scope.findUser = function () {
-		chatroomService.findUser().then(function (response) {
-			// console.log(response);
-			$scope.users = response;
+	
+	$scope.findCurrentUser = function (Id) {
+		chatroomService.findCurrentUser(Id).then(function (response) {
+			console.log(response);
+			$scope.usersInfo = response;
 		});
 	}
-	$scope.findUser();
+	$scope.findCurrentUser();
 	
 	//Fake data
 	

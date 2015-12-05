@@ -242,7 +242,7 @@ div#slider figure {
         z-index: 999;
 }
 .conversation-footer {
-    position: fixed;
+    position: absolute;
     bottom:0;
     height: 100px;
     width: 100%;
@@ -252,7 +252,7 @@ div#slider figure {
     background-color: whitesmoke;
     border:2px solid black;
     border-radius: 10px;
-    padding:5px;
+    padding:3px;
     margin:1% 0 1% 1%;
 }
 .conversations:hover {
@@ -402,3 +402,17 @@ background-color: #EAEAEA;
 /**{
     border: 1px solid purple;
 }*/
+
+/*Terms and conditions*/
+
+.termsAndConditions {
+    background-color: white;
+    text-align: center;
+    height: 500px;
+    width: 40%;
+   position: absolute;
+   top:100px;
+   left: 30%;
+   overflow: scroll;
+   border-radius:10px;
+}

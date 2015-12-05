@@ -53,6 +53,19 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
       })
     }
 	
+	///////////Message Calls////////////
+	
+	  this.addMessage = function (newMessageObj) {
+		return $http.post('/api/messages', newMessageObj).then(function (response) {
+			return response;
+		})
+    }
+	this.findMessage = function () {
+		return $http.get('/api/messages').then(function (response) {
+			return response.data;
+
+		});
+    }
 	
 	//fake data
 	
@@ -66,51 +79,51 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	}
 
 
-	this.messages = [
-		{
-			from: 'Freddie Davis',
-			content: 'Dude, Tanner are you coming tonight?',
-			time: new Date
-		},
-		{
-			from: 'Zac',
-			content: 'I am, yeah',
-			time: new Date
-		},
-		{
-			from: 'You',
-			content: 'Yeah I can be there',
-			time: new Date,
-			id: 1
-		},
-		{
-			from: 'Zac',
-			content: 'Actually my wife wont let me',
-			time: new Date
-		},
-		{
-			from: 'Taylor Rowley',
-			content: 'I can\'t',
-			time: new Date
-		},
-		{
-			from: 'You',
-			content: 'Dude what!?',
-			time: new Date,
-			id: 1
-		},
-		{
-			from: 'You',
-			content: 'It\'s okay I\'m just kidding',
-			time: new Date,
-			id: 1
-		},
-		{
-			from: 'Taylor Rowley',
-			content: 'Haha okay.',
-			time: new Date
-		},
-	];
+	// this.messages = [
+	// 	{
+	// 		from: 'Freddie Davis',
+	// 		content: 'Dude, Tanner are you coming tonight?',
+	// 		time: new Date
+	// 	},
+	// 	{
+	// 		from: 'Zac',
+	// 		content: 'I am, yeah',
+	// 		time: new Date
+	// 	},
+	// 	{
+	// 		from: 'You',
+	// 		content: 'Yeah I can be there',
+	// 		time: new Date,
+	// 		id: 1
+	// 	},
+	// 	{
+	// 		from: 'Zac',
+	// 		content: 'Actually my wife wont let me',
+	// 		time: new Date
+	// 	},
+	// 	{
+	// 		from: 'Taylor Rowley',
+	// 		content: 'I can\'t',
+	// 		time: new Date
+	// 	},
+	// 	{
+	// 		from: 'You',
+	// 		content: 'Dude what!?',
+	// 		time: new Date,
+	// 		id: 1
+	// 	},
+	// 	{
+	// 		from: 'You',
+	// 		content: 'It\'s okay I\'m just kidding',
+	// 		time: new Date,
+	// 		id: 1
+	// 	},
+	// 	{
+	// 		from: 'Taylor Rowley',
+	// 		content: 'Haha okay.',
+	// 		time: new Date
+	// 	},
+	// ];
 
 	// this.conversations = [
 	// 	{

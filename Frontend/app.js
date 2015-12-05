@@ -22,5 +22,10 @@ angular.module('messangerApp', ['ui.router'])
 				templateUrl: 'js/profile/profile.html',
 				controller: 'profileCtrl'
 			})
+				.state('terms-and-conditions', {
+				url: '/terms-and-conditions',
+				templateUrl: 'js/terms-and-conditions/terms-and-conditions.html',
+				controller: 'terms-and-conditionsCtrl'
+			})
 
 	});
