@@ -13,7 +13,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	$scope.findConvos = function () {
 		chatroomService.findConvos().then(function (response) {
-			// console.log('findingCovos',response);
 			$scope.conversations = response;
 		});
 	}
@@ -55,7 +54,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.friendsToAddToConvo = [];
 	}
 	// deleting convos!!@$#@!#$
-	
+
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
 			// console.log(response);
@@ -66,7 +65,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	// getting new messages /////////
 	
-		$scope.findMessage = function () {
+	$scope.findMessage = function () {
 		chatroomService.findMessage().then(function (response) {
 			// console.log('findingMessages',response);
 			$scope.messages = response;
@@ -84,7 +83,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		chatroomService.addMessage(newMessage).then(function (response) {
 			console.log(response);
 			$scope.findMessage();
-		// $scope.messages.push(newMessage);
+			// $scope.messages.push(newMessage);
 		});
 		$scope.newMessageText = "";
 		$timeout(function () {
