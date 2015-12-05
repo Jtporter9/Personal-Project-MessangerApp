@@ -145,9 +145,18 @@ div#slider figure {
 
 /*////////*Chatroom page*/
 
-.friends-added {
-    float: left;
-    margin: 3px;
+.added-text {
+    float:left;
+    border-bottom:
+    1px solid black
+}
+.trash-can:hover {
+    color:black;
+}
+.friends-added-box {
+    margin-top:4px;
+    width:410px;
+    text-align: left;
 }
 .add-to-convo {
     padding:1px 10px;
@@ -180,7 +189,7 @@ div#slider figure {
     margin:.5px;
 }
 .small-text {
-    margin-left:60px;
+    margin-left:75px;
 }
 #convo-title {
     text-align:center;
@@ -201,7 +210,9 @@ div#slider figure {
     border-bottom:1px solid black;
 }
 .convo-search {
-    width:70%
+    width:70%;
+    border:1px solid black;
+    border-radius: 4px;
 }
 #chatroom-body {
     background-color: #CB1A1B;
@@ -314,13 +325,13 @@ background-color: #EAEAEA;
       border: 2px solid black;
     background: rgba(255,255,255,0.9);
     border-radius: 5px;
-    width: 35%;
+    width: 40%;
     padding: 1%;
     text-align: center;
     z-index: 999;
     position: absolute; 
-    left: 34%;
-    top: 110px;
+    left: 36%;
+    top: 60px;
 }
 #scrollFriends {
     height: 300px;

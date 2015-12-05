@@ -10,14 +10,7 @@ var Users = Schema({
 	notifications: { type: Number },
 	userSettings: {},
 	conversations: [{}],
-	Friends: [
-		// {
-		// 	name: { type: String, required: true },
-		// 	username: { type: String, unique: true, required: true },
-		// 	userAvatar: { type: Image },
-		// 	status: { type: Boolean }
-		// }
-		]
+	Friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Users'}]
 });
 
 module.exports = mongoose.model('Users', Users);

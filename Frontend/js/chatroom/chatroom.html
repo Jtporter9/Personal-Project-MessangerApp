@@ -7,7 +7,7 @@
 		<big class="big-underline">Who would you like to converse with?</big>
 		<br>
 		<br>
-		<input ng-model="scrollFriendsFinder" class="convo-search" type="text" placeholder="search here...">
+		<input ng-model="scrollFriendsFinder" class="convo-search" type="text" placeholder=" search here...">
 		<br>
 		<br>
 		<div id="scrollFriends" class="panel panel-default">
@@ -20,7 +20,10 @@
 						<div class="friends-seperater col-sm-1">
 							<div ng-click="addingFriendsToConvo(friend.name)" class="add-to-convo label label-primary">+</div>
 						</div>
-						<div class="friends-seperater col-sm-7">{{friend.name}}</div>
+								<div class="friends-seperater col-sm-1">
+							<div ng-click="deletingFriendsFromConvo(($index))" class="add-to-convo label label-danger">-</div>
+						</div>
+						<div class="friends-seperater col-sm-6">{{friend.name}}</div>
 						<div class="friends-seperater col-sm-4 ">
 							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
 								{{friend.status}}</div>
@@ -31,8 +34,9 @@
 		</div>
 		<button ng-click="submitNewConvo(friendsToAddToConvo)" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
 	</form>
-	<div class="friends-added">
-		Added: <span ng-repeat="friends in friendsToAddToConvo" style="margin:1px;" class="label label-primary">{{friends}}</span>
+	<div class="friends-added-box">
+		<div class="added-text">Added: </div>
+		<span ng-repeat="friends in friendsToAddToConvo" style="margin:1px; float:left;" class="label label-primary">{{friends}}</span>
 	</div>
 </div>
 
@@ -52,14 +56,17 @@
 		</div>
 		<div class="scrolly-convo-bar">
 			<div class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
+				<button style="float:right;padding:1px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
+					<span class="trash-can glyphicon glyphicon-trash"></span>
+				</button>
 				<div ng-repeat="people in convos.people">
 					<big>
 					{{people}}
 				</big>
 				</div>
-				<br>
-				<a>New messages <span class="badge">{{convos.numNewMessages}}</span></a>
-				<small class="small-text">{{convos.date | date: medium}}</small>
+				<div style="margin-top:5px;">
+					<a>New messages <span class="badge">{{convos.numNewMessages}}</span></a>
+					<small class="small-text">{{convos.date | date: medium}} </small> </div>
 			</div>
 		</div>
 		<div class="coversation-footer">

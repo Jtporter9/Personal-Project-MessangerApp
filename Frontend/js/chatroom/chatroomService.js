@@ -47,7 +47,11 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 
 		});
     }
-	
+	 this.deleteConvo = function (id) {
+      return $http.delete('/api/conversations/' + id).then(function (response) {
+        return response;
+      })
+    }
 	
 	
 	//fake data
@@ -164,34 +168,34 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 			email: 'codyWadePorter@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
+			name: 'Jose Martinez',
+			email: 'josemat@gmail.com',
 			status: 'Offline'
 		},
 		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
+			name: 'Carlos',
+			email: 'carloseM@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
+			name: 'Sydnee Gunter',
+			email: 'sydthekid@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
+			name: 'Jimmy johnson',
+			email: 'jimmyJ@gmail.com',
 			status: 'Offline'
 		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
+			name: 'Todd Lillywhite',
+			email: 'ToddLilly@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
+			name: 'Luis',
+			email: 'Luis@gmail.com',
 			status: 'Offline'
 		},
 		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
+			name: 'Gabe',
+			email: 'Gabe@gmail.com',
 			status: 'Online'
 		}, {
 			name: 'Tobee Gunter',

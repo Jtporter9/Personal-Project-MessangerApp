@@ -25,6 +25,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.addingFriendsToConvo = function (i) {
 		$scope.friendsToAddToConvo.push(i);
 	}
+	$scope.deletingFriendsFromConvo = function (i) {
+		$scope.friendsToAddToConvo.splice(i , 1);
+	};
 
 	$scope.addConversation = function () {
 		$scope.addingConversation = true;
@@ -49,6 +52,16 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.cancelForm = function () {
 		$scope.addingConversation = false;
 		$scope.scrollFriendsFinder = "";
+		$scope.friendsToAddToConvo = [];
+	}
+	// deleting convos!!@$#@!#$
+	
+	$scope.deleteConvo = function (ConvoId) {
+		chatroomService.deleteConvo(ConvoId).then(function (response) {
+			// console.log(response);
+			$scope.findConvos();
+			// $scope.products.splice($scope.products.indexOf(productId), 1);
+		})
 	}
 	
 	
