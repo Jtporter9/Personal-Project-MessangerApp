@@ -10,7 +10,7 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
     }
 
 	this.findCurrentUser = function (id) {
-		return $http.get('/api/users' + id).then(function (response) {
+		return $http.get('/api/users/' + id).then(function (response) {
 			// console.log(response.data);
 			return response.data;
 
@@ -47,6 +47,13 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 
 		});
     }
+	this.findCurrentConvo = function (id) {
+		return $http.get('/api/conversations/' + id).then(function (response) {
+			// console.log(response.data);
+			return response.data;
+
+		});
+    }
 	 this.deleteConvo = function (id) {
       return $http.delete('/api/conversations/' + id).then(function (response) {
         return response;
@@ -71,11 +78,11 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	
 	this.usersInfo = {
 		name: 'J. Tanner Porter',
-		about: "Blah Blah blah blah blah. Blah Blah blah blah blah,Blah Blah blah blah blah.",
+		about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at nibh et arcu luctus porta sed non eros. Pellentesque imperdiet malesuada enim in cursus. Aenean laoreet a elit quis efficitur. Nulla interdum nisl sit amet libero luctus, eu convallis odio volutpat. Suspendisse potenti. Nunc ut elit enim.",
 		username: 'Jtporter9',
 		userEmail: 'jtporter9@gmail.com',
 		userPassword: 'password123',
-		// userPicture: 'images/2015-03-23 06.42.58.jpg'
+		// userAvatar: 'images/default-profile-thumb.png'
 	}
 
 
@@ -211,58 +218,58 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 			email: 'Gabe@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
+			name: 'Cam Gunter',
+			email: 'Cam@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
+			name: 'Juan Carlos',
+			email: 'JuanCarlos@gmail.com',
 			status: 'Offline'
 		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
+			name: 'Stuart Porter',
+			email: 'Knucklehead/awesomestdad@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
-			status: 'Offline'
-		},
-		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
-			status: 'Offline'
-		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
-			status: 'Online'
-		}, {
-			name: 'Freddie Davis',
-			email: 'fpdavis4@gmail.com',
+			name: 'Fred Davis',
+			email: 'fpdavis3@gmail.com',
 			status: 'Offline'
 		},
 		{
-			name: 'Zac Christianson',
-			email: 'zaclax29@gmail.com',
+			name: 'David',
+			email: 'dave@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Tobee Gunter',
-			email: 'sobee4@gmail.com',
+			name: 'David Takasaki',
+			email: 'TakaDavid@gmail.com',
 			status: 'Online'
 		}, {
-			name: 'Pete Bradford',
-			email: 'peter26@gmail.com',
+			name: 'Joey Moore',
+			email: 'JoeyM@gmail.com',
 			status: 'Offline'
 		}, {
-			name: 'Cody Porter',
-			email: 'codyWadePorter@gmail.com',
+			name: 'Nicole',
+			email: 'NicoleD@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Dev C',
+			email: 'Dev@gmail.com',
+			status: 'Offline'
+		},
+		{
+			name: 'Joe',
+			email: 'Jose44@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Tim Tebow',
+			email: 'Ttebow@gmail.com',
+			status: 'Online'
+		}, {
+			name: 'Jack Black',
+			email: 'JackyBoy@gmail.com',
+			status: 'Offline'
+		}, {
+			name: 'Lauren Porter',
+			email: 'Laladada@gmail.com',
 			status: 'Online'
 		}
 	];

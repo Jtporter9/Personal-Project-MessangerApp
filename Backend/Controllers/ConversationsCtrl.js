@@ -15,6 +15,11 @@ module.exports = {
 			res.send(Conversation);
 		})
 	},
+		findConversationById: function (req, res, next) {
+		Conversation.findById(req.params.id).then(function (user) {
+			res.send(user);
+		})
+	},
 	deleteConversation: function (req, res, next) {
 		Conversation.findByIdAndRemove(req.params.id, req.body, function (err, deletedConversation) {
 			if (err) {

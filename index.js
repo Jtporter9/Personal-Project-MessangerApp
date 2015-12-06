@@ -96,6 +96,7 @@ app.get('/api/messages', MessagesCtrl.findMessage);
 
 app.post('/api/conversations', ConversationsCtrl.addConversation);
 app.get('/api/conversations', ConversationsCtrl.findConversation);
+app.get('/api/conversations/:id', ConversationsCtrl.findConversationById);
 app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 
 

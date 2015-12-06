@@ -151,7 +151,7 @@ div#slider figure {
     1px solid black
 }
 .trash-can:hover {
-    color:black;
+    color: #373737;
 }
 .friends-added-box {
     margin-top:4px;
@@ -254,6 +254,9 @@ div#slider figure {
     border-radius: 10px;
     padding:3px;
     margin:1% 0 1% 1%;
+}
+.conversations:hover {
+    border:4px solid white;
 }
 .conversations:hover {
     cursor: pointer;
@@ -386,7 +389,7 @@ background-color: #EAEAEA;
     font-size: 32px;
 }
 .profile-picture {
-    width:250px;
+    width:150px;
     margin:10px 0 10px 0;
     border-radius:5%;
     border:1px solid black;
@@ -398,6 +401,7 @@ background-color: #EAEAEA;
 }*/
 .friends-seperater {
     border-bottom:1px solid black;
+    width: 400px;;
 }
 /**{
     border: 1px solid purple;
@@ -415,4 +419,5 @@ background-color: #EAEAEA;
    left: 30%;
    overflow: scroll;
    border-radius:10px;
+   border:1px solid black;
 }

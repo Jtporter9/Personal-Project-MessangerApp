@@ -20,7 +20,7 @@
 						<div class="friends-seperater col-sm-1">
 							<div ng-click="addingFriendsToConvo(friend.name)" class="add-to-convo label label-primary">+</div>
 						</div>
-								<div class="friends-seperater col-sm-1">
+						<div class="friends-seperater col-sm-1">
 							<div ng-click="deletingFriendsFromConvo(($index))" class="add-to-convo label label-danger">-</div>
 						</div>
 						<div class="friends-seperater col-sm-6">{{friend.name}}</div>
@@ -55,7 +55,7 @@
 			</nav>
 		</div>
 		<div class="scrolly-convo-bar">
-			<div class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
+			<div ng-click="findCurrentConvo(convos._id)" class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
 				<button style="float:right;padding:2px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
 					<span class="trash-can glyphicon glyphicon-trash"></span>
 				</button>
@@ -65,7 +65,7 @@
 				</big>
 				</div>
 				<div style="margin-top:5px;">
-					<a>New messages <span class="badge">{{convos.numNewMessages}}</span></a>
+					<span>New messages <span class="badge">{{convos.numNewMessages}}</span></span>
 					<small class="small-text">{{convos.date | date: medium}} </small> </div>
 			</div>
 		</div>
@@ -77,7 +77,10 @@
 	<div id="message-container" class="message-container">
 		<div ng-class="{'message-right':message.fromName==='You'}" class="message-box" ng-repeat="message in messages">
 			<!--<img class="little-avatar" src=""> </img>-->
-			<span style="border-bottom:1px solid black; margin-left:10px;">{{message.fromName}}:</span>
+			<img src="images/default-profile-thumb.png" style="border-radius:50%;width:45px;">
+			<span style="border-bottom:1px solid black; margin-left:10px;">
+				{{message.fromName}}:
+				</span>
 			<p style="margin:5px 10px;">{{message.content}}</p>
 			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
 		</div>

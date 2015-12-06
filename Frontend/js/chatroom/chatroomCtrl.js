@@ -9,6 +9,14 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.showlittleInput = true;
 	
+	//Emojis
+	
+	// function convert() {
+	// 	var input = document.getElementById('inputText').value;
+	// 	var output = emojione.shortnameToImage(input);
+	// 	document.getElementById('outputText').innerHTML = output;
+	// }
+
 	//getting convos
 	
 	$scope.findConvos = function () {
@@ -16,6 +24,13 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.conversations = response;
 		});
 	}
+	$scope.findCurrentConvo = function (ConvoId) {
+		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
+			// console.log(response);
+			$scope.findConvos();
+		})
+	}
+	
 	$scope.findConvos();
 	
 	//adding conversation
