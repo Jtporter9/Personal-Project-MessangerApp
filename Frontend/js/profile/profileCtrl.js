@@ -23,6 +23,24 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, chatr
 		$scope.showPersonalInfo = true;
 		$scope.editingPersonalInfo = false;
 	}
+	
+	/////////Getting Friends////////////////
+	
+	$scope.findFriends = function (UserId) {
+		chatroomService.findUser().then(function (response) {
+			// console.log(response);
+			$scope.friends = response;
+			for (var i = 0; i < $scope.friends.length; i++) {
+				if ($scope.friends[i].status === false) {
+					$scope.friends[i].status = "Offline";
+				} else {
+					$scope.friends[i].status = "Online";
+				}
+			}
+		})
+	}
+	$scope.findFriends();
+	
 
 	/////////Adding new friends//////////////
 	$scope.addingNewFriends = function () {
@@ -52,7 +70,7 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, chatr
 	
 	$scope.usersInfo = chatroomService.usersInfo;
 
-	$scope.friends = chatroomService.friends;
+	// $scope.friends = chatroomService.friends;
 
 
 });

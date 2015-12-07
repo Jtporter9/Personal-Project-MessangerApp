@@ -21,16 +21,17 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	$scope.findConvos = function () {
 		chatroomService.findConvos().then(function (response) {
+			// console.log(response[0].people);
 			$scope.conversations = response;
 		});
 	}
 	$scope.findCurrentConvo = function (ConvoId) {
 		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
-			// console.log(response);
-			$scope.findConvos();
+			// console.log(response.messages);
+			$scope.messagesInConvos = response.messages;
 		})
 	}
-	
+
 	$scope.findConvos();
 	
 	//adding conversation
@@ -80,13 +81,13 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	// getting new messages /////////
 	
-	$scope.findMessage = function () {
-		chatroomService.findMessage().then(function (response) {
-			// console.log('findingMessages',response);
-			$scope.messages = response;
-		});
-	}
-	$scope.findMessage();
+	// $scope.findMessage = function () {
+	// 	chatroomService.findMessage().then(function (response) {
+	// 		// console.log('findingMessages',response);
+	// 		$scope.messages = response;
+	// 	});
+	// }
+	// $scope.findMessage();
 	
 	//sending new message area
 	$scope.sendNewMessage = function (i) {
@@ -97,7 +98,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		chatroomService.addMessage(newMessage).then(function (response) {
 			console.log(response);
-			$scope.findMessage();
+			$scope.findCurrentConvo();
 			// $scope.messages.push(newMessage);
 		});
 		$scope.newMessageText = "";
@@ -120,9 +121,22 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		return true;
 	}
+//find friends to add to convos////
 
-	$scope.usersInfo = chatroomService.usersInfo;
-	$scope.friends = chatroomService.friends;
+	$scope.findFriends = function (UserId) {
+		chatroomService.findUser().then(function (response) {
+			// console.log(response);
+			$scope.friends = response;
+			for (var i = 0; i < $scope.friends.length; i++) {
+				if ($scope.friends[i].status === false) {
+					$scope.friends[i].status = "Offline";
+				} else {
+					$scope.friends[i].status = "Online";
+				}
+			}
+		})
+	}
+	$scope.findFriends();
 
 
 

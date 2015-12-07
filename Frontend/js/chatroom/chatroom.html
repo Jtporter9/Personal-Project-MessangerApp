@@ -61,7 +61,7 @@
 				</button>
 				<div ng-repeat="people in convos.people">
 					<big>
-					{{people}}
+					-{{people.name}}
 				</big>
 				</div>
 				<div style="margin-top:5px;">
@@ -75,7 +75,7 @@
 </div>
 <div class="main-box-right">
 	<div id="message-container" class="message-container">
-		<div ng-class="{'message-right':message.fromName==='You'}" class="message-box" ng-repeat="message in messages">
+		<div ng-class="{'message-right':message.fromName==='Tanner Porter'}" class="message-box" ng-repeat="message in messagesInConvos">
 			<!--<img class="little-avatar" src=""> </img>-->
 			<img src="images/default-profile-thumb.png" style="border-radius:50%;width:45px;">
 			<span style="border-bottom:1px solid black; margin-left:10px;">

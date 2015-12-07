@@ -73,6 +73,27 @@
 		<input style="width:70%" type="search" placeholder="search here...">
 		<br>
 		<br>
+		<div class="add-friends-scroll">
+			<div ng-repeat="friend in friends | filter: friendsFinder">
+				<div class="row">
+					<div class="col-xs-6 col-md-3">
+						<a href="" class="thumbnail">
+							<img src="images/default-profile-thumb.png" alt="...">
+						</a>
+					</div>
+					<div>
+						<h4 class="friends-seperater">{{friend.name}}</h4>
+						<div> {{friend.email}} </div>
+						<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
+							{{friend.status}}</div>
+							<br>
+							Send Request:
+							<input type="checkbox" name="" id="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
 		<button class="glyphicon glyphicon-thumbs-up btn btn-primary"> Facebook-friends</button>
 		<button ng-click="submitNewFriend()" class="glyphicon glyphicon-ok btn btn-success"> Submit</button>
 	</form>
@@ -94,15 +115,6 @@
 			<!-- Table -->
 			<table class="table">
 				<div ng-repeat="friend in friends | filter: friendsFinder">
-					<!--<div style="margin: 6px 0;">
-						<div class="friends-seperater col-sm-4">{{friend.name}}</div>
-						<div class="friends-seperater col-sm-6"> {{friend.email}} </div>
-						<div class="friends-seperater col-sm-2 ">
-							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
-								{{friend.status}}</div>
-						</div>
-					</div>-->
-
 					<div class="row">
 						<div class="col-xs-6 col-md-3">
 							<a href="" class="thumbnail">

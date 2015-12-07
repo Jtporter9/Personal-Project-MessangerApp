@@ -344,7 +344,12 @@ background-color: #EAEAEA;
 
 
 /*////////////////Profile section///////////////////*/
-
+.add-friends-scroll {
+    border-radius:5px;
+    overflow:scroll;
+    height:200px;
+    border:1px solid black;
+}
 .profile-info{
      height: 520px;
      width:35%;

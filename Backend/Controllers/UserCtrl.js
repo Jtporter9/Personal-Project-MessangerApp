@@ -16,7 +16,7 @@ module.exports = {
 	// 	})
 	// },
 	findUser: function (req, res, next) {
-		User.find().populate('friends').exec().then(function (user, err) {
+		User.find().populate('friends').populate('conversations').exec().then(function (user, err) {
 			if (err) {
 				res.status(500).send(err);
 			} else {
@@ -25,7 +25,7 @@ module.exports = {
 		})
 	},
 	findUserById: function (req, res, next) {
-		User.findById(req.params.id).populate('friends').exec().then(function (user, err) {
+		User.findById(req.params.id).populate('friends').populate('conversations').exec().then(function (user, err) {
 			if (err) {
 				res.status(500).send(err);
 			} else {
@@ -39,7 +39,7 @@ module.exports = {
 	// 	})
 	// },
 	updateUser: function (req, res, next) {
-		User.findByIdAndUpdate(req.params.id, req.body, function (err, updatedUser) {
+		User.findByIdAndUpdate(req.params.id, req.body).populate('friends').populate('conversations').exec().then(function (err, updatedUser) {
 			if (err) {
 				res.status(500).send(err);
 			} else {
