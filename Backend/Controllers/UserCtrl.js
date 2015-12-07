@@ -10,16 +10,34 @@ module.exports = {
 			else res.send(result);
 		});
 	},
+	// findUser: function (req, res, next) {
+	// 	User.find().then(function (user) {
+	// 		res.send(user);
+	// 	})
+	// },
 	findUser: function (req, res, next) {
-		User.find().then(function (user) {
-			res.send(user);
+		User.find().populate('friends').exec().then(function (user, err) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.send(user);
+			}
 		})
 	},
 	findUserById: function (req, res, next) {
-		User.findById(req.params.id).then(function (user) {
-			res.send(user);
+		User.findById(req.params.id).populate('friends').exec().then(function (user, err) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.send(user);
+			}
 		})
 	},
+	// findUserById: function (req, res, next) {
+	// 	User.findById(req.params.id).then(function (user) {
+	// 		res.send(user);
+	// 	})
+	// },
 	updateUser: function (req, res, next) {
 		User.findByIdAndUpdate(req.params.id, req.body, function (err, updatedUser) {
 			if (err) {
