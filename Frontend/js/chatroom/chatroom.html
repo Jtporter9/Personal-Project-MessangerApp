@@ -18,10 +18,10 @@
 					<div style="margin: 6px 0;">
 						<!--<div class="friends-seperater col-sm-2"></div>-->
 						<div class="friends-seperater col-sm-1">
-							<div ng-click="addingFriendsToConvo(friend)" class="add-to-convo label label-primary">+</div>
+							<div ng-click="addingFriendsToConvo(friend, $index)" class="add-to-convo label label-primary">+</div>
 						</div>
 						<div class="friends-seperater col-sm-1">
-							<div ng-click="deletingFriendsFromConvo($index)" class="add-to-convo label label-danger">-</div>
+							<div ng-click="deletingFriendsFromConvo(friend)" class="add-to-convo label label-danger">-</div>
 						</div>
 						<div class="friends-seperater col-sm-6">{{friend.name}}</div>
 						<div class="friends-seperater col-sm-4 ">
@@ -55,7 +55,7 @@
 			</nav>
 		</div>
 		<div class="scrolly-convo-bar">
-			<div ng-click="findCurrentConvo(convos._id)" class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
+			<div ng-click="findCurrentConvo(convos._id, convos)" class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
 				<button style="float:right;padding:2px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
 					<span class="trash-can glyphicon glyphicon-trash"></span>
 				</button>
@@ -75,7 +75,10 @@
 </div>
 <div class="main-box-right">
 	<div id="message-container" class="message-container">
-		<div ng-class="{'message-right':message.fromName==='Tanner Porter'}" class="message-box" ng-repeat="message in messagesInConvos">
+	<div ng-show="showEnteredConversationAlert" class="entered-conversation-alert">
+		<big style="border-bottom:1px solid black;">You have now entered the conversations with <span ng-repeat="people in currentConvo.people">, {{people.name}}</span> </big>
+	</div>
+		<div ng-class="{'message-right':message.fromName==='You'}" class="message-box" ng-repeat="message in messagesInConvos">
 			<!--<img class="little-avatar" src=""> </img>-->
 			<img src="images/default-profile-thumb.png" style="border-radius:50%;width:45px;">
 			<span style="border-bottom:1px solid black; margin-left:10px;">

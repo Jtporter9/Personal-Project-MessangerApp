@@ -29,8 +29,8 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 		})
     }
 
-	this.updateUser = function (product) {
-		return $http.put('/api/users/' + product._id, product)
+	this.updateUser = function (user) {
+		return $http.put('/api/users/' + user._id, user)
     }
 	
 	
@@ -62,10 +62,8 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	
 	///////////Message Calls////////////
 	
-	  this.addMessage = function (newMessageObj) {
-		return $http.post('/api/messages', newMessageObj).then(function (response) {
-			return response;
-		})
+	this.updateMessage = function (message, convo) {
+		return $http.put('/api/conversations/' + convo, message)
     }
 	this.findMessage = function () {
 		return $http.get('/api/messages').then(function (response) {
@@ -73,126 +71,4 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 
 		});
     }
-	
-	//fake data
-	
-	this.usersInfo = {
-		name: 'J. Tanner Porter',
-		about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at nibh et arcu luctus porta sed non eros. Pellentesque imperdiet malesuada enim in cursus. Aenean laoreet a elit quis efficitur. Nulla interdum nisl sit amet libero luctus, eu convallis odio volutpat. Suspendisse potenti. Nunc ut elit enim.",
-		username: 'Jtporter9',
-		userEmail: 'jtporter9@gmail.com',
-		userPassword: 'password123',
-		// userAvatar: 'images/default-profile-thumb.png'
-	}
-
-	// this.friends = [
-	// 	{
-	// 		name: 'Freddie Davis',
-	// 		email: 'fpdavis4@gmail.com',
-	// 		status: 'Offline'
-	// 	},
-	// 	{
-	// 		name: 'Zac Christianson',
-	// 		email: 'zaclax29@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Tobee Gunter',
-	// 		email: 'sobee4@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Pete Bradford',
-	// 		email: 'peter26@gmail.com',
-	// 		status: 'Offline'
-	// 	}, {
-	// 		name: 'Cody Porter',
-	// 		email: 'codyWadePorter@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Jose Martinez',
-	// 		email: 'josemat@gmail.com',
-	// 		status: 'Offline'
-	// 	},
-	// 	{
-	// 		name: 'Carlos',
-	// 		email: 'carloseM@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Sydnee Gunter',
-	// 		email: 'sydthekid@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Jimmy johnson',
-	// 		email: 'jimmyJ@gmail.com',
-	// 		status: 'Offline'
-	// 	}, {
-	// 		name: 'Todd Lillywhite',
-	// 		email: 'ToddLilly@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Luis',
-	// 		email: 'Luis@gmail.com',
-	// 		status: 'Offline'
-	// 	},
-	// 	{
-	// 		name: 'Gabe',
-	// 		email: 'Gabe@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Cam Gunter',
-	// 		email: 'Cam@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Juan Carlos',
-	// 		email: 'JuanCarlos@gmail.com',
-	// 		status: 'Offline'
-	// 	}, {
-	// 		name: 'Stuart Porter',
-	// 		email: 'Knucklehead/awesomestdad@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Fred Davis',
-	// 		email: 'fpdavis3@gmail.com',
-	// 		status: 'Offline'
-	// 	},
-	// 	{
-	// 		name: 'David',
-	// 		email: 'dave@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'David Takasaki',
-	// 		email: 'TakaDavid@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Joey Moore',
-	// 		email: 'JoeyM@gmail.com',
-	// 		status: 'Offline'
-	// 	}, {
-	// 		name: 'Nicole',
-	// 		email: 'NicoleD@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Dev C',
-	// 		email: 'Dev@gmail.com',
-	// 		status: 'Offline'
-	// 	},
-	// 	{
-	// 		name: 'Joe',
-	// 		email: 'Jose44@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Tim Tebow',
-	// 		email: 'Ttebow@gmail.com',
-	// 		status: 'Online'
-	// 	}, {
-	// 		name: 'Jack Black',
-	// 		email: 'JackyBoy@gmail.com',
-	// 		status: 'Offline'
-	// 	}, {
-	// 		name: 'Lauren Porter',
-	// 		email: 'Laladada@gmail.com',
-	// 		status: 'Online'
-	// 	}
-	// ];
-
-
 });

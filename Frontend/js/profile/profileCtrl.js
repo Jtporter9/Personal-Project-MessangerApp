@@ -1,5 +1,5 @@
 /* global url */
-angular.module('messangerApp').controller('profileCtrl', function ($scope, chatroomService) {
+angular.module('messangerApp').controller('profileCtrl', function ($scope, $stateParams, chatroomService) {
 
 	$scope.showSignuature = false;
 	$scope.showPersonalInfo = true;
@@ -26,7 +26,7 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, chatr
 	
 	/////////Getting Friends////////////////
 	
-	$scope.findFriends = function (UserId) {
+	$scope.findFriends = function () {
 		chatroomService.findUser().then(function (response) {
 			// console.log(response);
 			$scope.friends = response;
@@ -55,22 +55,19 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, chatr
 		$scope.addNewFriend = false;
 	}
 	
+	//update current Users info 
 	
-	//getting users info
 	
-	$scope.findCurrentUser = function (Id) {
-		chatroomService.findCurrentUser(Id).then(function (response) {
+	
+	//getting current Users info
+	
+	$scope.findCurrentUser = function (UserId) {
+		chatroomService.findCurrentUser(UserId).then(function (response) {
 			console.log(response);
 			$scope.usersInfo = response;
 		});
 	}
-	$scope.findCurrentUser();
-	
-	//Fake data
-	
-	$scope.usersInfo = chatroomService.usersInfo;
-
-	// $scope.friends = chatroomService.friends;
+	$scope.findCurrentUser($stateParams.id);
 
 
-});
+});//end

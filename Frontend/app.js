@@ -12,13 +12,13 @@ angular.module('messangerApp', ['ui.router'])
 			})
 
 			.state('chatroom', {
-				url: '/chatroom',
+				url: '/chatroom/:id',
 				templateUrl: 'js/chatroom/chatroom.html',
 				controller: 'chatroomCtrl'
 			})
 
 			.state('profile', {
-				url: '/profile',
+				url: '/profile/:id',
 				templateUrl: 'js/profile/profile.html',
 				controller: 'profileCtrl'
 			})

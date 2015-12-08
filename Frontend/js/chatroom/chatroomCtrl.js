@@ -1,5 +1,5 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
-	$timeout, chatroomService, $location, $anchorScroll) {
+	$timeout, chatroomService, $stateParams, $location, $anchorScroll) {
 
 	$scope.showSignuature = false;
 	$scope.showProfileLink = true;
@@ -8,6 +8,15 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.profileTitle = false;
 
 	$scope.showlittleInput = true;
+	
+	/////find current user///////
+	
+	$scope.findCurrentUser = function (UserId) {
+		chatroomService.findCurrentUser(UserId).then(function (response) {
+			$scope.usersInfo = response;
+		})
+	}
+	$scope.findCurrentUser($stateParams.id);
 	
 	//Emojis
 	
@@ -21,14 +30,20 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	$scope.findConvos = function () {
 		chatroomService.findConvos().then(function (response) {
-			// console.log(response[0].people);
 			$scope.conversations = response;
+			$scope.conversations.people = response.people;
 		});
 	}
-	$scope.findCurrentConvo = function (ConvoId) {
+
+	$scope.findCurrentConvo = function (ConvoId, convos) {
 		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
-			// console.log(response.messages);
 			$scope.messagesInConvos = response.messages;
+			$scope.currentConvo = convos;
+			$scope.ConvoId = response._id;
+			$scope.showEnteredConversationAlert = true;
+			$timeout(function () {
+				$scope.showEnteredConversationAlert = false;
+			}, 4000)
 		})
 	}
 
@@ -38,7 +53,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	$scope.friendsToAddToConvo = [];
 
-	$scope.addingFriendsToConvo = function (friendObj) {
+	$scope.addingFriendsToConvo = function (friendObj, index) {
+		// if (friendObj[index] === friendObj[index] * 2) {
+		// 	alert('You cannot add the same persone twice to one conversation sorry. please try again.');
+		// } else {
+		// 	$scope.friendsToAddToConvo.push(friendObj);
+		// }
 		$scope.friendsToAddToConvo.push(friendObj);
 	}
 	$scope.deletingFriendsFromConvo = function (index) {
@@ -50,7 +70,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	};
 
 	$scope.submitNewConvo = function (friendsToAddToConvo) {
-		console.log('friendsToAddToConvo', friendsToAddToConvo );
+		console.log('friendsToAddToConvo', friendsToAddToConvo);
 		$scope.addingConversation = false;
 		var UserIds = [];
 		for (var i = 0; i < friendsToAddToConvo.length; i++) {
@@ -59,7 +79,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		var newConvo = {
 			people: UserIds,
 		}
-		console.log(newConvo);
+		// console.log(newConvo);
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
 			// console.log(response);
@@ -76,46 +96,28 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.scrollFriendsFinder = "";
 		$scope.friendsToAddToConvo = [];
 	}
+	
 	// deleting convos!!@$#@!#$
 
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
-			// console.log(response);
 			$scope.findConvos();
-			// $scope.products.splice($scope.products.indexOf(productId), 1);
 		})
 	}
-	
-	// getting new messages /////////
-	
-	// $scope.findMessage = function () {
-	// 	chatroomService.findMessage().then(function (response) {
-	// 		// console.log('findingMessages',response);
-	// 		$scope.messages = response;
-	// 	});
-	// }
-	// $scope.findMessage();
-	
-	//sending new message area
-	$scope.sendNewMessage = function (i) {
+	$scope.sendNewMessage = function (newMessageText) {
 		$scope.showFileUpload = false;
 		var newMessage = {
 			fromName: 'You',
-			content: i
+			content: newMessageText
 		}
-		chatroomService.addMessage(newMessage).then(function (response) {
-			console.log(response);
-			$scope.findCurrentConvo();
-			// $scope.messages.push(newMessage);
+		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
+			$scope.findCurrentConvo($scope.ConvoId);
 		});
 		$scope.newMessageText = "";
 		$timeout(function () {
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 		}, 100)
 	}
-
-
-
 
 	$scope.attachFile = function () {
 		$scope.showFileUpload = !$scope.showFileUpload;

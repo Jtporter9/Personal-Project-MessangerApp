@@ -318,7 +318,7 @@ background-color: #EAEAEA;
     cursor: pointer;
 }
 .input-message {
-    width: 100%;
+    width: 99%;
     border:2px solid black;
     border-radius: 5px;
     position: absolute;
@@ -341,7 +341,15 @@ background-color: #EAEAEA;
     overflow: scroll;
     border: 1px solid black;
 }
-
+.entered-conversation-alert {
+    position: fixed;
+    top:65px;
+    background-color: whitesmoke;
+    border: 2px solid red;
+    border-radius:5px;
+    padding:8px;
+    margin:4px 10px;
+}
 
 /*////////////////Profile section///////////////////*/
 .add-friends-scroll {
