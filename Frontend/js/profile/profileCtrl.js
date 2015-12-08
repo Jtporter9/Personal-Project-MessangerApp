@@ -31,10 +31,10 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, chatr
 			// console.log(response);
 			$scope.friends = response;
 			for (var i = 0; i < $scope.friends.length; i++) {
-				if ($scope.friends[i].status === false) {
-					$scope.friends[i].status = "Offline";
-				} else {
+				if ($scope.friends[i].status === true) {
 					$scope.friends[i].status = "Online";
+				} else {
+					$scope.friends[i].status = "Offline";
 				}
 			}
 		})

@@ -25,7 +25,7 @@ module.exports = {
 		})
 	},
 	findConversationById: function (req, res, next) {
-		Conversation.findById(req.params.id).populate('messages').populate('people').exec().then(function (conversations, err) {
+		Conversation.findById(req.params.id).populate('messages').exec().then(function (conversations, err) {
 			if (err) {
 				res.status(500).send(err);
 			} else {

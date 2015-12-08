@@ -18,10 +18,10 @@
 					<div style="margin: 6px 0;">
 						<!--<div class="friends-seperater col-sm-2"></div>-->
 						<div class="friends-seperater col-sm-1">
-							<div ng-click="addingFriendsToConvo(friend.name)" class="add-to-convo label label-primary">+</div>
+							<div ng-click="addingFriendsToConvo(friend)" class="add-to-convo label label-primary">+</div>
 						</div>
 						<div class="friends-seperater col-sm-1">
-							<div ng-click="deletingFriendsFromConvo(($index))" class="add-to-convo label label-danger">-</div>
+							<div ng-click="deletingFriendsFromConvo($index)" class="add-to-convo label label-danger">-</div>
 						</div>
 						<div class="friends-seperater col-sm-6">{{friend.name}}</div>
 						<div class="friends-seperater col-sm-4 ">
@@ -36,7 +36,7 @@
 	</form>
 	<div class="friends-added-box">
 		<div class="added-text">Added: </div>
-		<span ng-repeat="friends in friendsToAddToConvo" style="margin:1px; float:left;" class="label label-primary">{{friends}}</span>
+		<span ng-repeat="friends in friendsToAddToConvo" style="margin:1px; float:left;" class="label label-primary">{{friends.name}}</span>
 	</div>
 </div>
 

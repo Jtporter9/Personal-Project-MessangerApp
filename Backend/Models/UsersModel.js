@@ -8,7 +8,7 @@ var Users = Schema({
 	email: { type: String, required: true },
 	userAvatar: { type: String },
 	notifications: { type: Number },
-	status: { type: Boolean },
+	status: { type: Boolean},
 	userSettings: {},
 	conversations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Conversations' }],
 	friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true}]

@@ -34,25 +34,32 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.findConvos();
 	
-	//adding conversation
+	//////////adding conversation/////////
+	
 	$scope.friendsToAddToConvo = [];
 
-	$scope.addingFriendsToConvo = function (i) {
-		$scope.friendsToAddToConvo.push(i);
+	$scope.addingFriendsToConvo = function (friendObj) {
+		$scope.friendsToAddToConvo.push(friendObj);
 	}
-	$scope.deletingFriendsFromConvo = function (i) {
-		$scope.friendsToAddToConvo.splice(i, 1);
+	$scope.deletingFriendsFromConvo = function (index) {
+		$scope.friendsToAddToConvo.splice(index, 1);
 	};
 
 	$scope.addConversation = function () {
 		$scope.addingConversation = true;
 	};
 
-	$scope.submitNewConvo = function (i) {
+	$scope.submitNewConvo = function (friendsToAddToConvo) {
+		console.log('friendsToAddToConvo', friendsToAddToConvo );
 		$scope.addingConversation = false;
-		var newConvo = {
-			people: $scope.friendsToAddToConvo,
+		var UserIds = [];
+		for (var i = 0; i < friendsToAddToConvo.length; i++) {
+			UserIds.push(friendsToAddToConvo[i]._id);
 		}
+		var newConvo = {
+			people: UserIds,
+		}
+		console.log(newConvo);
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
 			// console.log(response);
@@ -121,7 +128,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		return true;
 	}
-//find friends to add to convos////
+	//find friends to add to convos////
 
 	$scope.findFriends = function (UserId) {
 		chatroomService.findUser().then(function (response) {
