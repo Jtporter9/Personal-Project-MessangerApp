@@ -350,7 +350,9 @@ background-color: #EAEAEA;
     padding:8px;
     margin:4px 10px;
 }
-
+.border-bottom {
+    border-bottom: 1px solid black;
+}
 /*////////////////Profile section///////////////////*/
 .add-friends-scroll {
     border-radius:5px;

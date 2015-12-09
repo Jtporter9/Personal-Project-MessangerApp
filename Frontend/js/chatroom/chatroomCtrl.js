@@ -137,7 +137,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			// console.log(response);
 			$scope.friends = response;
 			for (var i = 0; i < $scope.friends.length; i++) {
-				if ($scope.friends[i].status === false) {
+				if ($scope.friends[i].status === false || !$scope.friends[i].status) {
 					$scope.friends[i].status = "Offline";
 				} else {
 					$scope.friends[i].status = "Online";

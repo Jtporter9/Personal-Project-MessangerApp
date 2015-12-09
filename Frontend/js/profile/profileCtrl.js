@@ -19,10 +19,10 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 		$scope.showPersonalInfo = false;
 		$scope.editingPersonalInfo = true;
 	}
-	$scope.submitNewEdit = function () {
-		$scope.showPersonalInfo = true;
-		$scope.editingPersonalInfo = false;
-	}
+	// $scope.submitNewEdit = function () {
+	// 	$scope.showPersonalInfo = true;
+	// 	$scope.editingPersonalInfo = false;
+	// }
 	
 	/////////Getting Friends////////////////
 	
@@ -56,14 +56,31 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 	}
 	
 	//update current Users info 
-	
+	$scope.updateUserInfo = function (newUserObj) {
+		$scope.showFileUpload = false;
+		// console.log (newUserObj);
+		// var newUserObj = {
+		// 	userAvatar: '',
+		// 	name: 'You',
+		// 	about: ,
+		// 	username:  ,
+		// 	email: ,
+		// 	password: 
+		// }
+		chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
+			console.log(response);
+			$scope.findCurrentUser($stateParams.id);
+		});
+		$scope.showPersonalInfo = true;
+		$scope.editingPersonalInfo = false;
+	}
 	
 	
 	//getting current Users info
 	
 	$scope.findCurrentUser = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
-			console.log(response);
+			// console.log(response);
 			$scope.usersInfo = response;
 		});
 	}

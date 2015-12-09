@@ -13,21 +13,23 @@
 			<br>
 			<br>
 			<div style="height:140px">
-				<span style="border-bottom:1px solid black;">About:</span>
+				<span class="border-bottom">About:</span>
 				<p>
 					{{usersInfo.about}}
 				</p>
 			</div>
 			<br>
 			<span>
-			Username: {{usersInfo.username}}<br>
-			<br> 
-			</span>
-			<span>Email: {{usersInfo.userEmail}}
+			<span class="border-bottom">Username:</span> {{usersInfo.username}}
+			<br>
 			<br>
 			</span>
+			<span class="border-bottom">Email:</span> {{usersInfo.email}}
+			<br>
 			<span>
-			<br> Password: {{usersInfo.userPassword}}
+			<br>
+			<span class="border-bottom">Password:</span>
+			<input ng-model="usersInfo.password" type="password">
 			<br>
 			</span>
 			<br>
@@ -40,7 +42,7 @@
 				<input type="file">
 			</div>
 			<big>
-			Name: <input  ng-model="usersInfo.name" type="text">
+			Name: {{usersInfo.name}}<br>
 		</big>
 			<br>
 			<p>
@@ -53,11 +55,11 @@
 			<br> 
 			</span>
 			<span>
-			Email: <input ng-model="usersInfo.userEmail" type="email"><br>
+			Email: <input ng-model="usersInfo.email" type="email"><br>
 			</span>
 			<br>
 			<span>
-			Password: <input ng-model="usersInfo.userPassword" type="text"> <button ng-click="submitNewEdit()" style="float:right;" class="btn btn-success">Done</button>
+			Password: <input ng-model="usersInfo.password" type="text"> <button ng-click="updateUserInfo(usersInfo)" style="float:right;" class="btn btn-success">Done</button>
 		</span>
 		</div>
 	</div>
@@ -86,9 +88,8 @@
 						<div> {{friend.email}} </div>
 						<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
 							{{friend.status}}</div>
-							<br>
-							Send Request:
-							<input type="checkbox" name="" id="">
+						<br> Send Request:
+						<input type="checkbox" name="" id="">
 					</div>
 				</div>
 			</div>
