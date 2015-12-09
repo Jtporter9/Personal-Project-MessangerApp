@@ -58,17 +58,8 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 	//update current Users info 
 	$scope.updateUserInfo = function (newUserObj) {
 		$scope.showFileUpload = false;
-		// console.log (newUserObj);
-		// var newUserObj = {
-		// 	userAvatar: '',
-		// 	name: 'You',
-		// 	about: ,
-		// 	username:  ,
-		// 	email: ,
-		// 	password: 
-		// }
 		chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-			console.log(response);
+			// console.log(response);
 			$scope.findCurrentUser($stateParams.id);
 		});
 		$scope.showPersonalInfo = true;

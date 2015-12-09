@@ -35,30 +35,36 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		});
 	}
 
+	var showAlertBoxOnConvo = function () {
+		$scope.showEnteredConversationAlert = true;
+		$timeout(function () {
+			$scope.showEnteredConversationAlert = false;
+		}, 5000)
+	}
+
 	$scope.findCurrentConvo = function (ConvoId, convos) {
 		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
 			$scope.messagesInConvos = response.messages;
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
-			$scope.showEnteredConversationAlert = true;
-			$timeout(function () {
-				$scope.showEnteredConversationAlert = false;
-			}, 4000)
+			showAlertBoxOnConvo();
+		})
+	}
+	$scope.findCurrentConvoForMessage = function (ConvoId, convos) {
+		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
+			$scope.messagesInConvos = response.messages;
+			$scope.currentConvo = convos;
+			$scope.ConvoId = response._id;
 		})
 	}
 
 	$scope.findConvos();
-	
+	//////////////////////////////////////
 	//////////adding conversation/////////
-	
+	//////////////////////////////////////
 	$scope.friendsToAddToConvo = [];
 
 	$scope.addingFriendsToConvo = function (friendObj, index) {
-		// if (friendObj[index] === friendObj[index] * 2) {
-		// 	alert('You cannot add the same persone twice to one conversation sorry. please try again.');
-		// } else {
-		// 	$scope.friendsToAddToConvo.push(friendObj);
-		// }
 		$scope.friendsToAddToConvo.push(friendObj);
 	}
 	$scope.deletingFriendsFromConvo = function (index) {
@@ -70,7 +76,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	};
 
 	$scope.submitNewConvo = function (friendsToAddToConvo) {
-		console.log('friendsToAddToConvo', friendsToAddToConvo);
+		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
 		var UserIds = [];
 		for (var i = 0; i < friendsToAddToConvo.length; i++) {
@@ -79,13 +85,19 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		var newConvo = {
 			people: UserIds,
 		}
-		// console.log(newConvo);
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
-			// console.log(response);
-			// $scope.conversations.unshift(newConvo);
 			$scope.findConvos();
 		});
+		
+		///// addConvos to Users collection array of Convos//////
+		// var newUserObj = {
+		// 	conversations: [$scope.ConvoId]
+		// }
+		// console.log(newUserObj);
+		// chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
+		// 	$scope.findCurrentUser($stateParams.id);
+		// });
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};
@@ -104,6 +116,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.findConvos();
 		})
 	}
+	
+	///////sending a new messages////////
 	$scope.sendNewMessage = function (newMessageText) {
 		$scope.showFileUpload = false;
 		var newMessage = {
@@ -111,7 +125,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			content: newMessageText
 		}
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
-			$scope.findCurrentConvo($scope.ConvoId);
+			$scope.findCurrentConvoForMessage($scope.ConvoId);
 		});
 		$scope.newMessageText = "";
 		$timeout(function () {

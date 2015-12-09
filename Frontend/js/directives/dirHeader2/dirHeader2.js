@@ -12,7 +12,7 @@ angular.module('messangerApp')
 				
 				$scope.getCurrentUserInfo = function (UserId) {
 					chatroomService.findCurrentUser(UserId).then(function (response) {
-						console.log(response);
+						// console.log(response);
 						$scope.usersInfo = response;
 					})
 				};

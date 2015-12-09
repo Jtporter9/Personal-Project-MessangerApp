@@ -55,7 +55,8 @@
 			</nav>
 		</div>
 		<div class="scrolly-convo-bar">
-			<div ng-click="findCurrentConvo(convos._id, convos)" class="conversations" ng-repeat="convos in conversations | filter: conversationFilter">
+			<div ng-click="findCurrentConvo(convos._id, convos)" ng-click="findCurrentConvoForMessage(convos._id, convos)" class="conversations"
+			ng-repeat="convos in conversations | filter: conversationFilter">
 				<button style="float:right;padding:2px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
 					<span class="trash-can glyphicon glyphicon-trash"></span>
 				</button>
@@ -75,9 +76,9 @@
 </div>
 <div class="main-box-right">
 	<div id="message-container" class="message-container">
-	<div ng-show="showEnteredConversationAlert" class="entered-conversation-alert">
-		<big style="border-bottom:1px solid black;">You have now entered the conversations with <span ng-repeat="people in currentConvo.people">, {{people.name}}</span> </big>
-	</div>
+		<div ng-show="showEnteredConversationAlert" class="entered-conversation-alert">
+			<big style="border-bottom:1px solid black;">Conversation with <span ng-repeat="people in currentConvo.people">, {{people.name}}</span> </big>
+		</div>
 		<div ng-class="{'message-right':message.fromName==='You'}" class="message-box" ng-repeat="message in messagesInConvos">
 			<!--<img class="little-avatar" src=""> </img>-->
 			<img src="images/default-profile-thumb.png" style="border-radius:50%;width:45px;">
