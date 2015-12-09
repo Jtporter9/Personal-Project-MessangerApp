@@ -59,6 +59,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 	$scope.findConvos();
+	
 	//////////////////////////////////////
 	//////////adding conversation/////////
 	//////////////////////////////////////
@@ -88,16 +89,16 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
 			$scope.findConvos();
-		});
 		
-		///// addConvos to Users collection array of Convos//////
-		// var newUserObj = {
-		// 	conversations: [$scope.ConvoId]
-		// }
-		// console.log(newUserObj);
-		// chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-		// 	$scope.findCurrentUser($stateParams.id);
-		// });
+			/// addConvos to Users collection array of Convos//////
+			var newUserObj = {
+				conversations: response.data._id
+			}
+			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
+				console.log("response from update:", response);
+				$scope.findCurrentUser($stateParams.id);
+			});
+		});
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};

@@ -17,12 +17,3 @@ var Users = Schema({
 });
 
 module.exports = mongoose.model('Users', Users);
-
-
-// {
-//     "name": "Tanner Porter",
-//     "about": "I like lacrosse, and snowboard, and food. Oh I coding is fun too.",
-//     "username": "Jtporter9",
-//     "email": "jtporter9@gmail.com",
-//     "password": "blahblahblah"
-// }

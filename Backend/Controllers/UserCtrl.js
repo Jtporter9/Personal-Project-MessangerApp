@@ -1,5 +1,5 @@
 var User = require('../Models/UsersModel');
-
+var mongoose = require('mongoose');
 
 module.exports = {
 
@@ -10,42 +10,38 @@ module.exports = {
 			else res.send(result);
 		});
 	},
-	// findUser: function (req, res, next) {
-	// 	User.find().then(function (user) {
-	// 		res.send(user);
-	// 	})
-	// },
 	findUser: function (req, res, next) {
-		User.find().populate('friends').populate('conversations').exec().then(function (user, err) {
-			if (err) {
-				res.status(500).send(err);
-			} else {
-				res.send(user);
-			}
-		})
+		User.find().populate('friends')
+			.populate('conversations').exec().then(function (user, err) {
+				if (err) {
+					res.status(500).send(err);
+				} else {
+					res.send(user);
+				}
+			})
 	},
 	findUserById: function (req, res, next) {
-		User.findById(req.params.id).populate('friends').populate('conversations').exec().then(function (user, err) {
-			if (err) {
-				res.status(500).send(err);
-			} else {
-				res.send(user);
-			}
-		})
+		User.findById(req.params.id).populate('friends')
+			.populate('conversations').exec().then(function (user, err) {
+				if (err) {
+					res.status(500).send(err);
+				} else {
+					res.send(user);
+				}
+			})
 	},
-	// findUserById: function (req, res, next) {
-	// 	User.findById(req.params.id).then(function (user) {
-	// 		res.send(user);
-	// 	})
-	// },
 	updateUser: function (req, res, next) {
-		User.findByIdAndUpdate(req.params.id, req.body).populate('friends').populate('conversations').exec().then(function (err, updatedUser) {
-			if (err) {
-				res.status(500).send(err);
-			} else {
-				res.send(updatedUser);
+		User.findByIdAndUpdate(req.params.id, {
+			$push: {
+				'conversations': mongoose.Types.ObjectId(req.body.conversations)
 			}
-		})
+		}, function (err, updatedUser) {
+				if (err) {
+					res.status(500).send(err);
+				} else {
+					res.send(updatedUser);
+				}
+			})
 	},
 
 	deleteUser: function (req, res, next) {
