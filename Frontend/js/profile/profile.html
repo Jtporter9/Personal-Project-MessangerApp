@@ -37,31 +37,34 @@
 		</div>
 		<!--FORM TO EDIT PERSONAL INFO-->
 		<div ng-show="editingPersonalInfo" style="margin-left:40px;">
-			<div class="profilePicContainer">
-				<img class="profile-picture" src="images/default-profile-thumb.png"> </img>
-				<input type="file">
-			</div>
-			<big>
+			<form action="">
+				<div class="profilePicContainer">
+					<img class="profile-picture" src="images/default-profile-thumb.png"> </img>
+					<input type="file">
+				</div>
+				<big>
 			Name: {{usersInfo.name}}<br>
 		</big>
-			<br>
-			<p>
-				About:
 				<br>
-				<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="5"></textarea>
-			</p>
-			<span>
+				<p>
+					About:
+					<br>
+					<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="5"></textarea>
+				</p>
+				<span>
 			Username: <input ng-model="usersInfo.username" type="text"><br>
 			<br> 
 			</span>
-			<span>
+				<span>
 			Email: <input ng-model="usersInfo.email" type="email"><br>
 			</span>
-			<br>
-			<span>
-			Password: <input ng-model="usersInfo.password" type="text"> <button ng-click="updateUserInfo(usersInfo)" style="float:right;" class="btn btn-success">Done</button>
+				<br>
+				<span>
+			Password: <input ng-model="usersInfo.password" type="text">
+			 <button ng-click="updateUserInfo(usersInfo)" style="float:right;" class="btn btn-success">Done</button>
 		</span>
 		</div>
+		</form>
 	</div>
 </div>
 

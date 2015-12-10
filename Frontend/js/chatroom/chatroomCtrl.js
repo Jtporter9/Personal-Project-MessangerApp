@@ -114,7 +114,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			}
 			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
 				// console.log("response from update:", response);
-			$scope.findCurrentUserById($stateParams.id);
+				$scope.findCurrentUserById($stateParams.id);
 			});
 		});
 		$scope.friendsToAddToConvo = [];
@@ -126,9 +126,10 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.scrollFriendsFinder = "";
 		$scope.friendsToAddToConvo = [];
 	}
+	/////////////////////////////
+	// deleting convos!!@$#@!#$//
+	/////////////////////////////
 	
-	// deleting convos!!@$#@!#$
-
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
 			// $scope.findConvos();
@@ -182,16 +183,4 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		})
 	}
 	$scope.findFriends();
-
-	// for (var i = 0; i < $scope.friends.length; i++) {
-	// 	for (var j = 0; j < $scope.usersInfo.conversations.length; j++) {
-	// 		for (var a = 0; a < $scope.usersInfo.conversations[a].people.length; j++) {
-	// 			if ($scope.friends[i]._id === $scope.usersInfo.conversations[j].people[a]) { 
-	// 				return $scope.friends[i].name;
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-
 });
