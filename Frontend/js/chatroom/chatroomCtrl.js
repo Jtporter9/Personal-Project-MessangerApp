@@ -8,26 +8,26 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.profileTitle = false;
 
 	$scope.showlittleInput = true;
+	
 	//////////////////////////////
 	/////find current user///////
 	////////////////////////////
+	
 	$scope.findCurrentUserById = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			$scope.usersInfo = response;
-			$scope.conversations = response.conversations;
-			console.log(response);
-			response.conversations.forEach(function (conversation, i) {
-				conversation.people.forEach(function (peopleId, index) {
-					// console.log(peopleId);
-					chatroomService.findCurrentUser(peopleId).then(function (response) {
-						console.log('Peoples Object:', response);
-						response = $scope.peopleObjs;
-						$scope.peopleObjs.name = $scope.conversations.people;
-					})
-				})
+						
+			$scope.usersInfo.conversations.forEach(function (conversation, convIndex) {
+				conversation.people.map(function (personId, peopleIndex) {
+					chatroomService.findCurrentUser(personId).then(function (response) {
+						$scope.usersInfo.conversations[convIndex].people[peopleIndex] = response;
+					});
+				});
 			});
-		})
-	}
+			
+		});
+	};
+	
 	$scope.findCurrentUserById($stateParams.id);
 	///////////
 	//Emojis//

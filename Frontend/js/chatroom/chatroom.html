@@ -56,13 +56,13 @@
 		</div>
 		<div class="scrolly-convo-bar">
 			<div ng-click="findCurrentConvo(convos._id, convos)" ng-click="findCurrentConvoForMessage(convos._id, convos)" class="conversations"
-			ng-repeat="convos in conversations | filter: conversationFilter">
+			ng-repeat="convos in usersInfo.conversations | filter: conversationFilter">
 				<button style="float:right;padding:2px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
 					<span class="trash-can glyphicon glyphicon-trash"></span>
 				</button>
-				<div ng-repeat="people in convos.people">
+				<div ng-repeat="person in convos.people track by $index"> 
 					<big>
-					-{{people}}
+					-{{person.name}}
 				</big>
 				</div>
 				<div style="margin-top:5px;">
