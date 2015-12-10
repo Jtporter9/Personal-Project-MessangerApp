@@ -34,6 +34,7 @@ module.exports = {
 			})
 	},
 	updateUser: function (req, res, next) {
+		console.log(req.body);
 		User.findByIdAndUpdate(req.params.id, {
 			$push: {
 				'conversations': req.body.conversations
