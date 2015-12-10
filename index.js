@@ -107,6 +107,7 @@ app.use(express.static(__dirname + '/Frontend'));
 
 app.post('/api/users', UserCtrl.addUser);
 app.get('/api/users', UserCtrl.findUser);
+
 app.get('/api/users/:id', UserCtrl.findUserById);
 app.delete('/api/users/:id', UserCtrl.deleteUser);
 app.put('/api/users/:id', UserCtrl.updateUser);
