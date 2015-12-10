@@ -189,7 +189,7 @@ div#slider figure {
     margin:.5px;
 }
 .small-text {
-    margin-left:75px;
+ margin-left:56px;
 }
 #convo-title {
     text-align:center;
@@ -230,7 +230,7 @@ div#slider figure {
     margin-right:0;
 }
 .scrolly-convo-bar {
-   overflow: scroll;
+   overflow: auto;
     height: 100%;
     padding-right: 10px;
     margin-right:0;
@@ -263,13 +263,13 @@ div#slider figure {
 }
 .main-box-right {
     z-index: 1;
-    width: 76.4%;
+    width: 76.5%;
     position: absolute;
     right:0px;
     top: 53px;
     margin: .6% .6% .6% 0;
     height: 585px;
-    padding-left: 10px;
+    padding-left: 1px;
     border-left:2px solid black;
 }
 .message-container {
@@ -318,7 +318,7 @@ background-color: #EAEAEA;
     cursor: pointer;
 }
 .input-message {
-    width: 99%;
+    width: 99.9%;
     border:2px solid black;
     border-radius: 5px;
     position: absolute;

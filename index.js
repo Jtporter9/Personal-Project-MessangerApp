@@ -17,6 +17,7 @@ var keys = require('./keys');
 ///////////////////////////////////////////////
 ////////// Passport Oauth Facebook/////////////
 ///////////////////////////////////////////////
+
 var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -29,7 +30,7 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
 	clientID: keys.facebookId,
 	clientSecret: keys.facebookSecret,
-	callbackURL: 'http://localhost:3000/auth/facebook/callback'
+	callbackURL: '/auth/facebook/callback'
 }, function (token, refreshToken, profile, done) {
 	User.findOne({
 		'facebookId': profile.id

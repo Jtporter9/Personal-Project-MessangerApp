@@ -16,7 +16,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.findCurrentUserById = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			$scope.usersInfo = response;
-						
+
 			$scope.usersInfo.conversations.forEach(function (conversation, convIndex) {
 				conversation.people.map(function (personId, peopleIndex) {
 					chatroomService.findCurrentUser(personId).then(function (response) {
@@ -24,10 +24,10 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 					});
 				});
 			});
-			
+
 		});
 	};
-	
+
 	$scope.findCurrentUserById($stateParams.id);
 	///////////
 	//Emojis//
@@ -53,7 +53,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.showEnteredConversationAlert = true;
 		$timeout(function () {
 			$scope.showEnteredConversationAlert = false;
-		}, 5000)
+		}, 4000)
 	}
 
 	$scope.findCurrentConvo = function (ConvoId, convos) {
@@ -107,20 +107,19 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
-			$scope.findConvos();
+			// $scope.findConvos();
 			/// addConvos to Users collection array of Convos//////
 			var newUserObj = {
 				conversations: response.data._id
 			}
 			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
 				// console.log("response from update:", response);
-				$scope.findCurrentUser($stateParams.id);
+			$scope.findCurrentUserById($stateParams.id);
 			});
 		});
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};
-
 
 	$scope.cancelForm = function () {
 		$scope.addingConversation = false;
@@ -132,7 +131,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
-			$scope.findConvos();
+			// $scope.findConvos();
+			$scope.findCurrentUserById($stateParams.id);
 		})
 	}
 	//////////////////////////////////////
