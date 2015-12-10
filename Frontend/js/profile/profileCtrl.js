@@ -58,7 +58,6 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 	//update current Users info 
 	$scope.updateUserInfo = function (newUserObj) {
 		$scope.showFileUpload = false;
-		// console.log("this should be the new user Obj:",newUserObj);
 		chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
 			console.log('response of updated user:',response);
 			$scope.findCurrentUser($stateParams.id);
