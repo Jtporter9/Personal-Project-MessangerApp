@@ -60,7 +60,7 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 		$scope.showFileUpload = false;
 		// console.log("this should be the new user Obj:",newUserObj);
 		chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-			// console.log(response);
+			console.log('response of updated user:',response);
 			$scope.findCurrentUser($stateParams.id);
 		});
 		$scope.showPersonalInfo = true;
