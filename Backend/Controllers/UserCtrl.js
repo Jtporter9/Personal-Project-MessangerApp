@@ -25,16 +25,10 @@ module.exports = {
 		User.findById(req.params.id)
 			.populate('friends')
 		.populate('conversations')
-			// .populate({
-			// 	path: 'conversations',
-			// 	populate: { path: 'people' }
-			// })
 			.exec().then(function (user, err) { 
-				// console.log('USER:', user);
 				if (err) {
 					res.status(500).send(err);
 				} else {
-					// console.log('CONVERSATIONS:', user.conversations.people);
 					res.send(user);
 				}
 			})
@@ -42,7 +36,7 @@ module.exports = {
 	updateUser: function (req, res, next) {
 		User.findByIdAndUpdate(req.params.id, {
 			$push: {
-				'conversations': mongoose.Types.ObjectId(req.body.conversations)
+				'conversations': req.body.conversations
 			}
 		}, function (err, updatedUser) {
 			if (err) {
