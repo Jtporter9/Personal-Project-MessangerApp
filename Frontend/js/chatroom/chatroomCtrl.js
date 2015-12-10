@@ -16,6 +16,16 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.usersInfo = response;
 			$scope.conversations = response.conversations;
 			console.log(response);
+			response.conversations.forEach(function (conversation, i) {
+				conversation.people.forEach(function (peopleId, index) {
+					// console.log(peopleId);
+					chatroomService.findCurrentUser(peopleId).then(function (response) {
+						console.log('Peoples Object:', response);
+						response = $scope.peopleObjs;
+						$scope.peopleObjs.name = $scope.conversations.people;
+					})
+				})
+			});
 		})
 	}
 	$scope.findCurrentUserById($stateParams.id);
@@ -103,7 +113,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 				conversations: response.data._id
 			}
 			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-				console.log("response from update:", response);
+				// console.log("response from update:", response);
 				$scope.findCurrentUser($stateParams.id);
 			});
 		});
@@ -160,7 +170,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.findFriends = function (UserId) {
 		chatroomService.findUser().then(function (response) {
-			console.log(response);
+			// console.log(response);
 			$scope.friends = response;
 			for (var i = 0; i < $scope.friends.length; i++) {
 				if ($scope.friends[i].status === false || !$scope.friends[i].status) {

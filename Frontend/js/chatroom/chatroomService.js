@@ -1,6 +1,6 @@
 angular.module('messangerApp').service('chatroomService', function ($http) {
 
-///USER CALLS/////
+	///USER CALLS/////
 	this.findUser = function () {
 		return $http.get('/api/users').then(function (response) {
 			// console.log(response.data);
@@ -30,13 +30,13 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
     }
 
 	this.updateUser = function (newUserObj, id) {
-		return $http.put('/api/users/' + id , newUserObj)
+		return $http.put('/api/users/' + id, newUserObj)
     }
 	
 	
 	///////////Convo calls////////
 	
-	  this.addConvo = function (newConvoObj) {
+	this.addConvo = function (newConvoObj) {
 		return $http.post('/api/conversations', newConvoObj).then(function (response) {
 			return response;
 		})
@@ -54,10 +54,10 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 
 		});
     }
-	 this.deleteConvo = function (id) {
-      return $http.delete('/api/conversations/' + id).then(function (response) {
-        return response;
-      })
+	this.deleteConvo = function (id) {
+		return $http.delete('/api/conversations/' + id).then(function (response) {
+			return response;
+		})
     }
 	
 	///////////Message Calls////////////
