@@ -36,7 +36,7 @@ module.exports = {
 	updateUser: function (req, res, next) {
 		User.findByIdAndUpdate(req.params.id, {
 			$push: {
-				'conversations': req.body.conversations
+				'conversations': mongoose.Types.ObjectId(req.body.conversations)
 			}
 		}, function (err, updatedUser) {
 			if (err) {
