@@ -24,8 +24,8 @@ module.exports = {
 	findUserById: function (req, res, next) {
 		User.findById(req.params.id)
 			.populate('friends')
-		.populate('conversations')
-			.exec().then(function (user, err) { 
+			.populate('conversations')
+			.exec().then(function (user, err) {
 				if (err) {
 					res.status(500).send(err);
 				} else {
@@ -46,6 +46,7 @@ module.exports = {
 			}
 		})
 	},
+
 	updateUserInfo: function (req, res, next) {
 		User.findByIdAndUpdate(req.params.id, req.body, function (err, updatedUser) {
 			if (err) {

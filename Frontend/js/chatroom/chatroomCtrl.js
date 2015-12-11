@@ -29,17 +29,17 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	};
 
 	$scope.findCurrentUserById($stateParams.id);
-	///////////
-	//Emojis//
-	/////////
+	//////////////////////////////
+	////////////Emojis///////////
+	////////////////////////////
 	// function convert() {
 	// 	var input = document.getElementById('inputText').value;
 	// 	var output = emojione.shortnameToImage(input);
 	// 	document.getElementById('outputText').innerHTML = output;
 	// }
 
-	//////////////////
-	//getting convos//
+	////////////////////
+	///getting convos//
 	//////////////////
 	
 	$scope.findConvos = function () {
@@ -74,9 +74,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.findConvos();
 	
-	//////////////////////////////////////
-	//////////adding conversation/////////
-	//////////////////////////////////////
+	///////////////////////////////////////////
+	//////////////adding conversation/////////
+	/////////////////////////////////////////
 	$scope.friendsToAddToConvo = [];
 
 	$scope.addingFriendsToConvo = function (friendObj, index) {
@@ -90,7 +90,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.addingConversation = true;
 	};
 
-	//////////////////////////////////////////
+	///////////////////////////////////////////
 	//////Add new Conversation////////////////
 	/////////////////////////////////////////
 
@@ -101,6 +101,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		var UserIds = [];
 		for (var i = 0; i < friendsToAddToConvo.length; i++) {
 			UserIds.push(friendsToAddToConvo[i]._id);
+			console.log(UserIds);
 		}
 		var newConvo = {
 			people: UserIds,
@@ -125,9 +126,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.scrollFriendsFinder = "";
 		$scope.friendsToAddToConvo = [];
 	}
-	/////////////////////////////
-	// deleting convos!!@$#@!#$//
-	/////////////////////////////
+	//////////////////////////////////////////////
+	////////// deleting convos!!@$#@!#$//////////
+	////////////////////////////////////////////
 	
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
@@ -135,9 +136,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.findCurrentUserById($stateParams.id);
 		})
 	}
-	//////////////////////////////////////
-	///////sending a new messages////////
-	////////////////////////////////////
+	//////////////////////////////////////////
+	///////////sending a new messages////////
+	////////////////////////////////////////
 	$scope.sendNewMessage = function (newMessageText) {
 		$scope.showFileUpload = false;
 		var newMessage = {
