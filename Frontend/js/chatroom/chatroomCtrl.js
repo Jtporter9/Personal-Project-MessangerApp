@@ -161,6 +161,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.findCurrentConvoForMessage($scope.ConvoId);
 		});
 		$scope.newMessageText = "";
+		$scope.findCurrentConvo();
 		$timeout(function () {
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 		}, 100)
