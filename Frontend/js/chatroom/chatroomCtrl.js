@@ -101,11 +101,11 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	/////////////////////////////////////////
 	
 	
-	$scope.UserIds = [];
-	for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
-		$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
-	}
 	$scope.addConversastionIdToUsers = function () {
+		$scope.UserIds = [];
+		for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
+			$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
+		}
 		console.log($scope.UserIds);
 		$scope.UserIds.forEach(function (userId, index) {
 			$scope.submitNewConvo(userId);
