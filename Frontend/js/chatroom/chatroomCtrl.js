@@ -114,11 +114,11 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 
-	$scope.submitNewConvo = function (UserId) {
+	$scope.submitNewConvo = function () {
 		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
 		var newConvo = {
-			people: UserId,
+			people: $scope.UserIds,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
