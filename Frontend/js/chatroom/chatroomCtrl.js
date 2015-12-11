@@ -106,6 +106,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
 	}
 	$scope.addConversastionIdToUsers = function () {
+		console.log($scope.UserIds);
 		$scope.UserIds.forEach(function (userId, index) {
 			$scope.submitNewConvo(userId);
 		})
