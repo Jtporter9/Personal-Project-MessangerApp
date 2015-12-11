@@ -137,6 +137,6 @@ app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 
 
 //listening
-app.listen(80, function () {
-	console.log('listening on port: 80');
+app.listen(3000, function () {
+	console.log('listening on port: 3000');
 });
