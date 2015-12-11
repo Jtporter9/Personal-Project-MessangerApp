@@ -41,7 +41,7 @@ font-variant: normal;
 font-weight: normal;
 margin-left: 10px;
 }
-.navDropDown {
+/*.navDropDown {
 	background: rgba(255,255,255,0.5);
     border: 2px solid black;
     border-radius: 5px;
@@ -52,7 +52,7 @@ margin-left: 10px;
     top: 12%;
     padding: 3em 1em;
     z-index: 999;
-}
+}*/
 .loginForm {
     border: 2px solid black;
     background: rgba(255,255,255,0.8);
