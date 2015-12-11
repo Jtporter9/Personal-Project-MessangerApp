@@ -150,7 +150,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.sendNewMessage = function (newMessageText) {
 		$scope.showFileUpload = false;
 		var newMessage = {
-			fromName: 'You',
+			// fromName: 'You',
 			content: newMessageText
 		}
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
