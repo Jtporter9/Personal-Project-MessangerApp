@@ -101,9 +101,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	/////////////////////////////////////////
 	
 	$scope.UserIds = [];
-	for (var i = 0; i < friendsToAddToConvo.length; i++) {
-		$scope.UserIds.push(friendsToAddToConvo[i]._id);
-	}
 	// $scope.UserIds.forEach(function (userId, index) {
 
 	// })
@@ -111,6 +108,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.submitNewConvo = function (friendsToAddToConvo) {
 		
 		////addConvo to Conversation collection///////
+	for (var i = 0; i < friendsToAddToConvo.length; i++) {
+		$scope.UserIds.push(friendsToAddToConvo[i]._id);
+	}
 		$scope.addingConversation = false;
 		var newConvo = {
 			people: $scope.UserIds,
