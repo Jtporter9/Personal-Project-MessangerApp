@@ -110,6 +110,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		////addConvo to Conversation collection///////
 	for (var i = 0; i < friendsToAddToConvo.length; i++) {
 		$scope.UserIds.push(friendsToAddToConvo[i]._id);
+		console.log($scope.UserIds);
 	}
 		$scope.addingConversation = false;
 		var newConvo = {
