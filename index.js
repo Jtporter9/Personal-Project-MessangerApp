@@ -14,6 +14,9 @@ var ConversationsCtrl = require('./Backend/Controllers/ConversationsCtrl.js')
 var User = require('./Backend/Models/UsersModel')
 var keys = require('./keys');
 
+// var http = require('http').Server(app);
+// var io = require('socket.io')(http);
+
 ///////////////////////////////////////////////
 ////////// Passport Oauth Facebook/////////////
 ///////////////////////////////////////////////
@@ -62,15 +65,15 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook'
 // 	successRedirect: '/#/profile + req.session.passport.user._id',
 // 	failureRedirect: '/#/login'
 // }
-), function (req, res) {
-	if (req.session.passport.user.facebookId) {
-		res.redirect('/#/profile/' + req.session.passport.user._id);
-	} 
-	else {
-		res.redirect('/#/login');
-	}
-	console.log(req.session);
-});
+	), function (req, res) {
+		if (req.session.passport.user.facebookId) {
+			res.redirect('/#/profile/' + req.session.passport.user._id);
+		}
+		else {
+			res.redirect('/#/login');
+		}
+		console.log(req.session);
+	});
 
 passport.serializeUser(function (user, done) {
 	done(null, user);
@@ -128,7 +131,12 @@ app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 
 
 
+// io.on('connection', function (socket) {
+// 	console.log('SOCKET: user connected');
+// });
+
+
 //listening
-app.listen(80, function () {
-	console.log('listening on port: 80');
+app.listen(3000, function () {
+	console.log('listening on port: 3000');
 });

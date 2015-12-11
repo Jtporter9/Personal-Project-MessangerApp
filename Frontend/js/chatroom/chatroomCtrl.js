@@ -68,6 +68,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
 			showAlertBoxOnConvo();
+			$timeout(function () {
+			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
+		}, 100)
 		})
 	}
 	$scope.findCurrentConvoForMessage = function (ConvoId, convos) {
@@ -192,4 +195,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		})
 	}
 	$scope.findFriends();
+	
+	
+	//   var socket = io();
+
 });
