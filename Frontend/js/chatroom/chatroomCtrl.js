@@ -101,35 +101,35 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	/////////////////////////////////////////
 	
 	
+	$scope.UserIds = [];
+	for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
+		$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
+	}
 	$scope.addConversastionIdToUsers = function () {
-		$scope.UserIds = [];
-		for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
-			$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
-		}
-		console.log($scope.UserIds);
 		$scope.UserIds.forEach(function (userId, index) {
 			$scope.submitNewConvo(userId);
 		})
 
 	}
 
-
-	$scope.submitNewConvo = function () {
+	$scope.submitNewConvo = function (userObjs) {
 		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
 		var newConvo = {
-			people: $scope.UserIds,
+			people: userObjs,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
 			/// addConvos to Users collection array of Convos//////
-			var newUserObj = {
+			var conversationId = {
 				conversations: response.data._id
 			}
-			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-				// console.log("response from update:", response);
-				$scope.findCurrentUserById($stateParams.id);
-			});
+			userObjs.forEach(function (userId, index) {
+				chatroomService.updateUser(conversationId, userId._id).then(function (response) {
+					console.log(response);
+					$scope.findCurrentUserById($stateParams.id);
+				});
+			})
 		});
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
