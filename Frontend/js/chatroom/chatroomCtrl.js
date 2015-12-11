@@ -8,6 +8,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.profileTitle = false;
 
 	$scope.showlittleInput = true;
+
+	$scope.cancelForm = function () {
+		$scope.addingConversation = false;
+		$scope.scrollFriendsFinder = "";
+		$scope.friendsToAddToConvo = [];
+	}
 	
 	//////////////////////////////
 	/////find current user///////
@@ -93,18 +99,21 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	///////////////////////////////////////////
 	//////Add new Conversation////////////////
 	/////////////////////////////////////////
+	
+	$scope.UserIds = [];
+	for (var i = 0; i < friendsToAddToConvo.length; i++) {
+		$scope.UserIds.push(friendsToAddToConvo[i]._id);
+	}
+	// $scope.UserIds.forEach(function (userId, index) {
+
+	// })
 
 	$scope.submitNewConvo = function (friendsToAddToConvo) {
 		
 		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
-		var UserIds = [];
-		for (var i = 0; i < friendsToAddToConvo.length; i++) {
-			UserIds.push(friendsToAddToConvo[i]._id);
-			console.log(UserIds);
-		}
 		var newConvo = {
-			people: UserIds,
+			people: $scope.UserIds,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
@@ -113,19 +122,14 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 				conversations: response.data._id
 			}
 			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-				console.log("response from update:", response);
+				// console.log("response from update:", response);
 				$scope.findCurrentUserById($stateParams.id);
 			});
 		});
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};
-
-	$scope.cancelForm = function () {
-		$scope.addingConversation = false;
-		$scope.scrollFriendsFinder = "";
-		$scope.friendsToAddToConvo = [];
-	}
+	
 	//////////////////////////////////////////////
 	////////// deleting convos!!@$#@!#$//////////
 	////////////////////////////////////////////
