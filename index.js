@@ -1,6 +1,10 @@
 
 // Dependencies
-var express = require('express');
+var express = require('express');  //.createServer()
+
+// var io = require('socket.io')(http);
+// var http = require('http').Server(app);  //.createServer
+
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -13,9 +17,7 @@ var MessagesCtrl = require('./Backend/Controllers/MessagesCtrl.js')
 var ConversationsCtrl = require('./Backend/Controllers/ConversationsCtrl.js')
 var User = require('./Backend/Models/UsersModel')
 var keys = require('./keys');
-
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http);
+var moment = require('moment');
 
 ///////////////////////////////////////////////
 ////////// Passport Oauth Facebook/////////////
@@ -133,6 +135,9 @@ app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 
 // io.on('connection', function (socket) {
 // 	console.log('SOCKET: user connected');
+// 	socket.on('send msg', function (data) {
+// 		io.socket.emit('get msg', data)
+// 	})
 // });
 
 

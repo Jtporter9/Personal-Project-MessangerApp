@@ -317,12 +317,26 @@ background-color: #EAEAEA;
 .Xbtn:hover {
     cursor: pointer;
 }
-.input-message {
-    width: 99.9%;
-    border:2px solid black;
-    border-radius: 5px;
+.input-message-container {
+    background-color: white;
+    border:1px solid green;
+    height: 69px;
     position: absolute;
     bottom:0px;
+    width:99.5%;
+}
+.input-message {
+    height: 54px;
+    width: 77%;
+    border-radius: 5px;
+    resize: none;
+     border-style: none; 
+    border-color: Transparent; 
+    overflow: auto; 
+     border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;  
 }
 .add-convo {
       border: 2px solid black;
@@ -341,14 +355,18 @@ background-color: #EAEAEA;
     overflow: scroll;
     border: 1px solid black;
 }
-.entered-conversation-alert {
+#entered-conversation-alert {
+    z-index: 999999;
     position: fixed;
-    top:65px;
+    bottom:3px;
     background-color: whitesmoke;
     border: 2px solid red;
     border-radius:5px;
     padding:8px;
     margin:4px 10px;
+    max-width:50%;
+    height: auto;
+    display: inline;
 }
 .border-bottom {
     border-bottom: 1px solid black;

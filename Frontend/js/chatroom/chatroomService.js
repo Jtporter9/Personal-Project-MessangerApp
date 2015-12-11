@@ -1,5 +1,5 @@
 angular.module('messangerApp').service('chatroomService', function ($http) {
-
+	
 	///USER CALLS/////
 	this.findUser = function () {
 		return $http.get('/api/users').then(function (response) {
