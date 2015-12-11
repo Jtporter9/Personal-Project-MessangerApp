@@ -100,21 +100,24 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	//////Add new Conversation////////////////
 	/////////////////////////////////////////
 	
+	
 	$scope.UserIds = [];
-	// $scope.UserIds.forEach(function (userId, index) {
-
-	// })
-
-	$scope.submitNewConvo = function (friendsToAddToConvo) {
-		console.log(friendsToAddToConvo);
-		
-		////addConvo to Conversation collection///////
-	for (var i = 0; i < friendsToAddToConvo.length; i++) {
-		$scope.UserIds.push(friendsToAddToConvo[i]._id);
+	for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
+		$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
 	}
+	$scope.addConversastionIdToUsers = function () {
+		$scope.UserIds.forEach(function (userId, index) {
+			$scope.submitNewConvo(userId);
+		})
+
+	}
+
+
+	$scope.submitNewConvo = function (UserId) {
+		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
 		var newConvo = {
-			people: $scope.UserIds,
+			people: UserId,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
