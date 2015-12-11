@@ -107,13 +107,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		$scope.scrollFriendsFinder = "";
 		chatroomService.addConvo(newConvo).then(function (response) {
-			// $scope.findConvos();
 			/// addConvos to Users collection array of Convos//////
 			var newUserObj = {
 				conversations: response.data._id
 			}
 			chatroomService.updateUser(newUserObj, $stateParams.id).then(function (response) {
-				// console.log("response from update:", response);
+				console.log("response from update:", response);
 				$scope.findCurrentUserById($stateParams.id);
 			});
 		});
