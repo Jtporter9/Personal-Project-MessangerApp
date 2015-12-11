@@ -34,12 +34,20 @@ module.exports = {
 			})
 	},
 	updateUser: function (req, res, next) {
-		console.log(req.body);
 		User.findByIdAndUpdate(req.params.id, {
 			$push: {
-				'conversations': req.body.conversations
+				'conversations': mongoose.Types.ObjectId(req.body.conversations)
 			}
 		}, function (err, updatedUser) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.send(updatedUser);
+			}
+		})
+	},
+	updateUserInfo: function (req, res, next) {
+		User.findByIdAndUpdate(req.params.id, req.body, function (err, updatedUser) {
 			if (err) {
 				res.status(500).send(err);
 			} else {

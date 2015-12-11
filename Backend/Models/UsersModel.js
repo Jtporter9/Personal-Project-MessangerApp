@@ -7,7 +7,7 @@ var Users = Schema({
 	username: { type: String, unique: true },
 	password: { type: String },  //NEED TO ENCRYPT THIS!!!!! Hash it!!!
 	email: { type: String },
-	userAvatar: { type: mongoose.Schema.Types.Mixed },
+	userAvatar: { type: String},
 	notifications: { type: Number },
 	about: { type: String },
 	status: { type: Boolean },

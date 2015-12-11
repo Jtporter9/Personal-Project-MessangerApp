@@ -111,6 +111,7 @@ app.get('/api/users', UserCtrl.findUser);
 app.get('/api/users/:id', UserCtrl.findUserById);
 app.delete('/api/users/:id', UserCtrl.deleteUser);
 app.put('/api/users/:id', UserCtrl.updateUser);
+app.put('/api/usersInfo/:id', UserCtrl.updateUserInfo);
 
 // Endpoints Messages
 
