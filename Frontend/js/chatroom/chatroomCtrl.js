@@ -1,5 +1,6 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
-	$timeout, chatroomService, $stateParams, $location, $anchorScroll) {
+	$timeout, chatroomService, $stateParams, $location, $anchorScroll, Socket) {
+
 
 	$scope.disableSendBtn = true;
 	$scope.showSignuature = false;
@@ -78,10 +79,16 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.findCurrentConvoForMessage = function (ConvoId, convos) {
 		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
 			$scope.messagesInConvos = response.messages;
+			Socket.emit('message', $scope.messagesInConvo);
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
 		})
 	}
+
+	Socket.on('messageFromSockets', function (messagesFromSockets) {
+		$scope.messagesInConvos = messagesFromSockets;
+		$scope.$digest();
+	})
 
 	$scope.findConvos();
 	
@@ -158,15 +165,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		var newMessage = {
 			fromName: $scope.usersInfo.name,
 			content: newMessageText,
-			time: moment().add( 'days').calendar()      // Tomorrow at 4:11 PM
+			time: moment().add('days').calendar()      // Tomorrow at 4:11 PM
 		}
-		///////////////////////////////////////////
-		////////////////sockets///////////////////
-		// $scope.msgs = [];
-		// socket.emit('send msg', newMessage)
-		///////////////////////////////////////
-		/////////////////////////////////////
-
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
 			$scope.findCurrentConvoForMessage($scope.ConvoId);
 		});
@@ -175,15 +175,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 		}, 100)
 	}
-	///////////////////////////////////////
-	//////////////test socket/////////////
-	/////////////////////////////////////
-	// socket.on('get msg', function (data) {
-	// 	$scope.msgs.push(data);
-	// 	$scope.$disgest();
-	// })
-	//////////////////////////////////////
-	/////////////////////////////////////
 	$scope.attachFile = function () {
 		$scope.showFileUpload = !$scope.showFileUpload;
 	}

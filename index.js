@@ -1,9 +1,7 @@
 
 // Dependencies
-var express = require('express');  //.createServer()
+var express = require('express');
 
-// var io = require('socket.io')(http);
-// var http = require('http').Server(app);  //.createServer
 
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
@@ -12,12 +10,14 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 var app = express();
 var flash = require('connect-flash');
+var moment = require('moment');
+
+// ROUTES //
 var UserCtrl = require('./Backend/Controllers/UserCtrl.js')
 var MessagesCtrl = require('./Backend/Controllers/MessagesCtrl.js')
 var ConversationsCtrl = require('./Backend/Controllers/ConversationsCtrl.js')
 var User = require('./Backend/Models/UsersModel')
 var keys = require('./keys');
-var moment = require('moment');
 
 ///////////////////////////////////////////////
 ////////// Passport Oauth Facebook/////////////
@@ -60,13 +60,13 @@ passport.use(new FacebookStrategy({
 		};
 	});
 }));
-//////////////////facebook endpoints///////////
+
+//////////////////////////////////////////////////////
+////////////////// facebook endpoints ///////////////
+////////////////////////////////////////////////////
+
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook'
-// , {
-// 	successRedirect: '/#/profile + req.session.passport.user._id',
-// 	failureRedirect: '/#/login'
-// }
 	), function (req, res) {
 		if (req.session.passport.user.facebookId) {
 			res.redirect('/#/profile/' + req.session.passport.user._id);
@@ -92,16 +92,16 @@ passport.deserializeUser(function (obj, done) {
 	done(null, obj);
 });
 
-//Mongoose
+// Mongoose //
 var mongoUri = "mongodb://localhost:27017/Chatroom";
 
 
 
-// Express Middleware
+// Express Middleware //
 app.use(bodyParser.json());
 app.use(cors());
 
-// Connetions
+// Connetions //
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function () {
 	console.log("Successsfully connected to mongodb");
@@ -109,7 +109,17 @@ mongoose.connection.once('open', function () {
 
 app.use(express.static(__dirname + '/Frontend'));
 
-// Endpoints Users
+////////////////////////////////////
+/////////// SOCKET ON /////////////
+//////////////////////////////////
+
+// SOCKET.IO
+var http = require('http').Server(app);
+var socketio = require('socket.io');
+
+
+
+// Endpoints Users //
 
 app.post('/api/users', UserCtrl.addUser);
 app.get('/api/users', UserCtrl.findUser);
@@ -118,12 +128,12 @@ app.delete('/api/users/:id', UserCtrl.deleteUser);
 app.put('/api/users/:id', UserCtrl.updateUser);
 app.put('/api/usersInfo/:id', UserCtrl.updateUserInfo);
 
-// Endpoints Messages
+// Endpoints Messages //
 
 app.post('/api/messages', MessagesCtrl.addMessage);
 app.get('/api/messages', MessagesCtrl.findMessage);
 
-// Endpoints Conversations
+// Endpoints Conversations //
 
 app.post('/api/conversations', ConversationsCtrl.addConversation);
 app.get('/api/conversations', ConversationsCtrl.findConversation);
@@ -131,17 +141,17 @@ app.put('/api/conversations/:id', MessagesCtrl.addMessage);
 app.get('/api/conversations/:id', ConversationsCtrl.findConversationById);
 app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 
+var io = socketio(http);
 
+io.on('connection', function (socket) {
+	console.log('a user has connected');
+	socket.on('message', function (messages) {
+		console.log('getting socket from frontend',messages);
+		io.sockets.emit('messageFromSockets', messages);
+	});
+});
 
-// io.on('connection', function (socket) {
-// 	console.log('SOCKET: user connected');
-// 	socket.on('send msg', function (data) {
-// 		io.socket.emit('get msg', data)
-// 	})
-// });
-
-
-//listening
-app.listen(3000, function () {
+// PORT //
+http.listen(3000, function () {
 	console.log('listening on port: 3000');
 });

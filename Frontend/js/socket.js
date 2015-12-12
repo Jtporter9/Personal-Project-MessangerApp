@@ -1,5 +1,12 @@
-angular.module('messangerApp').factory('socket', function () {
+'use strict';
 
-	// var socket = io.connect('http://localhost:3000');
-	// return socket;
-})
+//socket factory that provides the socket service
+
+angular.module('messangerApp')
+	.service('Socket', ['$rootScope', function ($rootScope) {
+
+		var socket = io.connect();
+		return socket;
+	}
+
+	]);
