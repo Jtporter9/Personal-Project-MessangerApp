@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var Users = Schema({
 	facebookId: { type: Number },
 	name: { type: String, required: true },
-	username: { type: String, unique: true, default:"Please enter a username" },
+	username: { type: String default:"Please enter a username" },
 	password: { type: String },  //NEED TO ENCRYPT THIS!!!!! Hash it!!!
 	email: { type: String, default:"Please enter your email" },
 	userAvatar: { type: String},

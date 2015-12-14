@@ -399,6 +399,9 @@ background-color: #EAEAEA;
      left:25px;
      padding:10px;
 }
+/*#profile-body {
+        background-color: whitesmoke;
+}*/
 .profile-body {
     background-color: whitesmoke;
     min-height: 643px;
