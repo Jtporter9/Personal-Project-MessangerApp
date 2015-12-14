@@ -35,7 +35,8 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
 	clientID: keys.facebookId,
 	clientSecret: keys.facebookSecret,
-	callbackURL: '/auth/facebook/callback'
+	callbackURL: '/auth/facebook/callback',
+	// profileFields: ['id', 'name', 'picture.type(large)', 'emails', 'username', 'displayName', 'about', 'gender']
 }, function (token, refreshToken, profile, done) {
 	User.findOne({
 		'facebookId': profile.id
@@ -45,17 +46,18 @@ passport.use(new FacebookStrategy({
 			var newUser = {
 				name: profile.displayName,
 				facebookId: profile.id,
+				// status: true
 				// email: profile.emails[0].value
 			};
 			User.create(newUser, function (createErr, createdUser) {
-				console.log(profile.id, createdUser.admin);
+				// console.log(profile.id, createdUser.admin);
 				if (createErr) return done(createErr, false);
 				userId = createdUser._id;
 				return done(null, createdUser);
 			})
 		} else {
 			userId = foundUser._id;
-			console.log(userId);
+			// console.log(userId);
 			return done(null, foundUser);
 		};
 	});
@@ -146,10 +148,15 @@ var io = socketio(http);
 io.on('connection', function (socket) {
 	console.log('a user has connected');
 	socket.on('message', function (messages) {
-		console.log('getting socket from frontend',messages);
+		// console.log('getting socket of Messages from frontend',messages);
 		io.sockets.emit('messageFromSockets', messages);
 	});
+	socket.on('CurrentUsersConvos', function (convos) {
+		// console.log('getting socket of Convos from frontend', convos);
+		io.sockets.emit('CurrentUsersConvosFromSockets', convos);
+	})
 });
+
 
 // PORT //
 http.listen(3000, function () {

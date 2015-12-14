@@ -368,6 +368,19 @@ background-color: #EAEAEA;
     height: auto;
     display: inline;
 }
+#new-message-alert {
+    z-index: 999999;
+    position: fixed;
+    bottom:100px;
+    right:5px;
+    background-color: whitesmoke;
+    border: 2px solid red;
+    border-radius:5px;
+    padding:8px;
+    margin:4px 10px;
+    max-width:50%;
+    display: inline;
+}
 .border-bottom {
     border-bottom: 1px solid black;
 }
