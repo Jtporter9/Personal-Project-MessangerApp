@@ -51,7 +51,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	})
 
 
-	$scope.findCurrentUserById($stateParams.id);
+	$scope.findCurrentUserById($scope.usersInfo._id);
 	
 	//////////////////////////////
 	////////////Emojis///////////
