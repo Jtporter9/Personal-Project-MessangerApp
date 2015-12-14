@@ -42,7 +42,7 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 			// console.log(response);
 			$scope.friends = response;
 			$scope.friends.forEach(function (friend, i) {
-				// Socket.emit('friendStatus', friend.Userstatus);
+				Socket.emit('friendStatus', friend.Userstatus);
 			})
 		for (var i = 0; i < $scope.friends.length; i++) {
 			if ($scope.friends[i].Userstatus === true) {
@@ -54,16 +54,16 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 		})
 	}
 
-	// Socket.on('friendStatus', function (friendsStatus) {
-	// 	console.log('friendsStatus', friendsStatus);
-	// 	$scope.friendsStatus = friendsStatus;
-	// 	if($scope.friendsStatus === true){
-	// 		$scope.friendsStatus = "Online";
-	// 	} else {
-	// 		$scope.friendsStatus = "Offline";
-	// 	}
-	// 	$scope.$digest();
-	// })
+	Socket.on('friendStatus', function (friendsStatus) {
+		console.log('friendsStatus', friendsStatus);
+		$scope.friendsStatus = friendsStatus;
+		if($scope.friendsStatus === true){
+			$scope.friendsStatus = "Online";
+		} else {
+			$scope.friendsStatus = "Offline";
+		}
+		$scope.$digest();
+	})
 
 
 	$scope.findFriends();
