@@ -154,11 +154,16 @@ io.on('connection', function (socket) {
 	socket.on('CurrentUsersConvos', function (convos) {
 		// console.log('getting socket of Convos from frontend', convos);
 		io.sockets.emit('CurrentUsersConvosFromSockets', convos);
-	})
+	});
+	socket.on('friendStatus', function (status) {
+		// console.log('getting socket of friends status from frontend', status);
+		io.sockets.emit('friendsStatus', status);
+		console.log(status);
+	});
 });
 
 
 // PORT //
-http.listen(80, function () {
-	console.log('listening on port: 80');
+http.listen(3000, function () {
+	console.log('listening on port: 3000');
 });

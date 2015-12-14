@@ -236,14 +236,27 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.findFriends = function (UserId) {
 		chatroomService.findUser().then(function (response) {
 			$scope.friends = response;
+			// console.log(response)
 			for (var i = 0; i < $scope.friends.length; i++) {
-				if ($scope.friends[i].status === false || !$scope.friends[i].status) {
-					$scope.friends[i].status = "Offline";
+				if ($scope.friends[i].Userstatus === false || !$scope.friends[i].Userstatus) {
+					$scope.friends[i].Userstatus = "Offline";
 				} else {
-					$scope.friends[i].status = "Online";
+					$scope.friends[i].Userstatus = "Online";
 				}
+				// console.log(response[i].Userstatus);
+				Socket.emit('friendstatus', response[i].Userstatus);
+				
 			}
 		})
 	}
+	
+	Socket.on('messageFromSockets', function (friendsStatus) {
+		console.log(friendsStatus);
+		$scope.friends.Userstatus = friendsStatus;
+		$scope.$digest();
+	})
+	
+	
+	
 	$scope.findFriends();
 });

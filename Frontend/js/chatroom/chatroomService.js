@@ -32,6 +32,7 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	this.updateUser = function (newUserObj, id) {
 		return $http.put('/api/users/' + id, newUserObj)
     }
+	
 	this.updateUserInfo = function (newUserObj, id) {
 		return $http.put('/api/usersInfo/' + id, newUserObj)
     }
