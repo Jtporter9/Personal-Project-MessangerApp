@@ -33,7 +33,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			// 		});
 			// 	});
 			// });
-
 		});
 	};
 
@@ -51,8 +50,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	$scope.getCurrentUsersId = function () {
 		chatroomService.currentUsersId().then(function (response) {
+			if(response._id !== $stateParams.id){
+				
+			} else {	
 			$scope.currentUserId = response._id;
 			$scope.findCurrentUserById($scope.currentUserId);
+			}
 		})
 	}
 	$scope.getCurrentUsersId();
