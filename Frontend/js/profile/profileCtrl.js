@@ -1,7 +1,15 @@
 /* global url */
 angular.module('messangerApp').controller('profileCtrl', function ($scope, $stateParams, chatroomService, Socket) {
 
-	$scope.statusUpdate = function () {
+$scope.getCurrentUsersId = function () {
+		chatroomService.currentUsersId().then(function (response) {
+			$scope.currentUserId = response._id;
+			$scope.findCurrentUser($scope.currentUserId);
+		})
+	}
+	$scope.getCurrentUsersId();
+
+	$scope.statusUpdate = function (userId) {
 		var statusUpdateObj = {
 			Userstatus: true
 		}
@@ -9,8 +17,7 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 			$scope.findCurrentUser($stateParams.id);
 		});
 	}
-
-	$scope.statusUpdate();
+				$scope.statusUpdate($stateParams.id);
 
 	$scope.showSignuature = false;
 	$scope.showPersonalInfo = true;
@@ -44,20 +51,20 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 			$scope.friends.forEach(function (friend, i) {
 				Socket.emit('friendStatus', friend.Userstatus);
 			})
-		for (var i = 0; i < $scope.friends.length; i++) {
-			if ($scope.friends[i].Userstatus === true) {
-				$scope.friends[i].Userstatus = "Online";
-			} else {
-				$scope.friends[i].Userstatus = "Offline";
+			for (var i = 0; i < $scope.friends.length; i++) {
+				if ($scope.friends[i].Userstatus === true) {
+					$scope.friends[i].Userstatus = "Online";
+				} else {
+					$scope.friends[i].Userstatus = "Offline";
+				}
 			}
-		}
 		})
 	}
 
 	Socket.on('friendStatus', function (friendsStatus) {
 		console.log('friendsStatus', friendsStatus);
 		$scope.friendsStatus = friendsStatus;
-		if($scope.friendsStatus === true){
+		if ($scope.friendsStatus === true) {
 			$scope.friendsStatus = "Online";
 		} else {
 			$scope.friendsStatus = "Offline";
@@ -96,14 +103,14 @@ angular.module('messangerApp').controller('profileCtrl', function ($scope, $stat
 	///////////////////////////////////////////////////
 	//////////getting current Users info//////////////
 	/////////////////////////////////////////////////
-	
+
 	$scope.findCurrentUser = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			// console.log(response);
 			$scope.usersInfo = response;
 		});
 	}
-	$scope.findCurrentUser($stateParams.id);
+	// $scope.findCurrentUser($stateParams.id);
 
 
 });//end

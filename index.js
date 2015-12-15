@@ -72,11 +72,12 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook'
 	), function (req, res) {
 		if (req.session.passport.user.facebookId) {
 			res.redirect('/#/profile/' + req.session.passport.user._id);
+			res.send(req.session.passport.user._id);
 		}
 		else {
 			res.redirect('/#/login');
 		}
-		console.log(req.session);
+		console.log('current users ID !!:', req.session.passport.user._id);
 	});
 
 passport.serializeUser(function (user, done) {
@@ -123,6 +124,19 @@ var socketio = require('socket.io');
 
 // Endpoints Users //
 
+// app.get('/auth/currentuser', requireAuth, function (req, res, next) {
+// 	var currentLoggedInUserOnSession = req.session;
+// 	currentLoggedInUserOnSession.save(function (err, result) {
+
+// 		res.send(currentLoggedInUserOnSession);
+// 	})
+
+// })
+
+app.get('/auth/currentuser', function (req, res, next) {
+	res.send(req.user)
+})
+
 app.post('/api/users', UserCtrl.addUser);
 app.get('/api/users', UserCtrl.findUser);
 app.get('/api/users/:id', UserCtrl.findUserById);
@@ -158,12 +172,12 @@ io.on('connection', function (socket) {
 	socket.on('friendStatus', function (status) {
 		// console.log('getting socket of friends status from frontend', status);
 		io.sockets.emit('friendsStatus', status);
-		console.log(status);
+		// console.log(status);
 	});
 });
 
 
 // PORT //
-http.listen(80, function () {
-	console.log('listening on port: 80');
+http.listen(3000, function () {
+	console.log('listening on port: 3000');
 });

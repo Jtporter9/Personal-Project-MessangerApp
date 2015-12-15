@@ -32,10 +32,17 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 	this.updateUser = function (newUserObj, id) {
 		return $http.put('/api/users/' + id, newUserObj)
     }
-	
+
 	this.updateUserInfo = function (newUserObj, id) {
 		return $http.put('/api/usersInfo/' + id, newUserObj)
     }
+
+	this.currentUsersId = function () {
+		return $http.get('/auth/currentuser').then(function (response) {
+			// console.log(response.data);
+			return response.data;
+		})
+	}
 	
 	
 	///////////Convo calls////////

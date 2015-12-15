@@ -1,7 +1,6 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$timeout, chatroomService, $stateParams, $location, $anchorScroll, Socket) {
 
-
 	$scope.disableSendBtn = true;
 	$scope.showSignuature = false;
 	$scope.showProfileLink = true;
@@ -20,7 +19,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	//////////////////////////////
 	/////find current user///////
 	////////////////////////////
-	
+
 	$scope.findCurrentUserById = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			$scope.usersInfo = response;
@@ -49,9 +48,16 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		});
 		$scope.$digest();
 	})
+	
+	$scope.getCurrentUsersId = function () {
+		chatroomService.currentUsersId().then(function (response) {
+			$scope.currentUserId = response._id;
+			$scope.findCurrentUserById($scope.currentUserId);
+		})
+	}
+	$scope.getCurrentUsersId();
 
 
-	$scope.findCurrentUserById($stateParams.id);
 	
 	//////////////////////////////
 	////////////Emojis///////////
@@ -245,18 +251,18 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 				}
 				// console.log(response[i].Userstatus);
 				Socket.emit('friendstatus', response[i].Userstatus);
-				
+
 			}
 		})
 	}
-	
+
 	Socket.on('messageFromSockets', function (friendsStatus) {
 		console.log(friendsStatus);
 		$scope.friends.Userstatus = friendsStatus;
 		$scope.$digest();
 	})
-	
-	
-	
+
+
+
 	$scope.findFriends();
 });
