@@ -39,7 +39,7 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
 
 	this.currentUsersId = function () {
 		return $http.get('/auth/currentuser').then(function (response) {
-			// console.log(response.data);
+			// console.log(response);
 			return response.data;
 		})
 	}

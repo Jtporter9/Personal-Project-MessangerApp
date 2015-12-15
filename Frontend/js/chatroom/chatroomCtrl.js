@@ -26,13 +26,14 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			Socket.emit('CurrentUsersConvos', response.conversations);
 			// console.log(response.conversations);
 
-			$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
-				conversation.people.map(function (personId, peopleIndex) {
-					chatroomService.findCurrentUser(personId).then(function (response) {
-						$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
-					});
-				});
-			});
+			// $scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
+			// 	conversation.people.map(function (personId, peopleIndex) {
+			// 		chatroomService.findCurrentUser(personId).then(function (response) {
+			// 			$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
+			// 		});
+			// 	});
+			// });
+
 		});
 	};
 
@@ -47,14 +48,15 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		});
 		$scope.$digest();
 	})
-	
+
 	$scope.getCurrentUsersId = function () {
 		chatroomService.currentUsersId().then(function (response) {
-			if(response._id !== $stateParams.id){
-				
-			} else {	
-			$scope.currentUserId = response._id;
-			$scope.findCurrentUserById($scope.currentUserId);
+			// console.log(response._id, "+", $stateParams.id);
+			if (response._id !== $stateParams.id) {
+
+			} else {
+				$scope.currentUserId = response._id;
+				$scope.findCurrentUserById($scope.currentUserId);
 			}
 		})
 	}
