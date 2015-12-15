@@ -25,54 +25,44 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.usersInfo = response;
 			Socket.emit('CurrentUsersConvos', response.conversations);
 			// console.log(response.conversations);
-
-			// $scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
-			// 	conversation.people.map(function (personId, peopleIndex) {
-			// 		chatroomService.findCurrentUser(personId).then(function (response) {
-			// 			$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
-			// 		});
-			// 	});
-			// });
+			$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
+				conversation.people.map(function (personId, peopleIndex) {
+					chatroomService.findCurrentUser(personId).then(function (response) {
+						$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
+					});
+				});
+			});
 
 		});
 	};
 
-	Socket.on('CurrentUsersConvosFromSockets', function (ConvosFromSockets) {
-		$scope.usersInfo.conversations = ConvosFromSockets;
-		$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
-			conversation.people.map(function (personId, peopleIndex) {
-				chatroomService.findCurrentUser(personId).then(function (response) {
-					$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
-				});
-			});
-		});
-		$scope.$digest();
-	})
+	// Socket.on('CurrentUsersConvosFromSockets', function (ConvosFromSockets) {
+	// 	$scope.usersInfo.conversations = ConvosFromSockets;
+	// 	$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
+	// 		conversation.people.map(function (personId, peopleIndex) {
+	// 			chatroomService.findCurrentUser(personId).then(function (response) {
+	// 				$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
+	// 			});
+	// 		});
+	// 	});
+	// 	$scope.$digest();
+	// });//end of socket
 
 	$scope.getCurrentUsersId = function () {
 		chatroomService.currentUsersId().then(function (response) {
-			// console.log(response._id, "+", $stateParams.id);
-			// if (response._id !== $stateParams.id) {
-				
-			// } else {
-			// }
+			console.log(response._id, "+", $stateParams.id);
+			if (response._id === $stateParams.id) {
 				$scope.currentUserId = response._id;
 				$scope.findCurrentUserById($scope.currentUserId);
+			}
 		})
 	}
 	$scope.getCurrentUsersId();
 
-
-	
-	//////////////////////////////
-	////////////Emojis///////////
-	////////////////////////////
-	// function convert() {
-	// 	var input = document.getElementById('inputText').value;
-	// 	var output = emojione.shortnameToImage(input);
-	// 	document.getElementById('outputText').innerHTML = output;
-	// }
-
+				// $scope.findCurrentUserById($scope.currentUserId)
+	window.setInterval(function () {
+				$scope.findCurrentUserById($scope.currentUserId)
+	}, 600000);
 
 	/////////////////////////////////////////
 	///////////getting convos///////////////
@@ -107,18 +97,18 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			Socket.emit('message', response.messages);
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
+
+			Socket.on('messageFromSockets', function (messagesFromSockets) {
+				$scope.messagesFromSockets = messagesFromSockets;
+				$scope.$digest();
+				showNewMessagesBox();
+				$timeout(function () {
+					$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
+				}, 100)
+			})
+
 		})
 	}
-
-	Socket.on('messageFromSockets', function (messagesFromSockets) {
-		$scope.messagesFromSockets = messagesFromSockets;
-		$scope.$digest();
-		showNewMessagesBox();
-		$timeout(function () {
-			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
-		}, 100)
-	})
-
 
 	$scope.findCurrentConvo = function (ConvoId, convos) {
 		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
@@ -218,15 +208,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}, 100)
 	}
 
-	// if ($scope.sendNewMessage()) {
-	// 	var newMessageCount = {
-	// 		numNewMessages: i++
-	// 	}
-	// 	chatroomService.updateMessage(newMessageCount, $scope.ConvoId).then(function (response) {
-	// 		console.log(response);
-	// 	})
-	// }
-
 	$scope.searchKeyPress = function (e, i) {
 		// if(){}
 		e = e || window.event;
@@ -262,7 +243,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 	Socket.on('messageFromSockets', function (friendsStatus) {
-		console.log(friendsStatus);
+		// console.log(friendsStatus);
 		$scope.friends.Userstatus = friendsStatus;
 		$scope.$digest();
 	})
