@@ -26,13 +26,13 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			Socket.emit('CurrentUsersConvos', response.conversations);
 			// console.log(response.conversations);
 
-			// $scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
-			// 	conversation.people.map(function (personId, peopleIndex) {
-			// 		chatroomService.findCurrentUser(personId).then(function (response) {
-			// 			$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
-			// 		});
-			// 	});
-			// });
+			$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
+				conversation.people.map(function (personId, peopleIndex) {
+					chatroomService.findCurrentUser(personId).then(function (response) {
+						$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
+					});
+				});
+			});
 		});
 	};
 
