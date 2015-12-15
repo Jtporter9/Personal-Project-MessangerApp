@@ -52,12 +52,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.getCurrentUsersId = function () {
 		chatroomService.currentUsersId().then(function (response) {
 			// console.log(response._id, "+", $stateParams.id);
-			if (response._id !== $stateParams.id) {
-				$scope.findCurrentUserById(response._id);
-			} else {
+			// if (response._id !== $stateParams.id) {
+				
+			// } else {
+			// }
 				$scope.currentUserId = response._id;
 				$scope.findCurrentUserById($scope.currentUserId);
-			}
 		})
 	}
 	$scope.getCurrentUsersId();
