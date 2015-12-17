@@ -66,7 +66,6 @@ angular.module('messangerApp').service('chatroomService', function ($http) {
     }
 	this.updateConvo = function (newConvoObj, id) {
 		return $http.put('/api/numnewmessages/' + id, newConvoObj).then(function(response){
-			console.log('service response', response);
 			return response;
 		})
     }

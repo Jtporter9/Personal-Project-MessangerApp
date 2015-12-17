@@ -117,6 +117,12 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			showAlertBoxOnConvo();
 			$scope.showMessages = true;
 			$scope.disableSendBtn = false;
+			var newConvoObj = {
+				numNewMessages: 0
+			}
+			chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
+				$scope.findCurrentUserById($scope.currentUserId);
+			})
 			$timeout(function () {
 				$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 			}, 100)
@@ -216,13 +222,13 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
 			$scope.findCurrentConvoForMessage($scope.ConvoId);
 		});
-		
-		// var newConvoObj = {
-		// 	numNewMessages: $scope.numNewMessages
-		// }
-		// chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
-		// 	console.log(response);
-		// })
+
+		var newConvoObj = {
+			numNewMessages: $scope.numNewMessages += 1
+		}
+		chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
+			$scope.findCurrentUserById($scope.currentUserId);
+		})
 		$scope.newMessageText = "";
 		$timeout(function () {
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
