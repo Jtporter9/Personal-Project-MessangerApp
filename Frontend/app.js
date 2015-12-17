@@ -1,4 +1,4 @@
-angular.module('messangerApp', ['ui.router'])
+angular.module('messangerApp', ['ui.router', 'angularMoment','ngAnimate'])
 
 	.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 

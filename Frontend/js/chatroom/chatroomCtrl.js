@@ -23,6 +23,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.findCurrentUserById = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			$scope.usersInfo = response;
+			console.log($scope.usersInfo);
 			Socket.emit('CurrentUsersConvos', response.conversations);
 			// console.log(response.conversations);
 			$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
@@ -50,7 +51,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 	$scope.getCurrentUsersId = function () {
 		chatroomService.currentUsersId().then(function (response) {
-			console.log(response._id, "+", $stateParams.id);
 			if (response._id === $stateParams.id) {
 				$scope.currentUserId = response._id;
 				$scope.findCurrentUserById($scope.currentUserId);
@@ -61,8 +61,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 
 				// $scope.findCurrentUserById($scope.currentUserId)
 	window.setInterval(function () {
-				$scope.findCurrentUserById($scope.currentUserId)
-	}, 600000);
+		$scope.findCurrentUserById($scope.currentUserId)
+	}, 400000);
 
 	/////////////////////////////////////////
 	///////////getting convos///////////////
@@ -130,8 +130,9 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	//////////////adding conversation/////////
 	/////////////////////////////////////////
 	$scope.friendsToAddToConvo = [];
-
+	
 	$scope.addingFriendsToConvo = function (friendObj, index) {
+		// $scope.friendsToAddToConvo.push($scope.usersInfo);
 		$scope.friendsToAddToConvo.push(friendObj);
 	}
 	$scope.deletingFriendsFromConvo = function (index) {
@@ -143,10 +144,21 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	};
 
 	///////////////////////////////////////////
-	//////Add new Conversation////////////////
+	//////////////Add new Conversation////////
 	/////////////////////////////////////////
+
 	
-	
+	//ng-if="showUsersNameInConvo(usersInfo._id, convos.people)"
+	// $scope.showUsersNameInConvo = function (currentUserId, peopleInConvos) {
+	// 	// console.log(peopleInConvos);
+	// 	peopleInConvos.forEach(function (person, i) {
+	// 		console.log(person);
+	// 	if (currentUserId === person) {
+	// 		return true;
+	// 	} else { return false };
+	// 	})
+	// }
+
 	$scope.UserIds = [];
 	for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
 		$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
@@ -159,6 +171,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 	$scope.submitNewConvo = function (userObjs) {
+		console.log(userObjs);
 		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
 		var newConvo = {
@@ -176,6 +189,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 				});
 			})
 		});
+		$scope.friendsToAddToConvo.push($scope.usersInfo);
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};
@@ -197,7 +211,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		var newMessage = {
 			fromName: $scope.usersInfo.name,
 			content: newMessageText,
-			time: moment().add('days').calendar()
+			time: new Date()
+			//moment().add('days').calendar()
 		}
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
 			$scope.findCurrentConvoForMessage($scope.ConvoId);

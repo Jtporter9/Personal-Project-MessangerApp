@@ -1,4 +1,3 @@
-
 // Dependencies
 var express = require('express');
 
@@ -18,6 +17,7 @@ var MessagesCtrl = require('./Backend/Controllers/MessagesCtrl.js')
 var ConversationsCtrl = require('./Backend/Controllers/ConversationsCtrl.js')
 var User = require('./Backend/Models/UsersModel')
 var keys = require('./keys');
+
 
 ///////////////////////////////////////////////
 ////////// Passport Oauth Facebook/////////////
@@ -46,26 +46,18 @@ passport.use(new FacebookStrategy({
 			var newUser = {
 				name: profile.displayName,
 				facebookId: profile.id,
-				// status: true
-				// email: profile.emails[0].value
 			};
 			User.create(newUser, function (createErr, createdUser) {
-				// console.log(profile.id, createdUser.admin);
 				if (createErr) return done(createErr, false);
 				userId = createdUser._id;
 				return done(null, createdUser);
 			})
 		} else {
 			userId = foundUser._id;
-			// console.log(userId);
 			return done(null, foundUser);
 		};
 	});
 }));
-
-//////////////////////////////////////////////////////
-////////////////// facebook endpoints ///////////////
-////////////////////////////////////////////////////
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook'
@@ -79,6 +71,60 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook'
 		}
 		console.log('current users ID !!:', req.session.passport.user._id);
 	});
+	
+/////////////////////////////////////////////////
+//////////// Passport Oauth GOOGLE///////////////
+/////////////////////////////////////////////////
+
+var googleKeys = require('./googleKeys');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var auth = require('./auth');
+
+passport.use(new GoogleStrategy({
+	clientID: googleKeys.googleId,
+	clientSecret: googleKeys.googleSecret,
+	callbackURL: '/auth/google/callback'
+},
+	function (req, accessToken, refreshToken, profile, done) {
+        User.findOne({ 'googleId': profile.id }, function (err, user) {
+            if (user) {
+                // profile._json.image.url = profile._json.image.url.replace('?sz=50', '');
+                console.log('Google user found in db');
+                // if (user.avatar !== profile._json.image.url) {
+                //     user.avatar = profile._json.image.url;
+                // }
+                // user.save();
+                done(null, user);
+            } else {
+                console.log('Google user not found in db');
+
+                user = new User()
+                user.googleId = profile.id;
+                user.token = accessToken;
+                user.name = profile.displayName;
+                user.avatar = profile._json.image.url;
+                user.email = profile.emails[0].value;
+                // edit img url to not be just 50px //
+                // user.avatar = user.avatar.replace('?sz=50', '');
+                console.log('New user created: ', user);
+
+                user.save();
+                done(null, user);
+            }
+        });
+    }));
+
+app.use('/auth', auth)
+
+
+app.get('/test', function (req, res, next) {
+	console.log(req.user._id);
+	res.redirect('/#/profile/' + req.user._id);
+})
+
+//////////////////////////////////////////////
+//////////////// PASSPORT ///////////////////
+////////////////////////////////////////////
 
 passport.serializeUser(function (user, done) {
 	done(null, user);
@@ -120,19 +166,6 @@ app.use(express.static(__dirname + '/Frontend'));
 var http = require('http').Server(app);
 var socketio = require('socket.io');
 
-
-
-// Endpoints Users //
-
-// app.get('/auth/currentuser', requireAuth, function (req, res, next) {
-// 	var currentLoggedInUserOnSession = req.session;
-// 	currentLoggedInUserOnSession.save(function (err, result) {
-
-// 		res.send(currentLoggedInUserOnSession);
-// 	})
-
-// })
-
 app.get('/auth/currentuser', function (req, res, next) {
 	res.send(req.user)
 })
@@ -160,24 +193,20 @@ app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 var io = socketio(http);
 
 io.on('connection', function (socket) {
-	console.log('a user has connected');
+	// console.log('a user has connected');
 	socket.on('message', function (messages) {
-		// console.log('getting socket of Messages from frontend',messages);
 		io.sockets.emit('messageFromSockets', messages);
 	});
 	socket.on('CurrentUsersConvos', function (convos) {
-		// console.log('getting socket of Convos from frontend', convos);
 		io.sockets.emit('CurrentUsersConvosFromSockets', convos);
 	});
 	socket.on('friendStatus', function (status) {
-		// console.log('getting socket of friends status from frontend', status);
 		io.sockets.emit('friendsStatus', status);
-		// console.log(status);
 	});
 });
 
 
 // PORT //
-http.listen(80, function () {
-	console.log('listening on port: 80');
+http.listen(3000, function () {
+	console.log('listening on port: 3000');
 });

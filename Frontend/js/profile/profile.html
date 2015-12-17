@@ -6,7 +6,7 @@
 		<div ng-show="showPersonalInfo" class="personal-info" ng-mouseover="showEditProfile()" ng-mouseleave="leaveEditProfile()">
 			<button ng-click="editYourPersonalInfo()" ng-show="showEditBtn" style="float:right;" class="glyphicon glyphicon-pencil btn btn-primary"></button>
 			<div class="profilePicContainer">
-				<img class="profile-picture" src="images/default-profile-thumb.png"> </img>
+				<img class="profile-picture" src="{{usersInfo.avatar}}"> </img>
 			</div>
 			<big>
 			Name: {{usersInfo.name}}
@@ -40,8 +40,9 @@
 		<div ng-show="editingPersonalInfo" style="margin-left:40px;">
 			<form>
 				<div class="profilePicContainer">
-					<img class="profile-picture" src="images/default-profile-thumb.png"> </img>
-					<input type="file">
+					<img class="profile-picture" src="{{usersInfo.avatar}}"> </img>
+					<br>
+					Image url: <input ng-model="usersInfo.avatar" type="text" style="width:100%">
 				</div>
 				<big>
 			Name: {{usersInfo.name}}<br>
@@ -50,7 +51,7 @@
 				<p>
 					About:
 					<br>
-					<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="5"></textarea>
+					<textarea ng-model="usersInfo.about" name="" id="" cols="40" rows="3"></textarea>
 				</p>
 				<span>
 			Username: <input ng-model="usersInfo.username" type="text"><br>
@@ -84,7 +85,7 @@
 				<div class="row">
 					<div class="col-xs-6 col-md-3">
 						<a href="" class="thumbnail">
-							<img src="images/default-profile-thumb.png" alt="...">
+							<img src="{{usersInfo.avatar}}" alt="...">
 						</a>
 					</div>
 					<div>
@@ -123,7 +124,7 @@
 					<div class="row">
 						<div class="col-xs-6 col-md-3">
 							<a href="" class="thumbnail">
-								<img src="images/default-profile-thumb.png" alt="...">
+								<img src="{{usersInfo.avatar}}" style="width:200px;">
 							</a>
 						</div>
 						<div>

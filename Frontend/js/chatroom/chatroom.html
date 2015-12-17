@@ -35,8 +35,8 @@
 		<button ng-click="submitNewConvo(friendsToAddToConvo)" class="glyphicon glyphicon-ok btn btn-success">
 			Submit
 		</button>
-		<br>
-		<span style="border-bottom:1px solid red;color:red;">Don't forget to add yourself to the conversation.</span>
+		<!--<br>
+		<span style="border-bottom:1px solid red;color:red;">Don't forget to add yourself to the conversation.</span>-->
 	</form>
 	<div class="friends-added-box">
 		<div class="added-text">Added: </div>
@@ -66,7 +66,7 @@
 				</button>
 				<div ng-repeat="person in convos.people track by $index">
 					<big>
-					-{{person.name}}
+					<img src="{{person.avatar}}"style="border-radius:50%; width:35px;"> {{person.name}}
 				</big>
 				</div>
 				<div style="margin-top:5px;">
@@ -78,15 +78,19 @@
 		</div>
 	</div>
 </div>
+	<div ng-show="showEnteredConversationAlert" id="entered-conversation-alert">
+		<span style="border-bottom:1px solid black; font-size:20px;">Conversation with </span>
+		<big ng-repeat="people in currentConvo.people">, {{people.name}}</big>
+	</div>
 <div class="main-box-right">
 	<div id="message-container" class="message-container">
 		<div ng-show="showMessages" ng-class="{'message-right':message.fromName==='{{usersInfo.name}}'}" class="message-box" ng-repeat=" message in messagesFromSockets track by $index">
-			<img src="images/default-profile-thumb.png" style="border-radius:50%;width:45px;">
+			<img src="{{usersInfo.avatar}}" style="border-radius:50%;width:60px;">
 			<span style="border-bottom:1px solid black; margin-left:10px;">
 				{{message.fromName}}:
 				</span>
-			<p style="margin:5px 10px;">{{message.content}}</p>
-			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
+			<div class="message-text">{{message.content}}</div>
+			<span class="message-content" am-time-ago="message.time"></span>
 		</div>
 	</div>
 	<br>
@@ -109,12 +113,10 @@
 		</div>
 	</div>
 </div>
-
-<div ng-show="showEnteredConversationAlert" id="entered-conversation-alert">
-	<span style="border-bottom:1px solid black;font-size:20px;">Conversation with </span>
-	<big ng-repeat="people in currentConvo.people">, {{people.name}}</big>
-</div>
-
+<!--<div ng-show="showEnteredConversationAlert" id="entered-conversation-alert">
+		<span style="border-bottom:1px solid black;font-size:20px;">Conversation with </span>
+		<big ng-repeat="people in currentConvo.people">, {{people.name}}</big>
+	</div>-->
 <div ng-show="showNewMessagesBox" id="new-message-alert">
 	<span style="border-bottom:1px solid black;font-size:20px;">1 new-message</span>
 	<big class="glyphicon glyphicon-arrow-down"></big>

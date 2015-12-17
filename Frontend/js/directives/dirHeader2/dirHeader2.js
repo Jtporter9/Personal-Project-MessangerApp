@@ -10,25 +10,17 @@ angular.module('messangerApp')
 				$scope.getCurrentUserInfo = function (UserId) {
 					chatroomService.findCurrentUser(UserId).then(function (response) {
 						$scope.usersInfo = response;
+						$scope.currentUserId = response._id;
 					})
 				};
 				$scope.getCurrentUserInfo($stateParams.id);
-
-				$scope.currentUserId = $stateParams.id;
 
 				$scope.becomeOffline = function () {
 					$scope.usersInfo.Userstatus = false;
 					chatroomService.updateUserInfo($scope.usersInfo, $stateParams.id).then(function (response) {
 						$scope.getCurrentUserInfo($stateParams.id);
-						// console.log('after logging out',$scope.usersInfo, response);
 					});
-					// $(window).bind("beforeunload", function () {
-					// 	$scope.becomeOffline();
-					// })
 				};
-
-
-
 			}
 		}
 	});
