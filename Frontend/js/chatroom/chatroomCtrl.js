@@ -23,7 +23,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.findCurrentUserById = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			$scope.usersInfo = response;
-			console.log($scope.usersInfo);
+			// console.log($scope.usersInfo);
 			Socket.emit('CurrentUsersConvos', response.conversations);
 			// console.log(response.conversations);
 			$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
@@ -59,7 +59,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 	$scope.getCurrentUsersId();
 
-				// $scope.findCurrentUserById($scope.currentUserId)
 	window.setInterval(function () {
 		$scope.findCurrentUserById($scope.currentUserId)
 	}, 400000);
@@ -88,7 +87,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.showEnteredConversationAlert = true;
 		$timeout(function () {
 			$scope.showEnteredConversationAlert = false;
-		}, 4000)
+		}, 5000)
 	}
 
 	$scope.findCurrentConvoForMessage = function (ConvoId, convos) {
@@ -97,7 +96,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			Socket.emit('message', response.messages);
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
-
 			Socket.on('messageFromSockets', function (messagesFromSockets) {
 				$scope.messagesFromSockets = messagesFromSockets;
 				$scope.$digest();
@@ -115,6 +113,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.messagesFromSockets = response.messages;
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
+			$scope.numNewMessages = response.numNewMessages;
 			showAlertBoxOnConvo();
 			$scope.showMessages = true;
 			$scope.disableSendBtn = false;
@@ -130,7 +129,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	//////////////adding conversation/////////
 	/////////////////////////////////////////
 	$scope.friendsToAddToConvo = [];
-	
+
 	$scope.addingFriendsToConvo = function (friendObj, index) {
 		// $scope.friendsToAddToConvo.push($scope.usersInfo);
 		$scope.friendsToAddToConvo.push(friendObj);
@@ -217,6 +216,13 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
 			$scope.findCurrentConvoForMessage($scope.ConvoId);
 		});
+		
+		// var newConvoObj = {
+		// 	numNewMessages: $scope.numNewMessages
+		// }
+		// chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
+		// 	console.log(response);
+		// })
 		$scope.newMessageText = "";
 		$timeout(function () {
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);

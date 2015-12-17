@@ -181,12 +181,13 @@ app.put('/api/usersInfo/:id', UserCtrl.updateUserInfo);
 
 app.post('/api/messages', MessagesCtrl.addMessage);
 app.get('/api/messages', MessagesCtrl.findMessage);
+app.put('/api/conversations/:id', MessagesCtrl.addMessage);
 
 // Endpoints Conversations //
 
 app.post('/api/conversations', ConversationsCtrl.addConversation);
 app.get('/api/conversations', ConversationsCtrl.findConversation);
-app.put('/api/conversations/:id', MessagesCtrl.addMessage);
+app.put('/api/numnewmessages/:id', ConversationsCtrl.updateConversation);
 app.get('/api/conversations/:id', ConversationsCtrl.findConversationById);
 app.delete('/api/conversations/:id', ConversationsCtrl.deleteConversation);
 

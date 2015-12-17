@@ -34,11 +34,15 @@ module.exports = {
 		})
 	},
 
-	// findConversationById: function (req, res, next) {
-	// 	Conversation.findById(req.params.id).then(function (user) {
-	// 		res.send(user);
-	// 	})
-	// },
+	updateConversation: function (req, res, next) {
+		Conversation.findByIdAndUpdate(req.params.id, req.body, function (err, updatedConversation) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.send(updatedConversation);
+			}
+		})
+	},
 	deleteConversation: function (req, res, next) {
 		Conversation.findByIdAndRemove(req.params.id, req.body, function (err, deletedConversation) {
 			if (err) {
