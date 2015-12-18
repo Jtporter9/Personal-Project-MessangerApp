@@ -400,7 +400,7 @@ background-color: #EAEAEA;
     top: 100px;
     border: 1px solid black;
     border-radius: 8px;
-    width: 50%;
+    width: 55%;
     max-height: 500px;
 }
 .scrollBox {
@@ -408,7 +408,7 @@ background-color: #EAEAEA;
     max-height: 455px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    border-radius: 8px;
+    margin:0;
 }
 .friendsHeader {
     border-bottom:2px solid black;
@@ -426,6 +426,7 @@ background-color: #EAEAEA;
     border-bottom:1px solid black;
     width: 400px;;
 }
+/*TERMS AND CONDITION PAGE*/
 .termsAndConditions {
     background-color: white;
     text-align: center;

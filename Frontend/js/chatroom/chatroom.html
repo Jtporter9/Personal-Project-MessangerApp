@@ -64,7 +64,7 @@
 				<button style="float:right;padding:2px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
 					<span class="trash-can glyphicon glyphicon-trash"></span>
 				</button>
-				<div ng-repeat="person in convos.people track by $index">
+				<div style="margin-top:5px;" ng-repeat="person in convos.people track by $index">
 					<big>
 					<img src="{{person.avatar}}"style="border-radius:50%; width:35px;"> {{person.name}}
 				</big>

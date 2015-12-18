@@ -118,7 +118,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			$scope.showMessages = true;
 			$scope.disableSendBtn = false;
 			var newConvoObj = {
-				numNewMessages: 0
+				numNewMessages: $scope.numNewMessages = 0
 			}
 			chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
 				$scope.findCurrentUserById($scope.currentUserId);
@@ -212,6 +212,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	///////////sending a new messages////////
 	////////////////////////////////////////
 	$scope.sendNewMessage = function (newMessageText) {
+		$scope.showEnteredConversationAlert = false;
 		$scope.showFileUpload = false;
 		var newMessage = {
 			fromName: $scope.usersInfo.name,
@@ -227,7 +228,8 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			numNewMessages: $scope.numNewMessages += 1
 		}
 		chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
-			$scope.findCurrentUserById($scope.currentUserId);
+			// $scope.findCurrentUserById($scope.currentUserId);
+			// $scope.findConvos();
 		})
 		$scope.newMessageText = "";
 		$timeout(function () {

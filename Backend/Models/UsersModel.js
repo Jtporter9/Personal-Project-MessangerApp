@@ -9,7 +9,7 @@ var Users = Schema({
 	username: { type: String },
 	password: { type: String },  //NEED TO ENCRYPT THIS!!!!! Hash it!!!
 	email: { type: String, default: "Please enter your email" },
-	avatar: { type: String },
+	avatar: { type: String, default: "images/default-profile-thumb.png" },
 	notifications: { type: Number },
 	about: { type: String, default: "Please enter something about you." },
 	Userstatus: { type: Boolean },
