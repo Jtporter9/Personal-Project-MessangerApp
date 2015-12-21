@@ -91,7 +91,8 @@
 					<div>
 						<h4 class="friends-seperater">{{friend.name}}</h4>
 						<div> {{friend.email}} </div>
-						<div ng-class="{'glyphicon glyphicon-user label label-success':friend.Userstatus==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
+						<div ng-class="{'glyphicon glyphicon-user label label-success':friend.Userstatus==='Online'}"
+						 style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
 							{{friend.Userstatus}}</div>
 						<br> Send Request:
 						<input type="checkbox" name="" id="">
@@ -107,12 +108,13 @@
 
 <!--FREIDNS BOX-->
 <div class="friendsBox">
-	<div class="panel-heading"><big>Your Friends</big>
-		<span style="margin-left:350px;">Add a friend:</span>
-		<div style="position:absolute;top:5px;left:280px;">
-			<input ng-model="friendsFinder" type="search" class="form-control" placeholder="Search...">
+	<div class="panel-heading">
+		<big>Your Friends</big>
+		<div class="input-form-friends">
+			<input ng-model="friendsFinder" style="border-radius:5px;" type="search" placeholder="Search...">
 		</div>
-		<button ng-click="addingNewFriends()" style="position:absolute;right:3px;top:3px;padding:1%;width:12%;" class="glyphicon glyphicon-plus btn btn-primary"></button>
+		<span class="add-a-friend">Add a friend:</span>
+		<button ng-click="addingNewFriends()" id="add-friend-button" class="glyphicon glyphicon-plus btn btn-primary"></button>
 	</div>
 	<div class="scrollBox">
 		<div class="panel panel-default">
@@ -130,7 +132,8 @@
 						<div>
 							<h4 class="friends-seperater">{{friend.name}}</h4>
 							<div> {{friend.email}} </div>
-							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.Userstatus==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
+							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.Userstatus==='Online'}"
+							 style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
 								{{friend.Userstatus}}</div>
 						</div>
 					</div>

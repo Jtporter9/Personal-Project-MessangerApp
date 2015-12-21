@@ -101,12 +101,11 @@
 			<div class="input-message-container">
 				<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event, newMessageText);" class="input-message" placeholder="click here to type...">
 				</textarea>
-
-				<div>
-					<input id="attach-file" ng-show="showFileUpload" type="file">
-					<button ng-click="attachFile()" id="attach-file" class=" btn btn-success">
-						<a style="color:white;" class="glyphicon glyphicon-paperclip"></a> Attach</button>
-					<button id="emoji" class="btn btn-warning"><img src="http://media.idownloadblog.com/wp-content/uploads/2014/06/Emoji-Tongue.png" style="width:110%;"></button>
+				<div class="send-box">
+					<!--<input id="attach-file" ng-show="showFileUpload" type="file">
+					<button ng-click="attachFile()" id="attach-file" class=" btn btn-success">-->
+						<!--<a style="color:white;" class="glyphicon glyphicon-paperclip"></a> Attach</button>-->
+					<button id="emoji" class="btn btn-warning"><img src="http://media.idownloadblog.com/wp-content/uploads/2014/06/Emoji-Tongue.png" style="width:20px;"></button>
 					<button ng-disabled="disableSendBtn" ng-click="sendNewMessage(newMessageText);" id="submit-message-btn" class="btn btn-primary">Send</button>
 				</div>
 			</div>

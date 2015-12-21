@@ -99,7 +99,7 @@ div#slider {
     position: absolute;
     top: 45px;
 }
-div#slider figure img { width: 20%; float: left;}
+div#slider figure img { width: 20%; height: 80%; float: left;}
 div#slider figure { 
   position: fixed;
   background-size: cover;
@@ -132,24 +132,27 @@ div#slider figure {
 .add-to-convo:hover {
     cursor: pointer;
 }
-#submit-message-btn {
-    z-index:999;
-    position:relative;
-    bottom:30px;
-    right:-760px;
-}
 #attach-file {
         z-index:999;
-    position:relative;
-    bottom:30px;
-    right:-760px;
-}
+        float: right;
+        margin: .5%;
+    }
 #emoji {
         z-index:999;
-    position:relative;
-    bottom:30px;
-    right:-760px;
-    width: 4.8%;
+        float: right;
+         width: 20%;
+        margin: .5%;
+}
+#submit-message-btn {
+    z-index:999;
+    float: right;
+    margin: .5%;
+    }
+.send-box {
+    padding: 0.5%;
+    width:22%;
+    float:right;
+    margin:25px 5px 5px 0;
 }
 .message-content{
     font-size:12px;
@@ -376,7 +379,7 @@ background-color: #EAEAEA;
     border-radius:5px;
     overflow:scroll;
     height:200px;
-    border:1px solid black;
+    /*border:1px solid black;*/
 }
 .profile-info{
      height: 520px;
@@ -388,7 +391,7 @@ background-color: #EAEAEA;
 }
 .profile-body {
     background-color: whitesmoke;
-    min-height: 643px;
+    height: 643px;
 }
 .personal-info {
     width: 90%;
@@ -398,20 +401,23 @@ background-color: #EAEAEA;
     position: absolute;
     right: 50px;
     top: 100px;
-    border: 1px solid black;
-    border-radius: 8px;
+    border-top: 2px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     width: 55%;
     max-height: 500px;
 }
 .scrollBox {
     overflow: scroll;
     max-height: 455px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
+    border-radius: 5px;
     margin:0;
 }
 .friendsHeader {
-    border-bottom:2px solid black;
+    /*border-bottom:2px solid black;*/
     text-align: center;
     font-family: 'Product Sans', arial, sans-serif;
     font-size: 32px;
@@ -438,4 +444,98 @@ background-color: #EAEAEA;
    overflow: scroll;
    border-radius:10px;
    border:1px solid black;
+}
+.socialMediaIcon {
+    margin-left:40%;padding:.5% 0;
+}
+.input-form-friends{
+    margin-left: 50px;
+    display: inline;
+}
+.add-a-friend {
+float: right;
+margin-right: 80px;
+}
+#add-friend-button {
+    position:absolute;
+    right:3px;top:3px;
+    /*float: right;*/
+    width:12%;
+}
+@media screen and (max-width:929px) {
+    .sliderpic { display: none;}
+    #splash-page-pic {
+        display: block;
+        width: 100%;
+        background-size: cover;
+    }
+    @keyframes slidy {
+    0% { left: 0%; }
+    15% { left: 0%; }
+    25% { left: 0%; }
+    35% { left: 0%; }
+    45% { left: 0%; }
+    65% { left: 0%; }
+    75% { left: 0%; }
+    85% { left: 0%; }
+    95% { left: 0%; }
+    99% { left: 0%; }
+        }
+    div#slider figure img { 
+        float: none;
+        display: block;
+        }
+        
+}
+@media screen and (max-width:492px){
+    .socialMediaIcon {
+        display: block;
+        margin-left: 10px;
+    }
+}
+@media screen and (max-width:1140px){
+   .add-a-friend {display: none;}
+   .friendsBox {width: 35%;}
+   .scrollBox {height: 400px;}
+   .form-control {display: none; }
+}
+@media screen and (max-width:1000px){
+    .friends-seperater {
+        width: 300px;
+    }
+   .col-md-3 {
+       width:80px;
+   }
+   .input-form-friends input {
+       margin: 5px 1px 2px 5px;
+       width:100px;
+   }
+  .input-form-friends{
+    margin-left: 5px;
+    }
+}
+@media screen and (max-width:800px){
+   .panel-heading big {
+       display: none;
+   }
+   #add-friend-button {
+    position: static;
+    width:35px;
+    }
+  .profile-info{
+     height: 560px;
+     width:45%;
+     position:absolute;
+     top:80px;
+     left:25px;
+     padding:10px;
+    }
+}
+@media screen and (max-width:500px){
+  .profile-picture {
+    width:100px;
+  }
+  .profile-body {
+      height: 1008px;
+  }
 }
