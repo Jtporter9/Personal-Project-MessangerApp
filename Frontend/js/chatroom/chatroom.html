@@ -85,7 +85,7 @@
 <div class="main-box-right">
 	<div id="message-container" class="message-container">
 		<div ng-show="showMessages" ng-class="{'message-right':message.fromName==='{{usersInfo.name}}'}" class="message-box" ng-repeat=" message in messagesFromSockets track by $index">
-			<img src="{{usersInfo.avatar}}" style="border-radius:50%;width:60px;">
+			<img src="{{message.fromAvatar}}" style="border-radius:50%;width:60px;">
 			<span style="border-bottom:1px solid black; margin-left:10px;">
 				{{message.fromName}}:
 				</span>

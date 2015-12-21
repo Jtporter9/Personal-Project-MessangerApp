@@ -216,6 +216,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.showFileUpload = false;
 		var newMessage = {
 			fromName: $scope.usersInfo.name,
+			fromAvatar: $scope.usersInfo.avatar,
 			content: newMessageText,
 			time: new Date()
 			//moment().add('days').calendar()
