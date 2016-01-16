@@ -1,8 +1,6 @@
 var Conversation = require('../Models/ConversationsModel');
 
-
 module.exports = {
-
 	addConversation: function (req, res) {
 		var newConversation = new Conversation(req.body);
 		newConversation.save(function (err, result) {

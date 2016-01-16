@@ -1,7 +1,6 @@
 // Dependencies
 var express = require('express');
 
-
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -71,7 +70,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook'
 		}
 		console.log('current users ID !!:', req.session.passport.user._id);
 	});
-	
+
 /////////////////////////////////////////////////
 //////////// Passport Oauth GOOGLE///////////////
 /////////////////////////////////////////////////
