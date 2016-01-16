@@ -41,18 +41,6 @@ font-variant: normal;
 font-weight: normal;
 margin-left: 10px;
 }
-/*.navDropDown {
-	background: rgba(255,255,255,0.5);
-    border: 2px solid black;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 20px;
-    position: fixed;   
-    right: 2%;
-    top: 12%;
-    padding: 3em 1em;
-    z-index: 999;
-}*/
 .loginForm {
     border: 2px solid black;
     background: rgba(255,255,255,0.8);
@@ -63,16 +51,8 @@ margin-left: 10px;
     z-index: 999;
     position: absolute; 
     left: 30%;
-    top: 119px;
+    top: 129px;
 }
-/*.btn { 
-	opacity: .7;
-    border-radius: 2px; 
-    height: 36px; 
-    width:36px;  
-	border: 1px solid purple;
-}*/
-
 #lines:before { 
     border-bottom: 17px double black;
     border-top: 6px solid black;    
@@ -102,16 +82,6 @@ margin-left: 10px;
     padding: .4%;
     margin-top: .4%;
 }
-/*a {
-    color: black;
-    font-family:monospac ;
-}
-a:hover {
-	background: rgba(255,255,255,0.5);
-    border: 1px solid black;
-    border-radius: 5px;
-    padding:1%;
-}*/
 /*Slider*/
 @keyframes slidy {
 0% { left: 0%; }
@@ -125,13 +95,11 @@ a:hover {
 95% { left: -400%; }
 99% { left: -400%; }
 }
-
-/*div#slider { overflow: hidden; }*/
 div#slider {
     position: absolute;
     top: 45px;
 }
-div#slider figure img { width: 20%; float: left;}
+div#slider figure img { width: 20%; height: 80%; float: left;}
 div#slider figure { 
   position: fixed;
   background-size: cover;
@@ -164,24 +132,27 @@ div#slider figure {
 .add-to-convo:hover {
     cursor: pointer;
 }
-#submit-message-btn {
-    z-index:999;
-    position:relative;
-    bottom:30px;
-    right:-760px;
-}
 #attach-file {
         z-index:999;
-    position:relative;
-    bottom:30px;
-    right:-760px;
-}
+        float: right;
+        margin: .5%;
+    }
 #emoji {
         z-index:999;
-    position:relative;
-    bottom:30px;
-    right:-760px;
-    width: 4.8%;
+        float: right;
+         width: 20%;
+        margin: .5%;
+}
+#submit-message-btn {
+    z-index:999;
+    float: right;
+    margin: .5%;
+    }
+.send-box {
+    padding: 0.5%;
+    width:22%;
+    float:right;
+    margin:25px 5px 5px 0;
 }
 .message-content{
     font-size:12px;
@@ -257,8 +228,6 @@ div#slider figure {
 }
 .conversations:hover {
     border:4px solid white;
-}
-.conversations:hover {
     cursor: pointer;
 }
 .main-box-right {
@@ -289,8 +258,14 @@ background-color: #EAEAEA;
     clear: both;
     font-size: 15px;
     margin: 2.3%;
+
+    
 }
-.little-avatar {
+.message-text {
+    margin:5px 10px; 
+    height:auto;
+}
+.little-avatar { 
     width:50px;
     border-radius: 5%;
 }
@@ -305,6 +280,8 @@ background-color: #EAEAEA;
     width:52%;
     font-size: 15px;
     margin: 2.3%;
+
+    
 } 
 .message-right::after {
     clear: both;
@@ -317,12 +294,28 @@ background-color: #EAEAEA;
 .Xbtn:hover {
     cursor: pointer;
 }
-.input-message {
-    width: 99.9%;
-    border:2px solid black;
-    border-radius: 5px;
+.input-message-container {
+    background-color: white;
+    border:1px solid green;
+    height: 69px;
     position: absolute;
     bottom:0px;
+    width:99.8%;
+    border-radius: 5px;
+}
+.input-message {
+    font-size: 18px;
+    height: 54px;
+    width: 77%;
+    border-radius: 5px;
+    resize: none;
+     border-style: none; 
+    border-color: Transparent; 
+    overflow: auto; 
+     border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;  
 }
 .add-convo {
       border: 2px solid black;
@@ -341,14 +334,42 @@ background-color: #EAEAEA;
     overflow: scroll;
     border: 1px solid black;
 }
-.entered-conversation-alert {
+#entered-conversation-alert {
+    z-index: 999999;
     position: fixed;
-    top:65px;
+    color: black;
+    top:70px;
+    right: 5px;
+    background-color: #E5E5E5;
+    border: 3px solid #EC3E00;
+    border-radius:5px;
+    padding:8px;
+    margin:4px 10px;
+    max-width: 50%;
+    height: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s;
+}
+#entered-conversation-alert.ng-hide {
+   left: -100%;
+  opacity:0;
+  padding:0 10px;
+}
+#new-message-alert {
+    z-index: 999999;
+    position: fixed;
+    bottom:100px;
+    right:5px;
     background-color: whitesmoke;
     border: 2px solid red;
     border-radius:5px;
     padding:8px;
     margin:4px 10px;
+    max-width:50%;
+    display: inline;
 }
 .border-bottom {
     border-bottom: 1px solid black;
@@ -358,7 +379,7 @@ background-color: #EAEAEA;
     border-radius:5px;
     overflow:scroll;
     height:200px;
-    border:1px solid black;
+    /*border:1px solid black;*/
 }
 .profile-info{
      height: 520px;
@@ -370,7 +391,7 @@ background-color: #EAEAEA;
 }
 .profile-body {
     background-color: whitesmoke;
-    min-height: 643px;
+    height: 643px;
 }
 .personal-info {
     width: 90%;
@@ -380,25 +401,23 @@ background-color: #EAEAEA;
     position: absolute;
     right: 50px;
     top: 100px;
-    border: 1px solid black;
-    border-radius: 8px;
-    width: 50%;
+    border-top: 2px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 55%;
     max-height: 500px;
 }
 .scrollBox {
     overflow: scroll;
     max-height: 455px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-radius: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin:0;
 }
-/*.friendsBoxHeader{
-    position: absolute;
-    right: 50px;
-    top: 70px;
-}*/
 .friendsHeader {
-    border-bottom:2px solid black;
+    /*border-bottom:2px solid black;*/
     text-align: center;
     font-family: 'Product Sans', arial, sans-serif;
     font-size: 32px;
@@ -409,21 +428,11 @@ background-color: #EAEAEA;
     border-radius:5%;
     border:1px solid black;
 }
-/*.label-success {
-    background-color: #46A741;
-    border-radius: 5px;
-    padding:1px 10px;
-}*/
 .friends-seperater {
     border-bottom:1px solid black;
     width: 400px;;
 }
-/**{
-    border: 1px solid purple;
-}*/
-
-/*Terms and conditions*/
-
+/*TERMS AND CONDITION PAGE*/
 .termsAndConditions {
     background-color: white;
     text-align: center;
@@ -435,4 +444,98 @@ background-color: #EAEAEA;
    overflow: scroll;
    border-radius:10px;
    border:1px solid black;
+}
+.socialMediaIcon {
+    margin-left:40%;padding:.5% 0;
+}
+.input-form-friends{
+    margin-left: 50px;
+    display: inline;
+}
+.add-a-friend {
+float: right;
+margin-right: 80px;
+}
+#add-friend-button {
+    position:absolute;
+    right:3px;top:3px;
+    /*float: right;*/
+    width:12%;
+}
+@media screen and (max-width:929px) {
+    .sliderpic { display: none;}
+    #splash-page-pic {
+        display: block;
+        width: 100%;
+        background-size: cover;
+    }
+    @keyframes slidy {
+    0% { left: 0%; }
+    15% { left: 0%; }
+    25% { left: 0%; }
+    35% { left: 0%; }
+    45% { left: 0%; }
+    65% { left: 0%; }
+    75% { left: 0%; }
+    85% { left: 0%; }
+    95% { left: 0%; }
+    99% { left: 0%; }
+        }
+    div#slider figure img { 
+        float: none;
+        display: block;
+        }
+        
+}
+@media screen and (max-width:492px){
+    .socialMediaIcon {
+        display: block;
+        margin-left: 10px;
+    }
+}
+@media screen and (max-width:1140px){
+   .add-a-friend {display: none;}
+   .friendsBox {width: 35%;}
+   .scrollBox {height: 400px;}
+   .form-control {display: none; }
+}
+@media screen and (max-width:1000px){
+    .friends-seperater {
+        width: 300px;
+    }
+   .col-md-3 {
+       width:80px;
+   }
+   .input-form-friends input {
+       margin: 5px 1px 2px 5px;
+       width:100px;
+   }
+  .input-form-friends{
+    margin-left: 5px;
+    }
+}
+@media screen and (max-width:800px){
+   .panel-heading big {
+       display: none;
+   }
+   #add-friend-button {
+    position: static;
+    width:35px;
+    }
+  .profile-info{
+     height: 560px;
+     width:45%;
+     position:absolute;
+     top:80px;
+     left:25px;
+     padding:10px;
+    }
+}
+@media screen and (max-width:500px){
+  .profile-picture {
+    width:100px;
+  }
+  .profile-body {
+      height: 1008px;
+  }
 }

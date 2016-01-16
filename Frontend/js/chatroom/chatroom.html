@@ -25,8 +25,8 @@
 						</div>
 						<div class="friends-seperater col-sm-6">{{friend.name}}</div>
 						<div class="friends-seperater col-sm-4 ">
-							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.status==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
-								{{friend.status}}</div>
+							<div ng-class="{'glyphicon glyphicon-user label label-success':friend.Userstatus==='Online'}" style="padding:1px 10px;" class="glyphicon glyphicon-user label label-default">
+								{{friend.Userstatus}}</div>
 						</div>
 					</div>
 				</div>
@@ -35,6 +35,8 @@
 		<button ng-click="submitNewConvo(friendsToAddToConvo)" class="glyphicon glyphicon-ok btn btn-success">
 			Submit
 		</button>
+		<!--<br>
+		<span style="border-bottom:1px solid red;color:red;">Don't forget to add yourself to the conversation.</span>-->
 	</form>
 	<div class="friends-added-box">
 		<div class="added-text">Added: </div>
@@ -57,14 +59,14 @@
 			</nav>
 		</div>
 		<div class="scrolly-convo-bar">
-			<div ng-click="findCurrentConvo(convos._id, convos)" ng-click="findCurrentConvoForMessage(convos._id, convos)" class="conversations"
-			ng-repeat="convos in usersInfo.conversations | filter: conversationFilter">
+			<div ng-click="findCurrentConvo(convos._id, convos)" ng-click="findCurrentConvoForMessage(convos._id, convos)"
+			 class="conversations" ng-repeat="convos in usersInfo.conversations | filter: conversationFilter">
 				<button style="float:right;padding:2px;" ng-click="deleteConvo(convos._id)" class="btn btn-primary">
 					<span class="trash-can glyphicon glyphicon-trash"></span>
 				</button>
-				<div ng-repeat="person in convos.people track by $index">
+				<div style="margin-top:5px;" ng-repeat="person in convos.people track by $index">
 					<big>
-					-{{person.name}}
+					<img src="{{person.avatar}}"style="border-radius:50%; width:35px;"> {{person.name}}
 				</big>
 				</div>
 				<div style="margin-top:5px;">
@@ -76,19 +78,19 @@
 		</div>
 	</div>
 </div>
+	<div ng-show="showEnteredConversationAlert" id="entered-conversation-alert">
+		<span style="border-bottom:1px solid black; font-size:20px;">Conversation with </span>
+		<big ng-repeat="people in currentConvo.people">, {{people.name}}</big>
+	</div>
 <div class="main-box-right">
 	<div id="message-container" class="message-container">
-		<div ng-show="showEnteredConversationAlert" class="entered-conversation-alert">
-			<big style="border-bottom:1px solid black;">Conversation with <span ng-repeat="people in currentConvo.people">, {{people.name}}</span> </big>
-		</div>
-		<div ng-class="{'message-right':message.fromName==='{{usersInfo.name}}'}" class="message-box" ng-repeat="message in messagesInConvos">
-			<!--<img class="little-avatar" src=""> </img>-->
-			<img src="images/default-profile-thumb.png" style="border-radius:50%;width:45px;">
+		<div ng-show="showMessages" ng-class="{'message-right':message.fromName==='{{usersInfo.name}}'}" class="message-box" ng-repeat=" message in messagesFromSockets track by $index">
+			<img src="{{message.fromAvatar}}" style="border-radius:50%;width:60px;">
 			<span style="border-bottom:1px solid black; margin-left:10px;">
 				{{message.fromName}}:
 				</span>
-			<p style="margin:5px 10px;">{{message.content}}</p>
-			<span class="message-content">{{message.time | date: 'MMM d, h:mm a'}}</span>
+			<div class="message-text">{{message.content}}</div>
+			<span class="message-content" am-time-ago="message.time"></span>
 		</div>
 	</div>
 	<br>
@@ -96,16 +98,26 @@
 	<br>
 	<div>
 		<div>
-			<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event, newMessageText);" class="input-message" rows="3" placeholder="click here to type...">
-			</textarea>
-			<div>
-				<input id="attach-file" ng-show="showFileUpload" type="file">
-				<button ng-click="attachFile()" id="attach-file" class=" btn btn-success">
-					<a style="color:white;" class="glyphicon glyphicon-paperclip"></a> Attach</button>
-				<button id="emoji" class="btn btn-warning"><img src="http://media.idownloadblog.com/wp-content/uploads/2014/06/Emoji-Tongue.png" style="width:110%;"></button>
-				<button ng-click="sendNewMessage(newMessageText);" id="submit-message-btn" class="btn btn-primary">Send</button>
+			<div class="input-message-container">
+				<textarea ng-model="newMessageText" ng-keydown="searchKeyPress(event, newMessageText);" class="input-message" placeholder="click here to type...">
+				</textarea>
+				<div class="send-box">
+					<!--<input id="attach-file" ng-show="showFileUpload" type="file">
+					<button ng-click="attachFile()" id="attach-file" class=" btn btn-success">-->
+						<!--<a style="color:white;" class="glyphicon glyphicon-paperclip"></a> Attach</button>-->
+					<button id="emoji" class="btn btn-warning"><img src="http://media.idownloadblog.com/wp-content/uploads/2014/06/Emoji-Tongue.png" style="width:20px;"></button>
+					<button ng-disabled="disableSendBtn" ng-click="sendNewMessage(newMessageText);" id="submit-message-btn" class="btn btn-primary">Send</button>
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
+<!--<div ng-show="showEnteredConversationAlert" id="entered-conversation-alert">
+		<span style="border-bottom:1px solid black;font-size:20px;">Conversation with </span>
+		<big ng-repeat="people in currentConvo.people">, {{people.name}}</big>
+	</div>-->
+<div ng-show="showNewMessagesBox" id="new-message-alert">
+	<span style="border-bottom:1px solid black;font-size:20px;">1 new-message</span>
+	<big class="glyphicon glyphicon-arrow-down"></big>
 </div>
 <dir-Footer-2></dir-Footer-2>

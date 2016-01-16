@@ -1,6 +1,7 @@
 angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
-	$timeout, chatroomService, $stateParams, $location, $anchorScroll) {
+	$timeout, chatroomService, $stateParams, $location, $anchorScroll, Socket) {
 
+	$scope.disableSendBtn = true;
 	$scope.showSignuature = false;
 	$scope.showProfileLink = true;
 	$scope.showChatroomLink = false;
@@ -18,15 +19,17 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	//////////////////////////////
 	/////find current user///////
 	////////////////////////////
-	
+
 	$scope.findCurrentUserById = function (UserId) {
 		chatroomService.findCurrentUser(UserId).then(function (response) {
 			$scope.usersInfo = response;
-
-			$scope.usersInfo.conversations.forEach(function (conversation, convIndex) {
+			// console.log($scope.usersInfo);
+			Socket.emit('CurrentUsersConvos', response.conversations);
+			// console.log(response.conversations);
+			$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
 				conversation.people.map(function (personId, peopleIndex) {
 					chatroomService.findCurrentUser(personId).then(function (response) {
-						$scope.usersInfo.conversations[convIndex].people[peopleIndex] = response;
+						$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
 					});
 				});
 			});
@@ -34,50 +37,95 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		});
 	};
 
-	$scope.findCurrentUserById($stateParams.id);
-	//////////////////////////////
-	////////////Emojis///////////
-	////////////////////////////
-	// function convert() {
-	// 	var input = document.getElementById('inputText').value;
-	// 	var output = emojione.shortnameToImage(input);
-	// 	document.getElementById('outputText').innerHTML = output;
-	// }
+	// Socket.on('CurrentUsersConvosFromSockets', function (ConvosFromSockets) {
+	// 	$scope.usersInfo.conversations = ConvosFromSockets;
+	// 	$scope.usersInfo.conversations.forEach(function (conversation, convoIndex) {
+	// 		conversation.people.map(function (personId, peopleIndex) {
+	// 			chatroomService.findCurrentUser(personId).then(function (response) {
+	// 				$scope.usersInfo.conversations[convoIndex].people[peopleIndex] = response;
+	// 			});
+	// 		});
+	// 	});
+	// 	$scope.$digest();
+	// });//end of socket
 
-	////////////////////
-	///getting convos//
-	//////////////////
+	$scope.getCurrentUsersId = function () {
+		chatroomService.currentUsersId().then(function (response) {
+			if (response._id === $stateParams.id) {
+				$scope.currentUserId = response._id;
+				$scope.findCurrentUserById($scope.currentUserId);
+			}
+		})
+	}
+	$scope.getCurrentUsersId();
+
+	window.setInterval(function () {
+		$scope.findCurrentUserById($scope.currentUserId)
+	}, 400000);
+
+	/////////////////////////////////////////
+	///////////getting convos///////////////
+	///////////////////////////////////////
 	
 	$scope.findConvos = function () {
 		chatroomService.findConvos().then(function (response) {
-			// $scope.conversations = response;
-			// $scope.conversations.people = response.people;
 		});
+	}
+
+	var showNewMessagesBox = function () {
+		if ($scope.messagesFromSockets._id !== $stateParams) {
+			$scope.showNewMessagesBox = false;
+		} else {
+			$scope.showNewMessagesBox = true;
+			$timeout(function () {
+				$scope.showEnteredConversationAlert = false;
+			}, 4000)
+		}
 	}
 
 	var showAlertBoxOnConvo = function () {
 		$scope.showEnteredConversationAlert = true;
 		$timeout(function () {
 			$scope.showEnteredConversationAlert = false;
-		}, 4000)
+		}, 5000)
+	}
+
+	$scope.findCurrentConvoForMessage = function (ConvoId, convos) {
+		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
+			$scope.messagesInConvos = response.messages;
+			Socket.emit('message', response.messages);
+			$scope.currentConvo = convos;
+			$scope.ConvoId = response._id;
+			Socket.on('messageFromSockets', function (messagesFromSockets) {
+				$scope.messagesFromSockets = messagesFromSockets;
+				$scope.$digest();
+				showNewMessagesBox();
+				$timeout(function () {
+					$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
+				}, 100)
+			})
+
+		})
 	}
 
 	$scope.findCurrentConvo = function (ConvoId, convos) {
 		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
-			$scope.messagesInConvos = response.messages;
+			$scope.messagesFromSockets = response.messages;
 			$scope.currentConvo = convos;
 			$scope.ConvoId = response._id;
+			$scope.numNewMessages = response.numNewMessages;
 			showAlertBoxOnConvo();
+			$scope.showMessages = true;
+			$scope.disableSendBtn = false;
+			var newConvoObj = {
+				numNewMessages: $scope.numNewMessages = 0
+			}
+			chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
+				$scope.findCurrentUserById($scope.currentUserId);
+			})
 			$timeout(function () {
-			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
-		}, 100)
-		})
-	}
-	$scope.findCurrentConvoForMessage = function (ConvoId, convos) {
-		chatroomService.findCurrentConvo(ConvoId).then(function (response) {
-			$scope.messagesInConvos = response.messages;
-			$scope.currentConvo = convos;
-			$scope.ConvoId = response._id;
+				$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
+			}, 100)
 		})
 	}
 
@@ -89,6 +137,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	$scope.friendsToAddToConvo = [];
 
 	$scope.addingFriendsToConvo = function (friendObj, index) {
+		// $scope.friendsToAddToConvo.push($scope.usersInfo);
 		$scope.friendsToAddToConvo.push(friendObj);
 	}
 	$scope.deletingFriendsFromConvo = function (index) {
@@ -100,10 +149,21 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	};
 
 	///////////////////////////////////////////
-	//////Add new Conversation////////////////
+	//////////////Add new Conversation////////
 	/////////////////////////////////////////
+
 	
-	
+	//ng-if="showUsersNameInConvo(usersInfo._id, convos.people)"
+	// $scope.showUsersNameInConvo = function (currentUserId, peopleInConvos) {
+	// 	// console.log(peopleInConvos);
+	// 	peopleInConvos.forEach(function (person, i) {
+	// 		console.log(person);
+	// 	if (currentUserId === person) {
+	// 		return true;
+	// 	} else { return false };
+	// 	})
+	// }
+
 	$scope.UserIds = [];
 	for (var i = 0; i < $scope.friendsToAddToConvo.length; i++) {
 		$scope.UserIds.push($scope.friendsToAddToConvo[i]._id);
@@ -116,6 +176,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 	$scope.submitNewConvo = function (userObjs) {
+		console.log(userObjs);
 		////addConvo to Conversation collection///////
 		$scope.addingConversation = false;
 		var newConvo = {
@@ -129,11 +190,11 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 			}
 			userObjs.forEach(function (userId, index) {
 				chatroomService.updateUser(conversationId, userId._id).then(function (response) {
-					console.log(response);
 					$scope.findCurrentUserById($stateParams.id);
 				});
 			})
 		});
+		$scope.friendsToAddToConvo.push($scope.usersInfo);
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};
@@ -144,7 +205,6 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
-			// $scope.findConvos();
 			$scope.findCurrentUserById($stateParams.id);
 		})
 	}
@@ -152,24 +212,34 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	///////////sending a new messages////////
 	////////////////////////////////////////
 	$scope.sendNewMessage = function (newMessageText) {
+		$scope.showEnteredConversationAlert = false;
 		$scope.showFileUpload = false;
 		var newMessage = {
 			fromName: $scope.usersInfo.name,
-			content: newMessageText
+			fromAvatar: $scope.usersInfo.avatar,
+			content: newMessageText,
+			time: new Date()
+			//moment().add('days').calendar()
 		}
 		chatroomService.updateMessage(newMessage, $scope.ConvoId).then(function (response) {
 			$scope.findCurrentConvoForMessage($scope.ConvoId);
 		});
+
+		var newConvoObj = {
+			numNewMessages: $scope.numNewMessages += 1
+		}
+		chatroomService.updateConvo(newConvoObj, $scope.ConvoId).then(function (response) {
+			// $scope.findCurrentUserById($scope.currentUserId);
+			// $scope.findConvos();
+		})
 		$scope.newMessageText = "";
 		$timeout(function () {
 			$('#message-container').scrollTop($('#message-container')[0].scrollHeight);
 		}, 100)
 	}
 
-	$scope.attachFile = function () {
-		$scope.showFileUpload = !$scope.showFileUpload;
-	}
 	$scope.searchKeyPress = function (e, i) {
+		// if(){}
 		e = e || window.event;
 		if (e.keyCode == 13) {
 			$scope.sendNewMessage(i);
@@ -177,26 +247,38 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		}
 		return true;
 	}
+
+	$scope.attachFile = function () {
+		$scope.showFileUpload = !$scope.showFileUpload;
+	}
 	////////////////////////////////////
 	/////////////find Users////////////
 	//////////////////////////////////
 
 	$scope.findFriends = function (UserId) {
 		chatroomService.findUser().then(function (response) {
-			// console.log(response);
 			$scope.friends = response;
+			// console.log(response)
 			for (var i = 0; i < $scope.friends.length; i++) {
-				if ($scope.friends[i].status === false || !$scope.friends[i].status) {
-					$scope.friends[i].status = "Offline";
+				if ($scope.friends[i].Userstatus === false || !$scope.friends[i].Userstatus) {
+					$scope.friends[i].Userstatus = "Offline";
 				} else {
-					$scope.friends[i].status = "Online";
+					$scope.friends[i].Userstatus = "Online";
 				}
+				// console.log(response[i].Userstatus);
+				Socket.emit('friendstatus', response[i].Userstatus);
+
 			}
 		})
 	}
-	$scope.findFriends();
-	
-	
-	//   var socket = io();
 
+	Socket.on('messageFromSockets', function (friendsStatus) {
+		// console.log(friendsStatus);
+		$scope.friends.Userstatus = friendsStatus;
+		$scope.$digest();
+	})
+
+
+
+	$scope.findFriends();
 });
