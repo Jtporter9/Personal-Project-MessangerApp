@@ -208,5 +208,5 @@ io.on('connection', function (socket) {
 
 // PORT //
 http.listen(80, function () {
-	console.log('listening on port: 80'); 
+	console.log('listening on port: 80');
 });
