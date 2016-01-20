@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var Users = Schema({
 	facebookId: { type: Number },
-	googleId: { type: Number },
+	googleId: { type: Number }, 
 	accessToken: { type: Number },
 	name: { type: String, required: true },
 	username: { type: String },

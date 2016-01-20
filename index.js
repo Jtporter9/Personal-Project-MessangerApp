@@ -17,7 +17,6 @@ var ConversationsCtrl = require('./Backend/Controllers/ConversationsCtrl.js')
 var User = require('./Backend/Models/UsersModel')
 var keys = require('./keys');
 
-
 ///////////////////////////////////////////////
 ////////// Passport Oauth Facebook/////////////
 ///////////////////////////////////////////////
