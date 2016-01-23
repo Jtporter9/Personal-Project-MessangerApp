@@ -15,7 +15,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.scrollFriendsFinder = "";
 		$scope.friendsToAddToConvo = [];
 	}
-	
+
 	//////////////////////////////
 	/////find current user///////
 	////////////////////////////
@@ -66,7 +66,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	/////////////////////////////////////////
 	///////////getting convos///////////////
 	///////////////////////////////////////
-	
+
 	$scope.findConvos = function () {
 		chatroomService.findConvos().then(function (response) {
 		});
@@ -130,7 +130,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	}
 
 	$scope.findConvos();
-	
+
 	///////////////////////////////////////////
 	//////////////adding conversation/////////
 	/////////////////////////////////////////
@@ -152,7 +152,7 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 	//////////////Add new Conversation////////
 	/////////////////////////////////////////
 
-	
+
 	//ng-if="showUsersNameInConvo(usersInfo._id, convos.people)"
 	// $scope.showUsersNameInConvo = function (currentUserId, peopleInConvos) {
 	// 	// console.log(peopleInConvos);
@@ -198,11 +198,11 @@ angular.module('messangerApp').controller('chatroomCtrl', function ($scope,
 		$scope.friendsToAddToConvo = [];
 		$scope.newConvo = {};
 	};
-	
+
 	//////////////////////////////////////////////
 	////////// deleting convos!!@$#@!#$//////////
 	////////////////////////////////////////////
-	
+
 	$scope.deleteConvo = function (ConvoId) {
 		chatroomService.deleteConvo(ConvoId).then(function (response) {
 			$scope.findCurrentUserById($stateParams.id);

@@ -49,24 +49,24 @@ margin-left: 10px;
     padding: 1%;
     text-align: center;
     z-index: 999;
-    position: absolute; 
+    position: absolute;
     left: 30%;
     top: 129px;
 }
-#lines:before { 
+#lines:before {
     border-bottom: 17px double black;
-    border-top: 6px solid black;    
+    border-top: 6px solid black;
     content:"";
-    height: 5px; 
-    position: absolute; 
-    right:2%;  
-    top: 25%; 
-    width:30px; 
+    height: 5px;
+    position: absolute;
+    right:2%;
+    top: 25%;
+    width:30px;
 }
 .footer {
     position: fixed;
     bottom:0;
-    background-color: #D5322B;    
+    background-color: #D5322B;
 	padding: 0.1%;
     border-top: 2px solid black;
     width: 100%;
@@ -100,7 +100,7 @@ div#slider {
     top: 45px;
 }
 div#slider figure img { width: 20%; height: 80%; float: left;}
-div#slider figure { 
+div#slider figure {
   position: fixed;
   background-size: cover;
   width: 500%;
@@ -108,7 +108,7 @@ div#slider figure {
   left: 0;
   text-align: left;
   font-size: 0;
-  animation: 30s slidy infinite; 
+  animation: 30s slidy infinite;
 }
 
 /*////////*Chatroom page*/
@@ -246,7 +246,9 @@ div#slider figure {
     border-radius: 5px;
     border:1px solid gray;
     overflow: auto;
-        height: 515px;
+    height: 88%;
+    position: relative;
+    bottom: 0;
 }
 .message-box{
 background-color: #EAEAEA;
@@ -259,13 +261,13 @@ background-color: #EAEAEA;
     font-size: 15px;
     margin: 2.3%;
 
-    
+
 }
 .message-text {
-    margin:5px 10px; 
+    margin:5px 10px;
     height:auto;
 }
-.little-avatar { 
+.little-avatar {
     width:50px;
     border-radius: 5%;
 }
@@ -281,8 +283,8 @@ background-color: #EAEAEA;
     font-size: 15px;
     margin: 2.3%;
 
-    
-} 
+
+}
 .message-right::after {
     clear: both;
 }
@@ -295,13 +297,13 @@ background-color: #EAEAEA;
     cursor: pointer;
 }
 .input-message-container {
-    background-color: white;
-    border:1px solid green;
-    height: 69px;
-    position: absolute;
-    bottom:0px;
-    width:99.8%;
-    border-radius: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 2px gray;
+  height: 69px;
+  position: fixed;
+  bottom: 61px;
+  width: 76.1%;
+  border-radius: 5px;
 }
 .input-message {
     font-size: 18px;
@@ -309,13 +311,13 @@ background-color: #EAEAEA;
     width: 77%;
     border-radius: 5px;
     resize: none;
-     border-style: none; 
-    border-color: Transparent; 
-    overflow: auto; 
+     border-style: none;
+    border-color: Transparent;
+    overflow: auto;
      border: none;
     background-color: transparent;
     resize: none;
-    outline: none;  
+    outline: none;
 }
 .add-convo {
       border: 2px solid black;
@@ -325,7 +327,7 @@ background-color: #EAEAEA;
     padding: 1%;
     text-align: center;
     z-index: 999;
-    position: absolute; 
+    position: absolute;
     left: 36%;
     top: 60px;
 }
@@ -391,7 +393,7 @@ background-color: #EAEAEA;
 }
 .profile-body {
     background-color: whitesmoke;
-    height: 643px;
+    height: 793px;
 }
 .personal-info {
     width: 90%;
@@ -481,11 +483,11 @@ margin-right: 80px;
     95% { left: 0%; }
     99% { left: 0%; }
         }
-    div#slider figure img { 
+    div#slider figure img {
         float: none;
         display: block;
         }
-        
+
 }
 @media screen and (max-width:492px){
     .socialMediaIcon {
@@ -523,7 +525,7 @@ margin-right: 80px;
     width:35px;
     }
   .profile-info{
-     height: 560px;
+     height: 81%;
      width:45%;
      position:absolute;
      top:80px;
